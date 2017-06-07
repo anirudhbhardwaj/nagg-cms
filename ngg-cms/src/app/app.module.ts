@@ -6,7 +6,6 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {MainNavComponent} from './main-nav/main-nav.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {DashWidgetComponent} from './dashboard/dash-widget/dash-widget.component';
 import {GridsterModule} from 'angular-gridster2/dist/index';
 import {NewsComponent} from './news/news.component';
 import {RouterModule}   from '@angular/router';
@@ -20,7 +19,6 @@ import { NewsOverviewComponent } from './news/news-overview/news-overview.compon
         AppComponent,
         MainNavComponent,
         DashboardComponent,
-        DashWidgetComponent,
         NewsComponent,
         KpiComponent,
         ProjectComponent,
