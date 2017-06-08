@@ -1,3 +1,8 @@
 <p>
   news works!
+  <button (click)="getAllNews()"> GetallNews</button>
+
+</p>
+<p *ngFor="let element of news">
+  {{element.title}}
 </p>

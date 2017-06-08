@@ -15,6 +15,7 @@ import { NewsOverviewComponent } from './news/news-overview/news-overview.compon
 import {AppRoutingModule} from './app-routing.module';
 import {AuthGuard} from "./app-authguard.service";
 import {AuthService} from "./auth.service";
+import { HttpClient } from './shared/httpClient.service';
 
 @NgModule({
     declarations : [
@@ -35,7 +36,7 @@ import {AuthService} from "./auth.service";
         AppRoutingModule
 
     ],
-    providers : [AuthGuard, AuthService],
+    providers : [AuthGuard, AuthService, HttpClient],
     bootstrap : [AppComponent]
 })
 export class AppModule {
