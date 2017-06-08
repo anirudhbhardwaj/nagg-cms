@@ -13,6 +13,8 @@ import {ProjectComponent} from './project/project.component';
 import {SevenKeysComponent} from './seven-keys/seven-keys.component';
 import { NewsOverviewComponent } from './news/news-overview/news-overview.component';
 import {AppRoutingModule} from './app-routing.module';
+import {AuthGuard} from "./app-authguard.service";
+import {AuthService} from "./auth.service";
 
 @NgModule({
     declarations : [
@@ -33,7 +35,7 @@ import {AppRoutingModule} from './app-routing.module';
         AppRoutingModule
 
     ],
-    providers : [],
+    providers : [AuthGuard, AuthService],
     bootstrap : [AppComponent]
 })
 export class AppModule {
