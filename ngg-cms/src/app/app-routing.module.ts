@@ -6,12 +6,17 @@ import {KpiComponent} from "./kpi/kpi.component";
 import {SevenKeysComponent} from "./seven-keys/seven-keys.component";
 import {ProjectComponent} from "./project/project.component";
 import {AuthGuard} from "./app-authguard.service";
+import {LoginComponent} from "./login/login.component";
 
 const appRoutes: Routes = [
     {
         path : 'dashboard',
         component : DashboardComponent,
         canActivate: [AuthGuard]
+    },
+    {
+        path : 'login',
+        component : LoginComponent
     },
     {
         path : 'news',
