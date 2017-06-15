@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     console.log("in login component");
     if(this.authService.login()){
       console.log("navigating to dashboard");
-      this.router.navigate(['./dashboard'])
+      this.router.navigate(['./main'])
     }
   }
 }

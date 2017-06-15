@@ -19,6 +19,7 @@ import {AuthGuard} from "./app-authguard.service";
 import {AuthService} from "./auth.service";
 import { HttpClient } from './shared/httpClient.service';
 import { LoginComponent } from './login/login.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
     declarations : [
@@ -30,7 +31,8 @@ import { LoginComponent } from './login/login.component';
         ProjectComponent,
         SevenKeysComponent,
         NewsOverviewComponent,
-        LoginComponent
+        LoginComponent,
+        MainComponent
     ],
     imports : [
         BrowserModule,
