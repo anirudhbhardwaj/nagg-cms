@@ -1,6 +1,9 @@
+import { NewsOverviewComponent } from './news-overview/news-overview.component';
+import { NewsService } from './news-service.service';
+import { News } from './news.models';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from './../shared/httpClient.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
@@ -11,22 +14,23 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit {
-  news = [];
-  constructor(private httpClient: HttpClient) { }
+  news: News[];
+
+  constructor(private newsService: NewsService, private route: ActivatedRoute) {
+
+  }
 
   ngOnInit() {
+    this.route.data
+      .subscribe((data) => {
+        this.news = data.newsList;
+      });
   }
 
-  getAllNews(): void {
-    this.httpClient.get("http://localhost:3000/api/news")
-      .map(this.extractData)
-      .subscribe((news) => {
-        this.news = news;
-      })
-  }
-
-  extractData(res: any) {
-    let body = res.json();
-    return body || {};
+  postFixedNews() {
+    return this.newsService.postNews()
+      .subscribe(
+      data => this.news.push(data)
+      )
   }
 }

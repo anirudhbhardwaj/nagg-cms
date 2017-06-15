@@ -1,3 +1,4 @@
+import { News } from './news.models';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
@@ -7,7 +8,7 @@ import 'rxjs/add/operator/map';
 
 
 @Injectable()
-export class NewsServiceService {
+export class NewsService {
 
   constructor(private httpClient: HttpClient) { }
 
@@ -17,7 +18,7 @@ export class NewsServiceService {
     fingerprint: {
       userID: 'A811242',
     },
-    title: 'Nagarro News Sample',
+    title: 'Nagarro News Sample 2',
     description: `British Prime Minister.`,
     imageUrl: null,
     author_name: "Anirudh Bhardwaj",
@@ -26,9 +27,15 @@ export class NewsServiceService {
   };
 
   public postNews() {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this.httpClient.post(this.url, JSON.stringify(this.obj))
+    return this.httpClient.post("http://localhost:3000/api/news", JSON.stringify(this.obj))
       .map(res => res.json());
+  }
+
+  public getAllNews(): Observable<News[]> {
+    return this.httpClient.get("http://localhost:3000/api/news")
+      .map(res => {
+        let body = res.json();
+        return body || {};
+      });
   }
 }

@@ -12,8 +12,8 @@ router.get('/', function (req, res, next) {
     if (err) throw err;
 
     var collection = db.collection('news');
-    var result = collection.find({}).toArray(function(err, data) {
-       res.send(data);
+    var result = collection.find({}).toArray(function (err, data) {
+      res.send(data);
     });
   });
 });
@@ -28,7 +28,7 @@ router.post('/', function (req, res, next) {
 
     var collection = db.collection('news');
     collection.insert(req.body, function (err, docs) {
-      res.send(docs);
+      res.send(docs.ops[0]);
       db.close();
     });
   });

@@ -1,3 +1,5 @@
+import { NewsService } from './news/news-service.service';
+import { NewsResolveGuard } from './news/news-resolve.service';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
@@ -38,7 +40,7 @@ import { LoginComponent } from './login/login.component';
         AppRoutingModule
 
     ],
-    providers : [AuthGuard, AuthService, HttpClient],
+    providers : [AuthGuard, AuthService, HttpClient, NewsResolveGuard, NewsService],
     bootstrap : [AppComponent]
 })
 export class AppModule {
