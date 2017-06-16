@@ -3,7 +3,7 @@ import { NewsResolveGuard } from './news/news-resolve.service';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import {HttpModule, XHRBackend, RequestOptions} from '@angular/http';
 
 import {AppComponent} from './app.component';
 import {MainNavComponent} from './main-nav/main-nav.component';
@@ -20,6 +20,12 @@ import {AuthService} from "./auth.service";
 import { HttpClient } from './shared/httpClient.service';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
+import {HTTPIntercepterService} from "./shared/HTTPIntercepterService";
+import {BaseDTO} from "./news/news.models";
+
+export function httpINterceptorFactory(backend: XHRBackend, reqOptions: RequestOptions): HTTPIntercepterService {
+    return new HTTPIntercepterService(backend, reqOptions);
+}
 
 @NgModule({
     declarations : [
@@ -42,7 +48,11 @@ import { MainComponent } from './main/main.component';
         AppRoutingModule
 
     ],
-    providers : [AuthGuard, AuthService, HttpClient, NewsResolveGuard, NewsService],
+    providers : [AuthGuard, AuthService, HttpClient, NewsResolveGuard, NewsService, {
+        provide: HTTPIntercepterService,
+        useFactory: httpINterceptorFactory,
+        deps: [XHRBackend, RequestOptions]
+    }],
     bootstrap : [AppComponent]
 })
 export class AppModule {

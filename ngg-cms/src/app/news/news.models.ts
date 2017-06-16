@@ -20,3 +20,7 @@ export class Fingerprint {
     lastModifiedTime: Date;
     creationTime: Date;
 }
+
+export class BaseDTO {
+
+}
