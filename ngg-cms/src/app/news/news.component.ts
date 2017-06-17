@@ -2,10 +2,11 @@ import { NewsOverviewComponent } from './news-overview/news-overview.component';
 import { NewsService } from './news-service.service';
 import { News } from './news.models';
 import { Observable } from 'rxjs/Observable';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject} from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import {ENV} from "../app.module";
 
 
 @Component({
@@ -17,6 +18,8 @@ export class NewsComponent implements OnInit {
   news: News[];
 
   constructor(private newsService: NewsService, private route: ActivatedRoute) {
+    console.log("in news componen and env -  " + ENV);
+
 
   }
 

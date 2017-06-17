@@ -1,7 +1,6 @@
 import {NewsResolveGuard} from './news/news-resolve.service';
 import {NgModule}              from '@angular/core';
 import {RouterModule, Routes}  from '@angular/router';
-import {DashboardComponent} from "./dashboard/dashboard.component";
 import {NewsComponent} from "./news/news.component";
 import {KpiComponent} from "./kpi/kpi.component";
 import {SevenKeysComponent} from "./seven-keys/seven-keys.component";
@@ -9,6 +8,7 @@ import {ProjectComponent} from "./project/project.component";
 import {AuthGuard} from "./app-authguard.service";
 import {LoginComponent} from "./login/login.component";
 import {MainComponent} from "./main/main.component";
+import {DashboardMainComponent} from "./dashboard/dashboard-main/dashboard-main.component";
 
 const appRoutes: Routes = [
     {
@@ -22,7 +22,7 @@ const appRoutes: Routes = [
         children: [
             {
                 path : '',
-                component : DashboardComponent
+                component : DashboardMainComponent
             },
             {
                 path : 'news',
