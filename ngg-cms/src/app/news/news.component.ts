@@ -6,21 +6,20 @@ import { Component, OnInit, Inject} from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import {ENV} from "../app.module";
+import {EnvService} from "../shared/env.service";
 
 
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
-  styleUrls: ['./news.component.css']
+  styleUrls: ['./news.component.css'],
+
 })
 export class NewsComponent implements OnInit {
   news: News[];
 
-  constructor(private newsService: NewsService, private route: ActivatedRoute) {
-    console.log("in news componen and env -  " + ENV);
-
-
+  constructor(private newsService: NewsService, private route: ActivatedRoute, private envService:EnvService) {
+    console.log("in news componen and env -  " + envService.getEnv());
   }
 
   ngOnInit() {

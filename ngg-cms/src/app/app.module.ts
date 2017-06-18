@@ -19,6 +19,7 @@ import {AuthService} from "./auth.service";
 import { HttpClient } from './shared/httpClient.service';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
+import {EnvService} from "./shared/env.service";
 import {HTTPIntercepterService} from "./shared/HTTPIntercepterService";
 import {BaseDTO} from "./news/news.models";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -62,7 +63,7 @@ export function envProvider(): any {
         DashboardModule,
         DashboardRoutingModule
     ],
-    providers : [AuthGuard, AuthService, HttpClient, NewsResolveGuard, NewsService,
+    providers : [AuthGuard, AuthService, HttpClient, NewsResolveGuard, NewsService, EnvService,
         {
         provide: HTTPIntercepterService,
         useFactory: httpINterceptorFactory,
@@ -75,7 +76,8 @@ export function envProvider(): any {
     bootstrap : [AppComponent]
 })
 export class AppModule {
-    constructor(@Inject(ENV) environment: any) {
+    constructor(@Inject(ENV) environment: any, private envService: EnvService) {
         console.log('main app---- env   =' + environment);
+        this.envService.setEnv(environment);
     }
 }

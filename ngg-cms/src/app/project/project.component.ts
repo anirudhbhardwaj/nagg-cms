@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {EnvService} from "../shared/env.service";
 
 @Component({
   selector: 'app-project',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectComponent implements OnInit {
 
-  constructor() { }
+  public environment: any;
+
+  constructor(private envService: EnvService) {
+    this.environment = this.envService.getEnv();
+  }
 
   ngOnInit() {
   }
