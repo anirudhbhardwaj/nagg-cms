@@ -22,7 +22,6 @@ export class HttpClient {
 
     post(url, data) {
         let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
         this.createAuthorizationHeader(headers);
         return this.http.post(url, data, {
             headers: headers

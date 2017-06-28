@@ -26,8 +26,8 @@ export class NewsService {
     reactions: [{ userId: 'Xyz', like: true, comment: 'Hello World' }, { userId: 'Abc', like: true, comment: 'Hello World 2' }]
   };
 
-  public postNews() {
-    return this.httpClient.post("http://localhost:3000/api/news", JSON.stringify(this.obj))
+  public postNews(news: any) {
+    return this.httpClient.post("http://localhost:3000/api/news", news)
       .map(res => res.json());
   }
 
@@ -36,6 +36,13 @@ export class NewsService {
       .map(res => {
         let body = res.json();
         return body || {};
+      });
+  }
+
+  public getImage(fileName: string) {
+    return this.httpClient.get("http://localhost:3000/uploads/" + fileName)
+      .map(res => {
+        return res || {};
       });
   }
 }

@@ -16,7 +16,8 @@ import 'rxjs/add/operator/map';
 export class NewsComponent implements OnInit {
   news: News[];
 
-  constructor(private newsService: NewsService, private route: ActivatedRoute) {
+  constructor(private newsService: NewsService, private route: ActivatedRoute,
+    private router: Router) {
 
   }
 
@@ -27,10 +28,14 @@ export class NewsComponent implements OnInit {
       });
   }
 
-  postFixedNews() {
-    return this.newsService.postNews()
-      .subscribe(
-      data => this.news.push(data)
-      )
+  // postFixedNews() {
+  //   return this.newsService.postNews()
+  //     .subscribe(
+  //     data => this.news.push(data)
+  //     );
+  // }
+
+  createNewNews() {
+    this.router.navigate(['/news/new-news']);
   }
 }

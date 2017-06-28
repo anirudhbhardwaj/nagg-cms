@@ -1,3 +1,4 @@
+import { NewsFormComponent } from './news/news-form/news-form.component';
 import { NewsResolveGuard } from './news/news-resolve.service';
 import { NgModule }              from '@angular/core';
 import { RouterModule, Routes }  from '@angular/router';
@@ -23,6 +24,10 @@ const appRoutes: Routes = [
         path : 'news',
         component : NewsComponent,
         resolve: { newsList: NewsResolveGuard }
+    },
+    {
+        path : 'news/new-news',
+        component : NewsFormComponent
     },
     {
         path : 'kpis',
