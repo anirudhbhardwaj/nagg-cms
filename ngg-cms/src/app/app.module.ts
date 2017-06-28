@@ -22,6 +22,7 @@ import { AuthService } from "./auth.service";
 import { HttpClient } from './shared/httpClient.service';
 import { LoginComponent } from './login/login.component';
 import { TagInputModule } from 'ng2-tag-input';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { TagInputModule } from 'ng2-tag-input';
         SevenKeysComponent,
         NewsOverviewComponent,
         LoginComponent,
-        NewsFormComponent
+        NewsFormComponent,
+        MainComponent
     ],
     imports: [
         BrowserModule,
