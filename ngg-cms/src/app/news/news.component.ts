@@ -28,14 +28,7 @@ export class NewsComponent implements OnInit {
       });
   }
 
-  // postFixedNews() {
-  //   return this.newsService.postNews()
-  //     .subscribe(
-  //     data => this.news.push(data)
-  //     );
-  // }
-
   createNewNews() {
-    this.router.navigate(['/news/new-news']);
+    this.router.navigate(['/main/news/new-news']);
   }
 }

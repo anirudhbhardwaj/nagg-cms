@@ -68,6 +68,7 @@ router.get('/uploads/:filename', function (req, res) {
 
 // post new news
 router.post('/', upload.single('image'), function (req, res, next) {
+  console.log(req.body.model);
   var news = JSON.parse(req.body.model);
   if (req.file) {
     news.imageUrl = req.file.filename;

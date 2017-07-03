@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { NewsService } from './../news-service.service';
 import { News } from './../news.models';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +13,7 @@ export class NewsFormComponent implements OnInit {
     model: News;
     image: File;
 
-    constructor(private newsService: NewsService) {
+    constructor(private newsService: NewsService, private router: Router) {
     }
 
     ngOnInit() {
@@ -20,18 +21,14 @@ export class NewsFormComponent implements OnInit {
     }
 
     onSubmit() {
-        this.submitted = true;
+        // this.submitted = true;
         let formData: FormData = new FormData();
-        // TODO
-        // let tags = this.model.tags.map((value: any) => {
-        //     return value.value;
-        // });
-        // this.model.tags = tags;
         formData.append('image', this.image);
         formData.append('model', JSON.stringify(this.model));
-
         this.newsService.postNews(formData)
             .subscribe();
+
+        this.router.navigate(['/main/news']);
     }
 
     newNews() {

@@ -1,4 +1,3 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewsFormComponent } from './news/news-form/news-form.component';
 import { NewsService } from './news/news-service.service';
 import { NewsResolveGuard } from './news/news-resolve.service';
@@ -21,8 +20,8 @@ import { AuthGuard } from "./app-authguard.service";
 import { AuthService } from "./auth.service";
 import { HttpClient } from './shared/httpClient.service';
 import { LoginComponent } from './login/login.component';
-import { TagInputModule } from 'ng2-tag-input';
 import { MainComponent } from './main/main.component';
+import { ChipsModule } from 'primeng/primeng';
 
 @NgModule({
     declarations: [
@@ -40,12 +39,11 @@ import { MainComponent } from './main/main.component';
     ],
     imports: [
         BrowserModule,
-        BrowserAnimationsModule,        
         FormsModule,
         HttpModule,
         GridsterModule,
         AppRoutingModule,
-        TagInputModule
+        ChipsModule
 
     ],
     providers: [AuthGuard, AuthService, HttpClient, NewsResolveGuard, NewsService],

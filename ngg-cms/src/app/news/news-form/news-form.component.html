@@ -31,10 +31,10 @@
                 </div>
             </div>
 
-            <!--<div class="form-group" class="no-animate">
+            <div class="form-group" class="no-animate">
                 <label for="tags">Tags</label>
-                <tag-input [(ngModel)]="model.tags" id="tags" name="tags" #tagInput></tag-input>
-            </div>-->
+                <p-chips [(ngModel)]="model.tags" name="tags"></p-chips>
+            </div>
 
             <button type="submit" class="btn btn-success" [disabled]="!newsForm.form.valid">Submit</button>
             <button type="button" class="btn btn-default" (click)="newNews(); newsForm.reset()">Reset</button>
