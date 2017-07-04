@@ -22,6 +22,7 @@ import { HttpClient } from './shared/httpClient.service';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { ChipsModule } from 'primeng/primeng';
+import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import { ChipsModule } from 'primeng/primeng';
         NewsOverviewComponent,
         LoginComponent,
         NewsFormComponent,
-        MainComponent
+        MainComponent,
+        NewsDetailComponent
     ],
     imports: [
         BrowserModule,
