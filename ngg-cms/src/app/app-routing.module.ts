@@ -1,4 +1,4 @@
-import { NewsFormComponent } from './news/news-form/news-form.component';
+﻿import { NewsFormComponent } from './news/news-form/news-form.component';
 import { NewsResolveGuard } from './news/news-resolve.service';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -10,6 +10,7 @@ import { ProjectComponent } from "./project/project.component";
 import { AuthGuard } from "./app-authguard.service";
 import { LoginComponent } from "./login/login.component";
 import { MainComponent } from "./main/main.component";
+import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 
 export const appRoutes: Routes = [
     {
@@ -45,6 +46,10 @@ export const appRoutes: Routes = [
             {
                 path: 'projects',
                 component: ProjectComponent
+            },
+            {
+                path: 'newsDetail/:id',
+                component: NewsDetailComponent
             }
            
         ]

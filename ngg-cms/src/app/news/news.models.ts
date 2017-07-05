@@ -1,4 +1,5 @@
 export class News {
+    _id: string;
     fingerprint: Fingerprint
     title: string;
     description: string;
