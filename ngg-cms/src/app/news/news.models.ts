@@ -3,7 +3,7 @@ export class News {
     fingerprint: Fingerprint
     title: string;
     description: string;
-    imageUrl: string;
+    image: string;
     author: string;
     tags: string[];
     reactions: Reaction[];
