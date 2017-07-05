@@ -20,12 +20,7 @@ export const appRoutes: Routes = [
     {
         path: 'main',
         component: MainComponent,
-        canActivate: [AuthGuard],
         children: [
-             {
-                path: '',
-                component: DashboardComponent
-            },
             {
                 path: 'news',
                 component: NewsComponent,
@@ -33,7 +28,8 @@ export const appRoutes: Routes = [
             },
             {
                 path: 'news/new-news',
-                component: NewsFormComponent
+                component: NewsFormComponent,
+                canActivate: [AuthGuard]
             },
             {
                 path: 'kpis',
@@ -50,8 +46,12 @@ export const appRoutes: Routes = [
             {
                 path: 'newsDetail/:id',
                 component: NewsDetailComponent
+            },
+            {
+                path: '',
+                redirectTo: 'news',
+                pathMatch: 'full'
             }
-           
         ]
     },
     {

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class NewsOverviewComponent implements OnInit {
 
   constructor(private newsService: NewsService,
-   private router: Router) { }
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -19,7 +19,6 @@ export class NewsOverviewComponent implements OnInit {
   @Input() news: News
 
   redirectToNewsDetail(news: News) {
-  this.router.navigate(['main/newsDetail', news._id]);
-}
-
+    this.router.navigate(['main/newsDetail', news._id]);
+  }
 }
