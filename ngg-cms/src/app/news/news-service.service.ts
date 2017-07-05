@@ -13,7 +13,7 @@ export class NewsService {
   constructor(private httpClient: HttpClient) { }
 
   private url = "http://localhost:3000/api/news";
-
+  private news: News[] = [];
   private obj = {
     fingerprint: {
       userID: 'A811242',
@@ -35,8 +35,9 @@ export class NewsService {
     return this.httpClient.get("http://localhost:3000/api/news")
       .map(res => {
         let body = res.json();
+        this.news = body || {};
         return body || {};
-      });
+      }).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   public getImage(fileName: string) {
@@ -44,5 +45,17 @@ export class NewsService {
       .map(res => {
         return res || {};
       });
+  }
+
+  // Simulate GET /news/:id
+  public getNewsById(id: string): News {
+    let selectedNews = new News();
+    let retreivedNews = this.news.filter((news) => {
+      return news._id === id;
+    });
+    if (retreivedNews && retreivedNews.length > 0) {
+      selectedNews = retreivedNews[0];
+    }
+    return selectedNews;
   }
 }
