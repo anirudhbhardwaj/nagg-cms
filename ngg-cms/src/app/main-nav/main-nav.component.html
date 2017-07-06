@@ -1,13 +1,13 @@
-<div class="jumbotron">
-    <a>
+<div class="">
+    <!--<a>
         <h1>Hello Nagarro</h1>
     </a>
 
-    <p>this is playground to explore . . .</p>
+    <p>this is playground to explore . . .</p>-->
 
     <div class="row">
 
-        <div class="col-xs-3">
+        <!--<div class="col-xs-3">
             <a class="btn btn-block btn-default" routerLinkActive="active" routerLink="news">News</a>
         </div>
         <div class="col-xs-3">
@@ -18,12 +18,12 @@
         </div>
         <div class="col-xs-3">
             <a class="btn btn-block btn-default" routerLinkActive="active" routerLink="projects">Projects</a>
-        </div>
-        <input type="button" (click)="logout()" class="btn btn-info pull-right" value="logout">
-        <div style="margin-left:200px;">            
+        </div>-->
+        
+        <!--<div style="margin-left:200px;">            
             <input type="button" (click)="search()" class=" pull-right" value="Search">
             <input type="text" [(ngModel)]="searchText" class="pull-right">
-        </div>
+        </div>-->
 
         <div class="heading-wrapper content-middle">
 			<img alt="Nagarro" src="assets\static-images\Nagarro-logo-01.png" id="branding-img" class="display-inline-block">
@@ -32,15 +32,18 @@
 		<nav class="navigation">
 			<div class="nav-content-wrapper content-middle">
 				<ul>
-					<li>Dashboard</li>
-					<li>News</li>
-					<li>Projects</li>
-					<li>About</li>
+                    <li><a class="btn btn-block btn-default" routerLinkActive="active" routerLink="news">News</a></li>
+					<li><a class="btn btn-block btn-default" routerLinkActive="active" routerLink="projects">Projects</a></li>
+					<li><a class="btn btn-block btn-default" routerLinkActive="active" routerLink="kpis">KPIs</a></li>
+					<li><a class="btn btn-block btn-default" routerLinkActive="active" routerLink="sevenkeys">7-Keys</a></li>
           
 				</ul>
 				<span class="srch-wrapper">
-					<input type="text" placeholder="Search">
+					<input type="text" [(ngModel)]="searchText" placeholder="Search">
+                    <input type="button" (click)="search()" class=" pull-right" value="Search">
 				</span>
+
+                <input type="button" (click)="logout()" class="btn btn-info pull-right" value="logout">
 			</div>	
 		</nav>
         

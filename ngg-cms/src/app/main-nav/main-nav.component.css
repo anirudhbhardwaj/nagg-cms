@@ -55,7 +55,7 @@ html, body,.page-wrapper{
 
 nav.navigation{
 	background-color:#1279B2;
-	padding: 10px 25px;
+	padding: 10px 5px;
 	height: 6.5%;
 }
 
@@ -65,17 +65,17 @@ nav.navigation{
 
 nav.navigation ul{
 	list-style-type: none;
-	width: 80%;
+	width: 65%;
 }
 
 .srch-wrapper{
-	width: 19.5%;
+	width: 25%;
 	text-align: right;
 }
 
 nav.navigation ul li{
 	color: #fff;
-	width: 15%;
+	width: 17%;
 	font-size: 16px;
 	display: inline-block;
 	padding: 5px 10px;
