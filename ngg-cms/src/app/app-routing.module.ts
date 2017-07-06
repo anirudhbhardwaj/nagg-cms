@@ -1,4 +1,4 @@
-import { NewsFormComponent } from './news/news-form/news-form.component';
+﻿import { NewsFormComponent } from './news/news-form/news-form.component';
 import { NewsResolveGuard } from './news/news-resolve.service';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -10,6 +10,8 @@ import { ProjectComponent } from "./project/project.component";
 import { AuthGuard } from "./app-authguard.service";
 import { LoginComponent } from "./login/login.component";
 import { MainComponent } from "./main/main.component";
+import { SearchResultComponent } from './search/search-result.component';
+import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 
 export const appRoutes: Routes = [
     {
@@ -19,12 +21,7 @@ export const appRoutes: Routes = [
     {
         path: 'main',
         component: MainComponent,
-        canActivate: [AuthGuard],
         children: [
-             {
-                path: '',
-                component: DashboardComponent
-            },
             {
                 path: 'news',
                 component: NewsComponent,
@@ -32,7 +29,8 @@ export const appRoutes: Routes = [
             },
             {
                 path: 'news/new-news',
-                component: NewsFormComponent
+                component: NewsFormComponent,
+                canActivate: [AuthGuard]
             },
             {
                 path: 'kpis',
@@ -45,8 +43,22 @@ export const appRoutes: Routes = [
             {
                 path: 'projects',
                 component: ProjectComponent
+            },
+            {
+                path: 'search',
+                component: SearchResultComponent
+            },
+            {
+
+                path: 'newsDetail/:id',
+                component: NewsDetailComponent
+            },
+            {
+                path: '',
+                redirectTo: 'news',
+                pathMatch: 'full'
+
             }
-           
         ]
     },
     {

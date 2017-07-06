@@ -1,8 +1,9 @@
 export class News {
+    _id: string;
     fingerprint: Fingerprint
     title: string;
     description: string;
-    imageUrl: string;
+    image: string;
     author: string;
     tags: string[];
     reactions: Reaction[];

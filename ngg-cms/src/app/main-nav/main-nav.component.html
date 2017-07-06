@@ -20,6 +20,11 @@
             <a class="btn btn-block btn-default" routerLinkActive="active" routerLink="projects">Projects</a>
         </div>
         <input type="button" (click)="logout()" class="btn btn-info pull-right" value="logout">
+        <div style="margin-left:200px;">            
+            <input type="button" (click)="search()" class=" pull-right" value="Search">
+            <input type="text" [(ngModel)]="searchText" class="pull-right">
+        </div>
+        
     </div>
 </div>
 <router-outlet></router-outlet>

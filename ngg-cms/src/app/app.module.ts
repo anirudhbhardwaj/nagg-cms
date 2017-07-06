@@ -26,6 +26,8 @@ import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 import { PopularNewsComponent } from './popular-news/popular-news.component';
 import { NewsItemThumbComponent } from './popular-news/news-item-thumb/news-item-thumb.component';
 import { ArchivedNewsComponent } from './archived-news/archived-news.component';
+import { SearchResultComponent } from './search/search-result.component';
+import { SearchService } from './search/search.service';
 
 @NgModule({
     declarations: [
@@ -43,7 +45,8 @@ import { ArchivedNewsComponent } from './archived-news/archived-news.component';
         NewsDetailComponent,
 		PopularNewsComponent,
         NewsItemThumbComponent,
-        ArchivedNewsComponent
+        ArchivedNewsComponent,
+        SearchResultComponent
     ],
     imports: [
         BrowserModule,
@@ -54,7 +57,7 @@ import { ArchivedNewsComponent } from './archived-news/archived-news.component';
         ChipsModule
 
     ],
-    providers: [AuthGuard, AuthService, HttpClient, NewsResolveGuard, NewsService],
+    providers: [AuthGuard, AuthService, HttpClient, NewsResolveGuard, NewsService, SearchService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
