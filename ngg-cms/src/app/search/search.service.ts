@@ -13,7 +13,7 @@ export class SearchService {
 
     searchNews(searchTag) {
         this.getSearchNews(searchTag).subscribe(data => console.log(data));
-        this.router.navigate(['/main/search']);
+        this.router.navigate(['/main/news/search']);
     }
 
     getFoundData(): Array<string> {

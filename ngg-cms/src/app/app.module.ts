@@ -28,6 +28,7 @@ import { NewsItemThumbComponent } from './popular-news/news-item-thumb/news-item
 import { ArchivedNewsComponent } from './archived-news/archived-news.component';
 import { SearchResultComponent } from './search/search-result.component';
 import { SearchService } from './search/search.service';
+import { NewsTileComponent } from './news/news-tile/news-tile.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import { SearchService } from './search/search.service';
 		PopularNewsComponent,
         NewsItemThumbComponent,
         ArchivedNewsComponent,
-        SearchResultComponent
+        SearchResultComponent,
+        NewsTileComponent
     ],
     imports: [
         BrowserModule,

@@ -1,3 +1,1 @@
-<p (click)="redirectToNewsDetail(news)">
-  {{news.title}}
-</p>
+<app-news-tile *ngFor="let element of news" [news]="element"></app-news-tile>

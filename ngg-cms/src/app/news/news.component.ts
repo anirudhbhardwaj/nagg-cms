@@ -27,7 +27,7 @@ export class NewsComponent implements OnInit {
         this.news = data.newsList;
       });
   }
-
+  
   createNewNews() {
     this.router.navigate(['/main/news/new-news']);
   }

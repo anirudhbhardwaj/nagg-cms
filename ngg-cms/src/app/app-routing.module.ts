@@ -1,4 +1,5 @@
-﻿import { NewsFormComponent } from './news/news-form/news-form.component';
+﻿import { NewsOverviewComponent } from './news/news-overview/news-overview.component';
+import { NewsFormComponent } from './news/news-form/news-form.component';
 import { NewsResolveGuard } from './news/news-resolve.service';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -25,12 +26,26 @@ export const appRoutes: Routes = [
             {
                 path: 'news',
                 component: NewsComponent,
-                resolve: { newsList: NewsResolveGuard },
-            },
-            {
-                path: 'news/new-news',
-                component: NewsFormComponent,
-                canActivate: [AuthGuard]
+                children: [
+                    {
+                        path: '',
+                        component: NewsOverviewComponent,
+                        resolve: { newsList: NewsResolveGuard }
+                    },
+                    {
+                        path: 'newsDetail/:id',
+                        component: NewsDetailComponent
+                    },
+                    {
+                        path: 'new-news',
+                        component: NewsFormComponent,
+                        canActivate: [AuthGuard]
+                    },
+                    {
+                        path: 'search',
+                        component: SearchResultComponent
+                    },
+                ]
             },
             {
                 path: 'kpis',
@@ -43,15 +58,6 @@ export const appRoutes: Routes = [
             {
                 path: 'projects',
                 component: ProjectComponent
-            },
-            {
-                path: 'search',
-                component: SearchResultComponent
-            },
-            {
-
-                path: 'newsDetail/:id',
-                component: NewsDetailComponent
             },
             {
                 path: '',

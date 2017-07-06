@@ -1,7 +1,7 @@
 import { NewsService } from './../news-service.service';
 import { News } from './../news.models';
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-news-overview',
@@ -9,16 +9,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./news-overview.component.css']
 })
 export class NewsOverviewComponent implements OnInit {
+  news: News;
 
-  constructor(private newsService: NewsService,
+  constructor(private newsService: NewsService, private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit() {
-  }
-
-  @Input() news: News
-
-  redirectToNewsDetail(news: News) {
-    this.router.navigate(['main/newsDetail', news._id]);
+     this.route.data
+      .subscribe((data) => {
+        this.news = data.newsList;
+      });
   }
 }

@@ -30,7 +30,7 @@ router.get('/', function (req, res, next) {
           "fingerprint": 1,
           "title": 1,
           "description": 1,
-          "imageUrl": 1,
+          "image": 1,
           "author": 1,
           "tags": 1,
           "reactCount": { $size: { "$ifNull": [ "$reactions", [] ] } },
