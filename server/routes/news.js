@@ -33,13 +33,13 @@ router.get('/', function (req, res, next) {
           "image": 1,
           "author": 1,
           "tags": 1,
-          "reactCount": { $size: { "$ifNull": [ "$reactions", [] ] } },
-          "reactions":1
+          "reactCount": { $size: { "$ifNull": ["$reactions", []] } },
+          "reactions": 1
         }
       },
     ]).toArray(function (err, data) {
-      if (err)  {
-      console.log(err)
+      if (err) {
+        console.log(err)
       }
       res.send(data);
     });
@@ -57,7 +57,7 @@ router.post('/', upload.single('image'), function (req, res, next) {
   if (req.file) {
     news.image = req.file.buffer.toString('base64');
   }
-  
+
   news.fingerprint = {};
   news.fingerprint.lastModificationTime = new Date();
   news.fingerprint.creationTime = new Date();
@@ -74,15 +74,16 @@ router.post('/', upload.single('image'), function (req, res, next) {
 });
 
 router.get('/search', function (req, res, next) {
-  console.log(req.body);
-  // mongodb.MongoClient.connect(dbUri, function (err, db) {
-  //   if (err) throw err;
+  console.log(req.query.tag);
+  mongodb.MongoClient.connect(dbUri, function (err, db) {
+    if (err) throw err;
 
-  //   var collection = db.collection('news');
-  //   var result = collection.find(req.body).toArray(function (err, data) {
-  //     res.send(data);
-  //   });
-  // });
+    var collection = db.collection('news');
+    var result = collection.find({ "tags": req.query.tag }).toArray(function (err, data) {
+      console.log(data);
+      res.send(data);
+    });
+  });
 });
 
 module.exports = router;

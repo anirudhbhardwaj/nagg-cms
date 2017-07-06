@@ -1,9 +1,11 @@
 <table>
   <tr>
-    <th>Search Results :</th>
+    <th>Search Results : </th>
   </tr>
-  <tr *ngIf="searchData?.length > 1" ngFor="let item of searchData; let i = index">
-    <td><a href="/#">{{item.title}}</a></td>
-  </tr>
+  <ng-container *ngIf="news.image">
+    <tr *ngFor="let item of searchData; let i = index">
+      <td><a (click)="redirectToNewsDetail(item)">{{item.title}}</a></td>
+    </tr>
+  </ng-container>
   <tr *ngIf="searchData?.length == 0">No data found</tr>
 </table>

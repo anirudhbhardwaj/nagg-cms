@@ -22,7 +22,8 @@ export class MainNavComponent implements OnInit {
   }
 
   search() {
-    this.searchService.searchNews(this.searchText);
+    console.log('in search' + this.searchText);
+    this.router.navigate(['/main/news/search'], { queryParams: { "tag": this.searchText } });
   }
 
 }

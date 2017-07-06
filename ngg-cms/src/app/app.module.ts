@@ -1,3 +1,4 @@
+import { SearchResolveGuard } from './search/search-result-resolve.service';
 import { NewsFormComponent } from './news/news-form/news-form.component';
 import { NewsService } from './news/news-service.service';
 import { NewsResolveGuard } from './news/news-resolve.service';
@@ -59,7 +60,7 @@ import { NewsTileComponent } from './news/news-tile/news-tile.component';
         ChipsModule
 
     ],
-    providers: [AuthGuard, AuthService, HttpClient, NewsResolveGuard, NewsService, SearchService],
+    providers: [AuthGuard, AuthService, HttpClient, NewsResolveGuard, NewsService, SearchService, SearchResolveGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule {

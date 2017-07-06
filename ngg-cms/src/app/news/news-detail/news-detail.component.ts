@@ -17,12 +17,16 @@ export class NewsDetailComponent implements OnInit {
 
   constructor(private newsService: NewsService, private route: ActivatedRoute,
     private router: Router) { }
+
   news: News = new News();
 
   ngOnInit() {
     this.route.paramMap.map((params: ParamMap) =>
       this.newsService.getNewsById(params.get('id')))
-      .subscribe((news: News) => this.news = news);
+      .subscribe(
+        (news: News) => {
+          this.news = news;
+        });
   }
 
 }

@@ -1,3 +1,4 @@
+import { News } from './../news/news.models';
 import { Injectable } from '@angular/core';
 import { HttpClient } from "../shared/httpClient.service";
 import { Observable } from 'rxjs/Observable';
@@ -8,19 +9,20 @@ import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class SearchService {
-    searchData: Array<string> = [];
+    searchData: News[];
     constructor(private httpClient: HttpClient, private router: Router) { }
 
     searchNews(searchTag) {
-        this.getSearchNews(searchTag).subscribe(data => console.log(data));
-        this.router.navigate(['/main/news/search']);
+        this.getSearchNews(searchTag).subscribe(data => {
+            this.searchData = data
+        });
     }
 
-    getFoundData(): Array<string> {
+    getFoundData(): News[] {
         return this.searchData;
     }
 
-    getSearchNews(searchTag): Observable<any[]> {
+    getSearchNews(searchTag): Observable<News[]> {
         return this.httpClient.get("http://localhost:3000/api/news/search", { tag: searchTag })
             .map(res => {
                 let body = res.json();

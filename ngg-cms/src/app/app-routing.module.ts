@@ -1,4 +1,5 @@
-﻿import { NewsOverviewComponent } from './news/news-overview/news-overview.component';
+﻿import { SearchResolveGuard } from './search/search-result-resolve.service';
+import { NewsOverviewComponent } from './news/news-overview/news-overview.component';
 import { NewsFormComponent } from './news/news-form/news-form.component';
 import { NewsResolveGuard } from './news/news-resolve.service';
 import { NgModule, Component } from '@angular/core';
@@ -43,7 +44,8 @@ export const appRoutes: Routes = [
                     },
                     {
                         path: 'search',
-                        component: SearchResultComponent
+                        component: SearchResultComponent,
+                        resolve: { searchData: SearchResolveGuard }
                     },
                 ]
             },

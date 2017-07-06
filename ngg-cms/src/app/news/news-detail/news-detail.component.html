@@ -4,12 +4,10 @@
   news-detail works!
 </p>
 Title : {{news.title}}
-<br/>
-Description :{{news.description}}
-<br/>
-tags : {{news.tags}}
-<br/>
-
-image : 
-<img src="data:image/png;base64,{{news.image}}">
+<br/> Description :{{news.description}}
+<br/> tags : {{news.tags}}
+<br/> image :
+<ng-container *ngIf="showImage">
+  <img src="data:image/png;base64,{{news.image}}">
+</ng-container>
 <br/>
