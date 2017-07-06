@@ -9,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./news-overview.component.css']
 })
 export class NewsOverviewComponent implements OnInit {
-  news: News;
+  news: News[];
 
   constructor(private newsService: NewsService, private route: ActivatedRoute,
     private router: Router) { }

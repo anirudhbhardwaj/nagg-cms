@@ -14,7 +14,7 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit {
-  news: News[];
+
 
   constructor(private newsService: NewsService, private route: ActivatedRoute,
     private router: Router) {
@@ -22,12 +22,8 @@ export class NewsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.data
-      .subscribe((data) => {
-        this.news = data.newsList;
-      });
   }
-  
+
   createNewNews() {
     this.router.navigate(['/main/news/new-news']);
   }
