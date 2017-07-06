@@ -51,4 +51,16 @@ router.post('/', upload.single('image'), function (req, res, next) {
   });
 });
 
+router.get('/search', function (req, res, next) {
+  console.log(req.body);
+  // mongodb.MongoClient.connect(dbUri, function (err, db) {
+  //   if (err) throw err;
+
+  //   var collection = db.collection('news');
+  //   var result = collection.find(req.body).toArray(function (err, data) {
+  //     res.send(data);
+  //   });
+  // });
+});
+
 module.exports = router;

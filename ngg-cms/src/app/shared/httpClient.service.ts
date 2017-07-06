@@ -12,11 +12,13 @@ export class HttpClient {
             btoa('username:password'));
     }
 
-    get(url) {
+    get(url, data?) {
         let headers = new Headers();
         this.createAuthorizationHeader(headers);
+        console.log('param data = ',data);
         return this.http.get(url, {
-            headers: headers
+            headers: headers,
+            params: data
         });
     }
 

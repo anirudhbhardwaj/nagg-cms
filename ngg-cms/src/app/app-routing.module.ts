@@ -10,6 +10,7 @@ import { ProjectComponent } from "./project/project.component";
 import { AuthGuard } from "./app-authguard.service";
 import { LoginComponent } from "./login/login.component";
 import { MainComponent } from "./main/main.component";
+import { SearchResultComponent } from './search/search-result.component';
 
 export const appRoutes: Routes = [
     {
@@ -45,6 +46,10 @@ export const appRoutes: Routes = [
             {
                 path: 'projects',
                 component: ProjectComponent
+            },
+            {
+                path: 'search',
+                component: SearchResultComponent
             }
            
         ]

@@ -23,6 +23,8 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { ChipsModule } from 'primeng/primeng';
 import { NewsDetailComponent } from './news/news-detail/news-detail.component';
+import { SearchResultComponent } from './search/search-result.component';
+import { SearchService } from './search/search.service';
 
 @NgModule({
     declarations: [
@@ -37,7 +39,8 @@ import { NewsDetailComponent } from './news/news-detail/news-detail.component';
         LoginComponent,
         NewsFormComponent,
         MainComponent,
-        NewsDetailComponent
+        NewsDetailComponent,
+        SearchResultComponent
     ],
     imports: [
         BrowserModule,
@@ -48,7 +51,7 @@ import { NewsDetailComponent } from './news/news-detail/news-detail.component';
         ChipsModule
 
     ],
-    providers: [AuthGuard, AuthService, HttpClient, NewsResolveGuard, NewsService],
+    providers: [AuthGuard, AuthService, HttpClient, NewsResolveGuard, NewsService, SearchService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
