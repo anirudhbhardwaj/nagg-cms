@@ -202,4 +202,9 @@
   <h2>Create new news</h2>
   <button (click)="createNewNews()">Create new News</button>
 </div>
-
+<router-outlet></router-outlet>
+<div class="col-sm-2 sidenav">
+  <app-popular-news></app-popular-news>
+  <br />
+  <app-archived-news></app-archived-news>
+</div>
