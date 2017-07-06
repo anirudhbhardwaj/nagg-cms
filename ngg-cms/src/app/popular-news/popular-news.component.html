@@ -1,0 +1,8 @@
+<h1><strong>Popular News</strong></h1>
+<div>
+  <ul class="list-unstyled">
+    <li *ngFor="let newsItem of news" >
+        <app-news-item-thumb  [newsItem]="newsItem"></app-news-item-thumb>
+    </li>
+  </ul>
+</div>

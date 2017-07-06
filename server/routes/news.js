@@ -31,9 +31,31 @@ router.get('/', function (req, res, next) {
     if (err) throw err;
 
     var collection = db.collection('news');
-    var result = collection.find({}).toArray(function (err, data) {
+
+    var result = collection.aggregate([
+      // Project with an array length
+      {
+        $project: {
+          "fingerprint": 1,
+          "title": 1,
+          "description": 1,
+          "imageUrl": 1,
+          "author": 1,
+          "tags": 1,
+          "reactCount": { $size: { "$ifNull": [ "$reactions", [] ] } },
+          "reactions":1
+        }
+      },
+    ]).toArray(function (err, data) {
+      if (err)  {
+      console.log(err)
+      }
       res.send(data);
     });
+
+    // var result = collection.find({}).toArray(function (err, data) {
+    //   res.send(data);
+    // });
   });
 });
 

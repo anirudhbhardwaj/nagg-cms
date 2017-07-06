@@ -23,6 +23,9 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { ChipsModule } from 'primeng/primeng';
 import { NewsDetailComponent } from './news/news-detail/news-detail.component';
+import { PopularNewsComponent } from './popular-news/popular-news.component';
+import { NewsItemThumbComponent } from './popular-news/news-item-thumb/news-item-thumb.component';
+import { ArchivedNewsComponent } from './archived-news/archived-news.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +40,10 @@ import { NewsDetailComponent } from './news/news-detail/news-detail.component';
         LoginComponent,
         NewsFormComponent,
         MainComponent,
-        NewsDetailComponent
+        NewsDetailComponent,
+		PopularNewsComponent,
+        NewsItemThumbComponent,
+        ArchivedNewsComponent
     ],
     imports: [
         BrowserModule,
