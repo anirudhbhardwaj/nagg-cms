@@ -26,9 +26,10 @@ export class NewsFormComponent implements OnInit {
         formData.append('image', this.image);
         formData.append('model', JSON.stringify(this.model));
         this.newsService.postNews(formData)
-            .subscribe();
+            .subscribe(
+            data => this.router.navigate(['/main/news'])
+            );
 
-        this.router.navigate(['/main/news']);
     }
 
     newNews() {
