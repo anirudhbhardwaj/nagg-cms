@@ -10,6 +10,7 @@ import { SearchService } from "./search.service";
   styleUrls: ['./search-result.component.css']
 })
 export class SearchResultComponent implements OnInit {
+  searchText : string = "";
   searchData: News[];
 
   constructor(private searchService: SearchService, private route: ActivatedRoute,
@@ -20,7 +21,8 @@ export class SearchResultComponent implements OnInit {
   ngOnInit() {
     // This is required as angular doesn't refresh the route in case just the query params change
     this.route.queryParams.subscribe(queryParams => {
-      this.searchService.getSearchNews(queryParams.tag)
+      this.searchText = queryParams.tag;
+      this.searchService.getSearchNews(this.searchText)
         .subscribe(
         data => this.searchData = data
         )

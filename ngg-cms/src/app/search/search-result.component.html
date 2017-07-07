@@ -1,11 +1,12 @@
-<table>
-  <tr>
-    <th>Search Results : </th>
-  </tr>
+<div>
+  <ul>
+    <li>Search Results for : {{searchText}}</li>
+  </ul>
+  <hr>
   <ng-container *ngIf="searchData?.length > 0">
-    <tr *ngFor="let item of searchData; let i = index">
-      <td><a (click)="redirectToNewsDetail(item)">{{item.title}}</a></td>
-    </tr>
+    <li *ngFor="let item of searchData; let i = index">
+      <span><a (click)="redirectToNewsDetail(item)">{{item.title}}</a></span>
+    </li>
   </ng-container>
-  <tr *ngIf="searchData?.length == 0">No data found</tr>
-</table>
+  <span *ngIf="searchData?.length == 0">No data found</span>
+</div>
