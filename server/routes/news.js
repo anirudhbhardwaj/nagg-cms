@@ -9,6 +9,7 @@ var mimie = require('mime');
 var path = require('path');
 var fs = require('fs');
 var bson = require('bson');
+var isodate = require("isodate");
 
 var storage = multer.memoryStorage();
 
@@ -77,7 +78,6 @@ router.get('/search', function (req, res, next) {
   console.log(req.query.tag);
   mongodb.MongoClient.connect(dbUri, function (err, db) {
     if (err) throw err;
-
     var collection = db.collection('news');
     var result = collection.find({ "tags": req.query.tag }).toArray(function (err, data) {
       console.log(data);
@@ -85,5 +85,20 @@ router.get('/search', function (req, res, next) {
     });
   });
 });
+
+router.get('/archive', function (req, res, next) {
+  console.log(req.query.datefrom);
+
+  mongodb.MongoClient.connect(dbUri, function (err, db) {
+    if (err) throw err;
+    datefrom = req.query.datefrom;
+    dateto   = req.query.dateto;
+    var collection = db.collection('news');
+    var result = collection.find({ "fingerprint.creationTime": { $gte: isodate(datefrom), $lte : isodate(dateto)} }).toArray(function (err, data) {
+      res.send(data);
+    });
+  });
+});
+
 
 module.exports = router;

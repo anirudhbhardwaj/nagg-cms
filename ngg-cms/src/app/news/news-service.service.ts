@@ -58,4 +58,15 @@ export class NewsService {
     }
     return selectedNews;
   }
+
+   public getNewsbydate(dateFrom, dateTo): Observable<News[]> {
+    return this.httpClient.get("http://localhost:3000/api/news/archive", { datefrom: dateFrom, dateto: dateTo })
+      .map(res => {
+        let body = res.json();
+        return body || {};
+      });
+  }
+
+
+
 }
