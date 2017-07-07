@@ -1,3 +1,27 @@
-<p (click)="redirectToNewsDetail(news)">
-  {{news.title}}
-</p>
+<div (click)="redirectToNewsDetail(news)">
+<section class="main-content display-inline-block ">
+				<!--<div class="carousel-wrapper position-relative">
+					<img src="images\carousel.png" class="carousel-img">
+					<span class="text-carousel position-absolute">
+						Maximize and optimize
+					</span>
+				</div>-->
+				<div class="tiles-wrapper">
+					<ul class="text-align-left tiles-ul">
+						<li class="tiles display-inline-block position-relative">
+							<h1>
+								 {{news.title}}
+							</h1>
+							<div class="date-comments-likes position-absolute">
+								<span class="date display-inline-block">
+									{{news.fingerprint.creationTime}}
+								</span>
+								<span *ngIf="news && news.tags" class="comments-likes display-inline-block text-align-right">
+									5 comments {{news.tags.length}} tags
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</section>
+</div>
