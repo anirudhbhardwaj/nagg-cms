@@ -2,7 +2,7 @@
   <tr>
     <th>Search Results : </th>
   </tr>
-  <ng-container *ngIf="news.image">
+  <ng-container *ngIf="searchData?.length > 0">
     <tr *ngFor="let item of searchData; let i = index">
       <td><a (click)="redirectToNewsDetail(item)">{{item.title}}</a></td>
     </tr>
