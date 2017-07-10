@@ -9,8 +9,6 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-
-
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',

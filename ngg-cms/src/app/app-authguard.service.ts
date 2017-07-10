@@ -1,14 +1,14 @@
-import { Injectable }       from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
     CanActivate, Router,
     ActivatedRouteSnapshot,
     RouterStateSnapshot
-}                           from '@angular/router';
-import { AuthService }      from './auth.service';
+} from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor(private authService: AuthService, private router: Router) {}
+    constructor(private authService: AuthService, private router: Router) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         let url: string = state.url;
@@ -16,11 +16,12 @@ export class AuthGuard implements CanActivate {
     }
 
     checkLogin(url: string): boolean {
-    console.log(        "checking if user is loggedin --- in Auth Guard " + this.authService.isLoggedIn);
-    console.log(        "checking if user is loggedin --- in Auth Guard " + url);
+        console.log("checking if user is loggedin --- in Auth Guard " + this.authService.isLoggedIn);
+        console.log("checking if user is loggedin --- in Auth Guard " + url);
         if (this.authService.isLoggedIn) { return true; }
         // Store the attempted URL for redirecting
         this.authService.redirectUrl = url;
+        console.log("anoop : ",this.authService.redirectUrl);
         // Navigate to the login page with extras
         this.router.navigate(['/login']);
         return false;

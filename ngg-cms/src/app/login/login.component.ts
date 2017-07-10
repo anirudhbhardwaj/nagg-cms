@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../auth.service";
-import {Router} from "@angular/router";
+import { AuthService } from "../auth.service";
+//import {Router} from "@angular/router";
+import { RouterStateSnapshot, Router } from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  routeState: RouterStateSnapshot;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -16,10 +17,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log("in login component");
-    if(this.authService.login()){
-      console.log("navigating to dashboard");
-      this.router.navigate([this.authService.redirectUrl])
-    }
+    this.authService.login();  
+    this.router.navigate([this.authService.redirectUrl]);
   }
 }
