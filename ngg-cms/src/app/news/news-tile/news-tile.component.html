@@ -14,7 +14,7 @@
 							</h1>
 							<div class="date-comments-likes position-absolute">
 								<span class="date display-inline-block">
-									{{news.fingerprint.creationTime}}
+									{{news.fingerprint.creationTime | date:'medium'}}
 								</span>
 								<span *ngIf="news && news.tags" class="comments-likes display-inline-block text-align-right">
 									5 comments {{news.tags.length}} tags
