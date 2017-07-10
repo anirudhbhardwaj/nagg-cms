@@ -46,7 +46,8 @@
 				  </span>
                 </form>
 
-                <input type="button" (click)="logout()" class="btn btn-info pull-right" value="logout">
+                <input *ngIf="isAdmin && isLoggedIn" type="button" (click)="logout()" class="btn btn-info pull-right" value="Logout">
+                <input *ngIf="isAdmin && !isLoggedIn" type="button" (click)="login()" class="btn btn-info pull-right" value="LogIn">
             </div>
         </nav>
 

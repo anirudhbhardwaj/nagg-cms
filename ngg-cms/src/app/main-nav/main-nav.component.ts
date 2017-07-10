@@ -10,20 +10,28 @@ import { Router } from "@angular/router";
 })
 export class MainNavComponent implements OnInit {
   searchText: string = "";
+  isLoggedIn: boolean = false; 
+  isAdmin: boolean = true; //TODO : Need to be changed, and retireved from AuthService
 
   constructor(private authService: AuthService, private searchService: SearchService, private router: Router) { }
 
   ngOnInit() {
-    console.log("init main nav");
+    this.isLoggedIn = this.authService.isLoggedIn;
+    //console.log("init main nav");
   }
   logout() {
     this.authService.logout();
-    this.router.navigate(['login'])
+    this.isLoggedIn = this.authService.isLoggedIn;
+    this.router.navigate(['/main/news'])
+  }
+  login() {
+    this.authService.login();
+    this.isLoggedIn = this.authService.isLoggedIn;
   }
 
   search() {
     let searchText = this.searchText;
-    this.searchText="";
+    this.searchText = "";
     this.router.navigate(['/main/news/search'], { queryParams: { "tag": searchText } });
   }
 
