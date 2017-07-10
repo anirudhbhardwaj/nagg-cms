@@ -3,11 +3,6 @@ import { AuthService } from "../auth.service";
 import { SearchService } from "../search/search.service";
 import { RouterStateSnapshot, Router } from "@angular/router";
 import { Subscription } from 'rxjs/Subscription';
-// import {
-//     CanActivate, Router,
-//     ActivatedRouteSnapshot,
-//     RouterStateSnapshot
-// }                           from '@angular/router';
 
 @Component({
   selector: 'app-main-nav',

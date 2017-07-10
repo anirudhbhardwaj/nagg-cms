@@ -3,17 +3,20 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from './../shared/httpClient.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 
 @Injectable()
 export class NewsService {
-
+  private editModeSource = new BehaviorSubject<boolean>(false);
+  public editSource$ = this.editModeSource.asObservable();
   constructor(private httpClient: HttpClient) { }
 
   private url = "http://localhost:3000/api/news";
   private news: News[] = [];
+  private editedNews: News = null;
   private obj = {
     fingerprint: {
       userID: 'A811242',
@@ -25,6 +28,15 @@ export class NewsService {
     tags: ['Britain', 'Brexit'],
     reactions: [{ userId: 'Xyz', like: true, comment: 'Hello World' }, { userId: 'Abc', like: true, comment: 'Hello World 2' }]
   };
+
+  setEditNews(news) {
+    this.editedNews = news;
+    let editMode = news !== null;
+    this.editModeSource.next(editMode);
+  }
+  getEditNews() {
+    return this.editedNews;
+  }
 
   public postNews(news: any) {
     return this.httpClient.post("http://localhost:3000/api/news", news)
@@ -59,7 +71,7 @@ export class NewsService {
     return selectedNews;
   }
 
-   public getNewsbydate(dateFrom, dateTo): Observable<News[]> {
+  public getNewsbydate(dateFrom, dateTo): Observable<News[]> {
     return this.httpClient.get("http://localhost:3000/api/news/archive", { datefrom: dateFrom, dateto: dateTo })
       .map(res => {
         let body = res.json();

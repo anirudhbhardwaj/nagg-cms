@@ -9,14 +9,17 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['news-form.component.css']
 })
 export class NewsFormComponent implements OnInit {
+    editMode = false;
     submitted = false;
-    model: News;
+    model: News = new News();
     image: File;
 
     constructor(private newsService: NewsService, private router: Router) {
     }
 
     ngOnInit() {
+        this.model = this.newsService.getEditNews();
+        this.editMode = (this.model !== null);
         this.model = new News();
     }
 
@@ -29,7 +32,6 @@ export class NewsFormComponent implements OnInit {
             .subscribe(
             data => this.router.navigate(['/main/news'])
             );
-
     }
 
     newNews() {

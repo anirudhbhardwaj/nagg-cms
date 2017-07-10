@@ -1,7 +1,6 @@
 <app-news-overview></app-news-overview>
-
 <div>
-  <button *ngIf="isLoggedIn && isAdmin" (click)="createNewNews()">Create new News</button>
+  <button *ngIf="isLoggedIn && isAdmin && !editMode" (click)="createNewNews()">Create new News</button>
 </div>
 <router-outlet></router-outlet>
 <div class="col-sm-2 sidenav pull-right">

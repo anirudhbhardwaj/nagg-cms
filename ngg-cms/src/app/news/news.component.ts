@@ -17,6 +17,7 @@ import 'rxjs/add/operator/map';
 export class NewsComponent implements OnInit {
   isLoggedIn: boolean = false;
   isAdmin: boolean = true; //TODO : Need to be changed, and retireved from AuthService
+  editMode : boolean = false;
   subscription: Subscription;
   constructor(private newsService: NewsService, private route: ActivatedRoute,
     private router: Router, private authService: AuthService) {
@@ -25,10 +26,15 @@ export class NewsComponent implements OnInit {
   ngOnInit() {
     this.isLoggedIn = this.authService.isLoggedIn;
     this.subscription = this.authService.logIn$.subscribe(
-      changedValue => this.isLoggedIn = changedValue);
+      changedValue => this.isLoggedIn = changedValue
+    );
+    this.subscription = this.newsService.editSource$.subscribe(
+      changedValue => this.editMode = changedValue
+    );
   }
 
   createNewNews() {
+    this.newsService.setEditNews(null);
     this.router.navigate(['/main/news/new-news']);
   }
 }

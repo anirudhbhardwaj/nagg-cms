@@ -1,3 +1,4 @@
+
 <h1>!!!TODO!!!Will be replaced by structured html</h1>
 
 <p>
@@ -11,3 +12,4 @@ Title : {{news.title}}
   <img src="data:image/png;base64,{{news.image}}">
 </ng-container>
 <br/>
+<button *ngIf="isAdmin && isLoggedIn" (click)="EditNews()">Edit</button>

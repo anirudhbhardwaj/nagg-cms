@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NewsService } from '../news-service.service';
 import { News } from '../news.models';
+import { AuthService } from "../../auth.service";
 
 /**
  * @Component 
@@ -14,19 +15,26 @@ import { News } from '../news.models';
   styleUrls: ['./news-detail.component.css']
 })
 export class NewsDetailComponent implements OnInit {
-
+  isAdmin: boolean = true;
+  isLoggedIn: boolean = false;
   constructor(private newsService: NewsService, private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router, private authService: AuthService) { }
 
   news: News = new News();
 
   ngOnInit() {
+    this.isLoggedIn = this.authService.isLoggedIn;
     this.route.paramMap.map((params: ParamMap) =>
       this.newsService.getNewsById(params.get('id')))
       .subscribe(
-        (news: News) => {
-          this.news = news;
-        });
+      (news: News) => {
+        console.log("news = ",news);
+        this.news = news;
+      });
   }
 
+  EditNews(){
+    this.newsService.setEditNews(this.news);
+    this.router.navigate(['/main/news/new-news'])
+  }
 }

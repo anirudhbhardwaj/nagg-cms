@@ -37,7 +37,8 @@
             </div>
 
             <button type="submit" class="btn btn-success" [disabled]="!newsForm.form.valid">Submit</button>
-            <button type="button" class="btn btn-default" (click)="newNews(); newsForm.reset()">Reset</button>
+            <button type="button" *ngIf="!editMode" class="btn btn-default" (click)="newNews(); newsForm.reset()">Reset</button>
+            <button type="button" *ngIf="editMode" class="btn btn-default" (click)="cancel(); newsForm.cancel()">Cancel</button>
         </form>
     </div>
 </div>
