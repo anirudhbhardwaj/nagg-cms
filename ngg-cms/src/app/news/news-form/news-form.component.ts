@@ -12,6 +12,7 @@ export class NewsFormComponent implements OnInit {
     editMode = false;
     submitted = false;
     model: News = new News();
+    editModel: News = null;
     image: File;
 
     constructor(private newsService: NewsService, private router: Router) {
@@ -19,8 +20,10 @@ export class NewsFormComponent implements OnInit {
 
     ngOnInit() {
         this.model = this.newsService.getEditNews();
+        // preserve the original edited news
+        this.editModel = JSON.parse(JSON.stringify(this.model));
         this.editMode = (this.model !== null);
-        this.model = new News();
+        this.model = this.model || new News();
     }
 
     onSubmit() {
@@ -30,8 +33,12 @@ export class NewsFormComponent implements OnInit {
         formData.append('model', JSON.stringify(this.model));
         this.newsService.postNews(formData)
             .subscribe(
-            data => this.router.navigate(['/main/news'])
-            );
+            (data) => {
+                if (this.editMode) {
+                    this.newsService.setEditNews(null);
+                }
+                this.router.navigate(['/main/news']);
+            });
     }
 
     newNews() {
@@ -49,5 +56,10 @@ export class NewsFormComponent implements OnInit {
             let file: File = fileList[0];
             this.image = file;
         }
+    }
+
+    cancel() {
+        this.newsService.setEditNews(null);
+        this.router.navigate(['/main/news']);
     }
 }
