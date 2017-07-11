@@ -25,7 +25,6 @@ export class PopularNewsComponent implements OnInit {
       news.sort(function (a, b) {
         return b.reactCount - a.reactCount;
       });
-      console.log(news);
       this.news = news;
       // this.news.splice(5);
     });

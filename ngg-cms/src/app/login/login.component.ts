@@ -13,7 +13,6 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    console.log("init auth service");
   }
 
   login() {

@@ -12,7 +12,6 @@ export class SearchResolveGuard implements Resolve<News[]> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<News[]> {
         let tag = route.queryParams['tag'];
-        console.log(tag);
         return this.searchService.getSearchNews(tag);
     }
 }

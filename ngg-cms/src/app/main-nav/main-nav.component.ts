@@ -20,15 +20,16 @@ export class MainNavComponent implements OnInit {
     this.isLoggedIn = this.authService.isLoggedIn;
     this.subscription = this.authService.logIn$.subscribe(
       changedValue => this.isLoggedIn = changedValue);
-    //console.log("init main nav");
   }
+
   logout() {
     this.authService.logout();
     this.isLoggedIn = this.authService.isLoggedIn;
     this.router.navigate(['/main/news'])
   }
+
   login() {
-    this.authService.redirectUrl= this.router.url;
+    this.authService.redirectUrl = this.router.url;
     this.router.navigate(['/login']);
   }
 
@@ -37,5 +38,4 @@ export class MainNavComponent implements OnInit {
     this.searchText = "";
     this.router.navigate(['/main/news/search'], { queryParams: { "tag": searchText } });
   }
-
 }

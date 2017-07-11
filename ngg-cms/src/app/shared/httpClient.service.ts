@@ -15,8 +15,6 @@ export class HttpClient {
     get(url, data?) {
         let headers = new Headers();
         this.createAuthorizationHeader(headers);
-        console.log('param data = ',data);
-        console.log('param url = ',url);
         return this.http.get(url, {
             headers: headers,
             params: data

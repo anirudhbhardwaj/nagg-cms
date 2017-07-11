@@ -15,7 +15,6 @@ export class AuthService {
     redirectUrl: string;
 
     login() : boolean{
-        console.log("in login")
         this.isLoggedInSource.next(true);
         this.isLoggedIn = true;
         return this.isLoggedIn;
