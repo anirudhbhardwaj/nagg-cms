@@ -1,4 +1,9 @@
 .app-news-tile{
     display: inline-block;
-    width: 30%; 
+    width: 33%; 
+}
+
+.app-news-overview{
+    display: inline-block;  
+    width: 80%;
 }

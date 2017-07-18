@@ -4,6 +4,16 @@ html, body,.page-wrapper{
 	height: 100%;
 }
 
+.app-news{
+	width: 1170px;
+	margin: 0 auto;
+}
+
+.sidenav{
+	display: inline-block;
+	width: 20%;
+}
+
 .page-wrapper{
 	/*margin-top: 25px;*/
 }

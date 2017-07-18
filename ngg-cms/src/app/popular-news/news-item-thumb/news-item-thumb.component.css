@@ -1,0 +1,13 @@
+.news-heading{
+    font-size: 18px;
+}
+
+.author-date-reactions{
+    margin: 3%;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 2%;
+}
+
+.author{
+    margin-bottom: 5px;
+}

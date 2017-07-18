@@ -1,9 +1,11 @@
 <div>
   <a href="">
     <div>
-      <h2>{{newsItem.title}}</h2>
+      <h2 class="news-heading">{{newsItem.title}}</h2>
     </div>
   </a>
-  <h4>by {{newsItem.author}}</h4>
-  <h5>{{newsItem.fingerprint.creationTime | date: 'dd/MM/yyyy'}},{{newsItem.reactCount}} Likes</h5>
+  <div class="author-date-reactions">
+    <h4 class="author">by {{newsItem.author}} Author </h4>
+    <h5 class="date-reactions">{{newsItem.fingerprint.creationTime | date: 'dd/MM/yyyy'}},{{newsItem.reactCount}} Likes</h5>
+  </div>
 </div>

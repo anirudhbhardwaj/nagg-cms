@@ -1,0 +1,12 @@
+.h1-archives{
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.archived-news-ul-wrapper{
+    padding: 4% 0% 2% 5%;
+}
+
+.archives-ul li {
+    padding: 3% 0;
+}

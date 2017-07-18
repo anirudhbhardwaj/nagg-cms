@@ -1,10 +1,12 @@
-<app-news-overview></app-news-overview>
-<div>
-  <button *ngIf="isLoggedIn && isAdmin && !editMode" (click)="createNewNews()">Create new News</button>
-</div>
-<router-outlet></router-outlet>
-<div class="col-sm-2 sidenav pull-right">
-  <app-popular-news></app-popular-news>
-  <br />
-  <app-archived-news></app-archived-news>
-</div>
+<div class="app-news">
+  <app-news-overview></app-news-overview>
+  <div>
+    <button *ngIf="isLoggedIn && isAdmin && !editMode" (click)="createNewNews()">Create new News</button>
+  </div>
+  <router-outlet></router-outlet>
+  <div class="sidenav pull-right">
+    <app-popular-news></app-popular-news>
+    <br />
+    <app-archived-news></app-archived-news>
+  </div>
+</div>  
