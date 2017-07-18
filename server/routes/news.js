@@ -10,6 +10,7 @@ var path = require('path');
 var fs = require('fs');
 var bson = require('bson');
 var isodate = require("isodate");
+var ObjectId = require('mongodb').ObjectID
 
 var storage = multer.memoryStorage();
 
@@ -44,12 +45,54 @@ router.get('/', function (req, res, next) {
       }
       res.send(data);
     });
-
-    // var result = collection.find({}).toArray(function (err, data) {
-    //   res.send(data);
-    // });
   });
 });
+
+// Get single news
+router.get('/:id', function (req, res, next) {
+  console.log(req.params.id);
+  mongodb.MongoClient.connect(dbUri, function (err, db) {
+    if (err) throw err;
+
+    var collection = db.collection('news');
+
+    collection.findOne({ "_id": ObjectId(req.params.id) }, function (err, data) {
+      if (err)
+        throw err;
+
+      res.send(data)
+    });
+  });
+});
+
+// Edit news
+router.put('/', upload.single('image'), function (req, res, next) {
+  var news = req.body; //JSON.parse(req.body);
+  if (req.file) {
+    news.image = req.file.buffer.toString('base64');
+  }
+  news.fingerprint = {};
+  news.fingerprint.lastModificationTime = new Date();
+
+  console.log(news);
+
+  mongodb.MongoClient.connect(dbUri, function (err, db) {
+    if (err) throw err;
+
+    var collection = db.collection('news');
+    var id = news._id.toString();
+    news._id = ObjectId(id);
+
+    collection.update({ "_id": ObjectId(id) }, news, { upsert: false, writeConcern: { w: "majority" } },
+      function (err, data) {
+        if (err) throw err;
+
+        db.close();
+        res.send(data);
+      });
+  });
+});
+
 
 // post new news
 router.post('/', upload.single('image'), function (req, res, next) {
@@ -92,13 +135,12 @@ router.get('/archive', function (req, res, next) {
   mongodb.MongoClient.connect(dbUri, function (err, db) {
     if (err) throw err;
     datefrom = req.query.datefrom;
-    dateto   = req.query.dateto;
+    dateto = req.query.dateto;
     var collection = db.collection('news');
-    var result = collection.find({ "fingerprint.creationTime": { $gte: isodate(datefrom), $lte : isodate(dateto)} }).toArray(function (err, data) {
+    var result = collection.find({ "fingerprint.creationTime": { $gte: isodate(datefrom), $lte: isodate(dateto) } }).toArray(function (err, data) {
       res.send(data);
     });
   });
 });
-
 
 module.exports = router;
