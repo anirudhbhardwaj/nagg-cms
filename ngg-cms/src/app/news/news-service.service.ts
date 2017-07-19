@@ -38,6 +38,11 @@ export class NewsService {
     return this.editedNews;
   }
 
+  saveEditNews(editNews){
+    console.log("editnews : ", editNews);
+    return this.httpClient.put("http://localhost:3000/api/news",editNews).map(res => res.json())
+  }
+
   public postNews(news: any) {
     return this.httpClient.post("http://localhost:3000/api/news", news)
       .map(res => res.json());

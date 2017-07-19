@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { NewsService } from './../news-service.service';
+import { AuthService } from "../../auth.service";
 import { News } from './../news.models';
 import { Component, OnInit } from '@angular/core';
 
@@ -15,7 +16,7 @@ export class NewsFormComponent implements OnInit {
     editModel: News = null;
     image: File;
 
-    constructor(private newsService: NewsService, private router: Router) {
+    constructor(private newsService: NewsService, private authService: AuthService, private router: Router) {
     }
 
     ngOnInit() {
@@ -27,18 +28,29 @@ export class NewsFormComponent implements OnInit {
     }
 
     onSubmit() {
-        // this.submitted = true;
-        let formData: FormData = new FormData();
-        formData.append('image', this.image);
-        formData.append('model', JSON.stringify(this.model));
-        this.newsService.postNews(formData)
-            .subscribe(
-            (data) => {
-                if (this.editMode) {
-                    this.newsService.setEditNews(null);
-                }
-                this.router.navigate(['/main/news']);
-            });
+        if (!this.editMode) {
+            // this.submitted = true;
+            let formData: FormData = new FormData();
+            formData.append('image', this.image);
+            formData.append('model', JSON.stringify(this.model));
+            this.newsService.postNews(formData)
+                .subscribe(
+                (data) => {
+                    if (this.editMode) {
+                        this.newsService.setEditNews(null);
+                    }
+                    this.router.navigate(['/main/news']);
+                });
+
+        } else {
+
+            this.newsService.saveEditNews(this.model).subscribe((res) => {
+                console.log("editnews res : ", res);
+                this.router.navigate(['main/news/newsDetail', this.model._id]);
+            })
+
+        }
+
     }
 
     newNews() {
