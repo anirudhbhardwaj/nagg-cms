@@ -1,15 +1,14 @@
-
-<h1>!!!TODO!!!Will be replaced by structured html</h1>
-
-<p>
-  news-detail works!
-</p>
-Title : {{news.title}}
-<br/> Description :{{news.description}}
-<br/> tags : {{news.tags}}
-<br/> image :
-<ng-container *ngIf="news.image">
-  <img src="data:image/png;base64,{{news.image}}">
-</ng-container>
-<br/>
-<button *ngIf="isAdmin && isLoggedIn" (click)="EditNews()">Edit</button>
+<div class="news-detail-wrapper">
+  <!--<p>
+    news-detail works!
+  </p>-->
+  Title : {{news.title}}
+  <br/> Description :{{news.description}}
+  <br/> tags : {{news.tags}}
+  <br/> image :
+  <ng-container *ngIf="news.image">
+    <img src="data:image/png;base64,{{news.image}}">
+  </ng-container>
+  <br/>
+  <button *ngIf="isAdmin && isLoggedIn" (click)="EditNews()">Edit</button>
+</div>

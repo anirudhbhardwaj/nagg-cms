@@ -41,13 +41,13 @@
                 <form (ngSubmit)="search()">
                   <span class="srch-wrapper">
 				    <input name="searchText" type="text" [(ngModel)]="searchText" placeholder="Search tag..">
-                    <button type="submit" name="searchBtn" class=" pull-right" 
+                    <button type="submit" name="searchBtn" class=" pull-right srch-btn" 
                     [disabled]="searchText.length==0"><i class="fa fa-search" aria-hidden="true"></i></button>
 				  </span>
                 </form>
 
                 <input *ngIf="isAdmin && isLoggedIn" type="button" (click)="logout()" class="btn btn-info pull-right" value="Logout">
-                <input *ngIf="isAdmin && !isLoggedIn" type="button" (click)="login()" class="btn btn-info pull-right" value="LogIn">
+                <input *ngIf="isAdmin && !isLoggedIn" type="button" (click)="login()" class="btn btn-info pull-right log-in" value="LogIn">
             </div>
         </nav>
 

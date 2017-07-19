@@ -146,10 +146,15 @@ nav.navigation ul li{
 	color: #fff;
 	height: 49%;
     min-height: 25vh;
+	padding: 2% 3%;
 }
 
 .tiles-wrapper .tiles h1{
 	font-size: x-large;
+}
+
+.tiles-wrapper .tiles h1 > span{
+	cursor: pointer;
 }
 
 .tiles-wrapper .tiles:nth-child(3n){
@@ -161,9 +166,9 @@ nav.navigation ul li{
 }
 
 .date-comments-likes{
-	left: 1%;
+	left: 3%;
 	bottom:5%;
-	width: 99%;
+	width: 94%;
 }
 
 .date-comments-likes > span{

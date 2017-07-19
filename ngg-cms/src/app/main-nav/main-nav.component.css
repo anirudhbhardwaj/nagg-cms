@@ -71,6 +71,15 @@ nav.navigation ul{
 .srch-wrapper{
 	width: 25%;
 	text-align: right;
+	position: relative;
+}
+
+.srch-btn{
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: transparent;
+	border: transparent;
 }
 
 nav.navigation ul li{
@@ -227,7 +236,14 @@ nav.navigation ul li{
 	font-weight: bold;
 }
 
+.btn{
+	padding: .5rem .75rem;
+	line-height: 1;
+}
 
+.btn.btn-info.log-in{
+	margin-top: 5px;
+}
 
 
 @media screen and (max-width: 1024px){
