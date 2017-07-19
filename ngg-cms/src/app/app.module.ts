@@ -30,6 +30,7 @@ import { ArchivedNewsComponent } from './archived-news/archived-news.component';
 import { SearchResultComponent } from './search/search-result.component';
 import { SearchService } from './search/search.service';
 import { NewsTileComponent } from './news/news-tile/news-tile.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
     declarations: [
@@ -49,7 +50,8 @@ import { NewsTileComponent } from './news/news-tile/news-tile.component';
         NewsItemThumbComponent,
         ArchivedNewsComponent,
         SearchResultComponent,
-        NewsTileComponent
+        NewsTileComponent,
+        CarouselComponent
     ],
     imports: [
         BrowserModule,

@@ -130,8 +130,6 @@ router.get('/search', function (req, res, next) {
 });
 
 router.get('/archive', function (req, res, next) {
-  console.log(req.query.datefrom);
-
   mongodb.MongoClient.connect(dbUri, function (err, db) {
     if (err) throw err;
     datefrom = req.query.datefrom;
