@@ -1,4 +1,5 @@
 <div class="app-news">
+  <app-carousel> </app-carousel>
   <app-news-overview></app-news-overview>
   <div>
     <button *ngIf="isLoggedIn && isAdmin && !editMode" (click)="createNewNews()">Create new News</button>
