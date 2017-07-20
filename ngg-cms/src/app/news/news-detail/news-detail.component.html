@@ -1,14 +1,27 @@
 <div class="news-detail-wrapper">
-  <!--<p>
-    news-detail works!
-  </p>-->
-  Title : {{news.title}}
-  <br/> Description :{{news.description}}
-  <br/> tags : {{news.tags}}
-  <br/> image :
-  <ng-container *ngIf="news.image">
-    <img src="data:image/png;base64,{{news.image}}">
-  </ng-container>
-  <br/>
+  <div class="news-detail-header">
+     <h1 class="news-detail-title">
+       <span>{{news.title}}</span>
+      </h1> 
+     <div *ngIf="news && news.fingerprint" class="news-detail-date-time">
+				{{news.fingerprint.creationTime | date:'medium'}}
+			</div>
+  </div>
+  <div class="news-detail-body">
+    <div class="news-detail-image">
+    <ng-container *ngIf="news.image">
+      <img src="data:image/png;base64,{{news.image}}">
+    </ng-container>
+   </div>
+   <span class="news-detail-description">
+    <p>{{news.description}}</p>
+   </span>
+   <span class="news-detail-tags">
+      <p><span class="tags-text">Tags: </span>
+      <span class="tag-links">{{news.tags}}</span>
+      </p>
+   </span>
+   
   <button *ngIf="isAdmin && isLoggedIn" (click)="EditNews()">Edit</button>
+  </div>
 </div>
