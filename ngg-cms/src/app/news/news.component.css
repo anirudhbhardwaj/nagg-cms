@@ -236,6 +236,7 @@ nav.navigation ul li{
 .btn.create-news{
     padding: .5rem .75rem;
     line-height: 1;
+	font-family: "Verdana";
 }
 
 

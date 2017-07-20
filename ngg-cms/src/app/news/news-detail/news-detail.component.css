@@ -1,6 +1,8 @@
 .news-detail-wrapper{
     display: inline-block;
     width: 75%;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .news-detail-title{
@@ -31,3 +33,17 @@
     /*font-size: 13px;*/
     line-height: 18.5667px;
 }
+
+.btn.edit-news{
+    padding: .5rem .75rem;
+    line-height: 1;
+	font-family: "Verdana";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.news-detail-body{
+    position: relative;
+}
+

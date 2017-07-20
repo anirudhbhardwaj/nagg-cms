@@ -1,7 +1,9 @@
-<div class="container">
+<div class="container create-news-wrapper">
     <div [hidden]="submitted">
-        <h1>New BFSI News</h1>
-        <form (ngSubmit)="onSubmit()" #newsForm="ngForm">
+        <h1 class="create-news-title">
+            <span>New BFSI News</span>
+        </h1>
+        <form class="create-news-form" (ngSubmit)="onSubmit()" #newsForm="ngForm">
             <div class="form-group">
                 <label for="name">Title</label>
                 <input type="text" class="form-control" id="title" required [(ngModel)]="model.title" name="title" #name="ngModel">
@@ -36,9 +38,11 @@
                 <p-chips [(ngModel)]="model.tags" name="tags"></p-chips>
             </div>
 
-            <button type="submit" class="btn btn-success" [disabled]="!newsForm.form.valid">Submit</button>
-            <button type="button" *ngIf="!editMode" class="btn btn-default" (click)="newNews(); newsForm.reset()">Reset</button>
-            <button type="button" *ngIf="editMode" class="btn btn-default" (click)="cancel()">Cancel</button>
+            <div class="form-buttons">
+                <button type="submit" class="btn btn-success" [disabled]="!newsForm.form.valid">Submit</button>
+                <button type="button" *ngIf="!editMode" class="btn" (click)="newNews(); newsForm.reset()">Reset</button>
+                <button type="button" *ngIf="editMode" class="btn" (click)="cancel()">Cancel</button>
+            </div>
         </form>
     </div>
 </div>
