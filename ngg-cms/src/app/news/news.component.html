@@ -1,6 +1,6 @@
 <div class="app-news">
   <div>
-    <button *ngIf="isLoggedIn && isAdmin && !editMode" (click)="createNewNews()">Create new News</button>
+    <button class="btn create-news" *ngIf="isLoggedIn && isAdmin && !editMode" (click)="createNewNews()">Create new News</button>
   </div>
   <router-outlet></router-outlet>
   <div class="sidenav pull-right">

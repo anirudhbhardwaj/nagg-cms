@@ -241,7 +241,7 @@ nav.navigation ul li{
 	line-height: 1;
 }
 
-.btn.btn-info.log-in{
+.btn.btn-info.log-in, .btn.btn-info.log-out{
 	margin-top: 5px;
 }
 
