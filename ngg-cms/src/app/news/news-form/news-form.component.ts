@@ -43,9 +43,8 @@ export class NewsFormComponent implements OnInit {
                 });
 
         } else {
-
             this.newsService.saveEditNews(this.model).subscribe((res) => {
-                console.log("editnews res : ", res);
+                this.newsService.getAllNews();
                 this.router.navigate(['main/news/newsDetail', this.model._id]);
             })
 
