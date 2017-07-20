@@ -15,10 +15,10 @@ export class CarouselComponent implements OnInit {
 
     private addNewSlide() {
          this.slides.push(
-            {image:'/assets/static-images/Branch.png',text:'nag 1'},
-            {image:'/assets/static-images/grass.png',text:'nag 2'},
-            {image:'/assets/static-images/water.png',text:'nag 3'},
-            {image:'/assets/static-images/carousel.png',text:'nag 4'}
+            // {image:'/assets/static-images/grand_canyon.jpg',text:'nag 1'},
+            {image:'/assets/static-images/love-us.jpg',text:'nag 1'},
+            {image:'/assets/static-images/disrupters-carousel-desk.jpg',text:'nag 2'},
+            {image:'/assets/static-images/enterprise-agile-desk.jpg',text:'nag 3'}
         );
     }
 

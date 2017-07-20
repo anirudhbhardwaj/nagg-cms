@@ -171,6 +171,10 @@ nav.navigation ul li{
 	width: 94%;
 }
 
+.news-tile-wrapper{
+	margin-top: 15px;
+}
+
 .date-comments-likes > span{
 	width: 49%;
 	padding-right: 2%;
