@@ -99,6 +99,8 @@ nav.navigation ul li{
 
 .display-inline-block{
 	display: inline-block;
+	cursor: pointer;
+
 }
 
 .text-align-center{

@@ -38,4 +38,8 @@ export class MainNavComponent implements OnInit {
     this.searchText = "";
     this.router.navigate(['/main/news/search'], { queryParams: { "tag": searchText } });
   }
+
+  gotoHome() {
+    this.router.navigate(['/main/news']);
+  }
 }
