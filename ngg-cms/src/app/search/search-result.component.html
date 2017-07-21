@@ -5,7 +5,7 @@
   <hr>
   <ng-container *ngIf="searchData?.length > 0">
     <li *ngFor="let item of searchData; let i = index">
-      <a style="cursor: pointer" (click)="redirectToNewsDetail(item)">{{item.title}}</a>
+      <a class="search-results-link (click)="redirectToNewsDetail(item)">{{item.title}}</a>
     </li>
   </ng-container>
   <span *ngIf="searchData?.length == 0">No data found</span>
