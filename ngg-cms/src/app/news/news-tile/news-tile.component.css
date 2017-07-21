@@ -150,7 +150,7 @@ nav.navigation ul li{
 	cursor: pointer;
 }
 
-.tiles-wrapper .tiles:after{
+/*.tiles-wrapper .tiles:after{
     content: " ";
     position: absolute;
     bottom: 0;
@@ -166,7 +166,7 @@ nav.navigation ul li{
 .tiles-wrapper .tiles:hover:after {
     opacity: 0.8;
 	height: 100%;
-}
+}*/
 
 .tiles-wrapper .tiles h1{
 	font-size: x-large;
