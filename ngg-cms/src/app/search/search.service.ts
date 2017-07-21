@@ -29,4 +29,11 @@ export class SearchService {
                 return body || {};
             });
     }
+    public getArchivedNews(startDate, endDate): Observable<News[]> {
+        return this.httpClient.get("http://localhost:3000/api/news/archive", { startDate: startDate, endDate: endDate })
+            .map(res => {
+                let body = res.json();
+                return body || {};
+            }).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
 }

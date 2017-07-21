@@ -38,9 +38,9 @@ export class NewsService {
     return this.editedNews;
   }
 
-  saveEditNews(editNews){
+  saveEditNews(editNews) {
     console.log("editnews : ", editNews);
-    return this.httpClient.put("http://localhost:3000/api/news",editNews).map(res => res.json())
+    return this.httpClient.put("http://localhost:3000/api/news", editNews).map(res => res.json())
   }
 
   public postNews(news: any) {
@@ -82,6 +82,15 @@ export class NewsService {
         let body = res.json();
         return body || {};
       });
+  }
+
+  public getPopularNews(): Observable<News[]> {
+    return this.httpClient.get("http://localhost:3000/api/news/popular")
+      .map(res => {
+        let body = res.json();
+        this.news = body || {};
+        return body || {};
+      }).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
 

@@ -21,11 +21,21 @@ export class SearchResultComponent implements OnInit {
   ngOnInit() {
     // This is required as angular doesn't refresh the route in case just the query params change
     this.route.queryParams.subscribe(queryParams => {
-      this.searchText = queryParams.tag;
-      this.searchService.getSearchNews(this.searchText)
-        .subscribe(
-        data => this.searchData = data
-        )
+      console.log(queryParams);
+      if (queryParams.tag) {
+        this.searchText = queryParams.tag;
+        this.searchService.getSearchNews(this.searchText)
+          .subscribe(
+          data => this.searchData = data
+          )
+      } else if(queryParams.startDate && queryParams.endDate) {
+        this.searchService.getArchivedNews(queryParams.startDate, queryParams.endDate).subscribe(news => {
+          this.searchData = news;
+          console.log(this.searchData);
+        });
+      }
+
+
     });
     this.route.data
       .subscribe((data) => {

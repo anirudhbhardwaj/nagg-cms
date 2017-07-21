@@ -21,7 +21,7 @@ export class PopularNewsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.newsService.getAllNews().subscribe(news => {
+    this.newsService.getPopularNews().subscribe(news => {
       news.sort(function (a, b) {
         return b.reactCount - a.reactCount;
       });
@@ -30,8 +30,3 @@ export class PopularNewsComponent implements OnInit {
     });
   }
 }
-
-
-
-
-
