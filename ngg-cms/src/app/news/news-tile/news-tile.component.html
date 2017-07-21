@@ -1,32 +1,27 @@
 <div class="news-tile-wrapper" (click)="redirectToNewsDetail(news)">
-<section class="main-content display-inline-block ">
-				<!--<div class="carousel-wrapper position-relative">
+	<section class="main-content display-inline-block ">
+		<!--<div class="carousel-wrapper position-relative">
 					<img src="images\carousel.png" class="carousel-img">
 					<span class="text-carousel position-absolute">
 						Maximize and optimize
 					</span>
 				</div>-->
-				<div class="tiles-wrapper">
-					<ul class="text-align-left tiles-ul">
-						<li (mouseover)="hover=true" (mouseleave)="hover=false" 
-						[ngStyle]="hover ? {'background-image': 'url(data:image/png;base64,'+ news.image +')', 
-						'background-size':'100% 100%', 'background-repeat':'no-repeat'} : {}" 
-						class="tiles display-inline-block position-relative">
-							<h1>
-								<span>
-								 {{news.title}}
-								</span>
-							</h1>
-							<div class="date-comments-likes position-absolute">
-								<span class="date display-inline-block">
+		<div class="tiles-wrapper">
+			<ul class="text-align-left tiles-ul">
+				<li (mouseover)="hover=true" (mouseleave)="hover=false" [ngStyle]="hover ? {'background-image': 'url(data:image/png;base64,'+ news.image +')', 
+						'background-size':'100% 100%', 'background-repeat':'no-repeat'} : {}" 						
+						[ngClass]="{'hoverClass' : hover, 'tiles display-inline-block position-relative' : true}">
+					<h1><span>{{news.title}}</span></h1>
+					<div class="date-comments-likes position-absolute">
+						<span class="date display-inline-block">
 									{{news.fingerprint.creationTime | date:'medium'}}
 								</span>
-								<span *ngIf="news && news.tags" class="comments-likes display-inline-block text-align-right">
+						<span *ngIf="news && news.tags" class="comments-likes display-inline-block text-align-right">
 									5 comments {{news.tags.length}} tags
 								</span>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</section>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</section>
 </div>
