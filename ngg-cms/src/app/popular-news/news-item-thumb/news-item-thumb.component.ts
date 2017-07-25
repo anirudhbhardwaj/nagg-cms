@@ -10,21 +10,23 @@ import { NewsService } from '../../news/news-service.service';
 })
 export class NewsItemThumbComponent implements OnInit {
   @Input() newsItem: News;
-  commentcount=0;
-  likecount=0;
+  commentcount = 0;
+  likecount = 0;
 
   constructor(private newsService: NewsService,
     private router: Router) { }
 
   ngOnInit() {
-    this.newsItem.reactions.forEach((reaction)=> {
-      if (reaction.comment) {
-        this.commentcount += 1;
-      }
-      if (reaction.isLike) {
-        this.likecount += 1;
-      }
-    })
+    if (this.newsItem && this.newsItem.reactions) {
+      this.newsItem.reactions.forEach((reaction) => {
+        if (reaction.comment) {
+          this.commentcount += 1;
+        }
+        if (reaction.isLike) {
+          this.likecount += 1;
+        }
+      })
+    }
   }
 
   redirectToNewsDetail() {
