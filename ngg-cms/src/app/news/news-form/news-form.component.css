@@ -38,6 +38,17 @@
 }
 
 .currently-save-img-wrapper{
-  width: 30%;
+  width: 35%;
+  display: inline-block;
+}
+
+.currently-save-img-wrapper span{
+  display: block;
+}
+
+.add-img-wrapper{
+  display: inline-block;
+  width: 50%;
+  vertical-align: bottom;
 }
 
