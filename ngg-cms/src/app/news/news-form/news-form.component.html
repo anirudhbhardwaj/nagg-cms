@@ -21,13 +21,13 @@
             <div class="form-group" [ngClass]="editMode ? 'edit-news' : 'create-news'">
                 <ng-container *ngIf="editMode && model.image">
                     <div class="currently-save-img-wrapper">
-                        <span>Current image :</span>
+                        <span>Currently saved image :</span>
                         <img style="width:100px;height:100px;" src="data:image/png;base64,{{model.image}}">
                     </div>
                 </ng-container>
                 <div class="add-img-wrapper">
                 <label *ngIf="!editMode" for="newsImg">Add Image</label>
-                <label *ngIf="editMode"  for="newsImg">Add New Image</label>
+                <label *ngIf="editMode"  for="newsImg">Edit Image</label>
                 <input type="file" id="newsImg" (change)="imageUpload($event)" accept=".jpg, .png" name="newsImg"/>
                 </div>
                 <!--<div> <img [attr.src]='file_srcs[0]' alt="" /> </div>-->
