@@ -1,7 +1,8 @@
 <div class="container create-news-wrapper">
     <div [hidden]="submitted">
         <h1 class="create-news-title">
-            <span>New BFSI News</span>
+            <span *ngIf="!editMode">New BFSI News</span>
+            <span *ngIf="editMode">Edit News</span>
         </h1>
         <form class="create-news-form" (ngSubmit)="onSubmit()" #newsForm="ngForm">
             <div class="form-group">
