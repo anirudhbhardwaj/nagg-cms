@@ -15,13 +15,18 @@
 
             <div class="form-group">
                 <label for="description">Description</label>
-                <input type="text" class="form-control" id="description" [(ngModel)]="model.description" name="description">
+                <input type="textarea" class="form-control" id="description" [(ngModel)]="model.description" name="description">
             </div>
 
             <div class="form-group">
-                <label for="newsImg">Image</label>
+                <ng-container *ngIf="editMode && model.image">
+                  <span>Currently Saved image :</span>
+                  <img style="width:100px;height:100px;" src="data:image/png;base64,{{model.image}}">
+                </ng-container>
                 <div>
-                    <input type="file" id="newsImg" (change)="imageUpload($event)" accept=".jpg, .png" placeholder="Upload image..." name="newsImg"/>
+                <label *ngIf="!editMode" for="newsImg">Add Image</label>
+                <label *ngIf="editMode"  for="newsImg">Add New Image</label>
+                <input type="file" id="newsImg" (change)="imageUpload($event)" accept=".jpg, .png" name="newsImg"/>
                 </div>
                 <!--<div> <img [attr.src]='file_srcs[0]' alt="" /> </div>-->
             </div>

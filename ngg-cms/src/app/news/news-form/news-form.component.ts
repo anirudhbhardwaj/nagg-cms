@@ -15,6 +15,7 @@ export class NewsFormComponent implements OnInit {
     model: News = new News();
     editModel: News = null;
     image: File;
+    base64textString: String = "";
 
     constructor(private newsService: NewsService, private authService: AuthService, private router: Router) {
     }
@@ -43,6 +44,7 @@ export class NewsFormComponent implements OnInit {
                 });
 
         } else {
+            this.model.image = this.base64textString.toString();
             this.newsService.saveEditNews(this.model).subscribe((res) => {
                 this.newsService.getAllNews();
                 this.router.navigate(['main/news/newsDetail', this.model._id]);
@@ -66,7 +68,16 @@ export class NewsFormComponent implements OnInit {
         if (fileList.length > 0) {
             let file: File = fileList[0];
             this.image = file;
+            if (this.image) {
+                var reader = new FileReader();
+                reader.onload = this._handleReaderLoaded.bind(this);
+                reader.readAsBinaryString(this.image);
+            }
         }
+    }
+    _handleReaderLoaded(readerEvt) {
+        var binaryString = readerEvt.target.result;
+        this.base64textString = btoa(binaryString);
     }
 
     cancel() {
