@@ -16,7 +16,7 @@ export class CarouselComponent implements OnInit {
     private addNewSlide() {
          this.slides.push(
             // {image:'/assets/static-images/grand_canyon.jpg',text:'nag 1'},
-            {image:'/assets/static-images/love-us.jpg',text:'To know us is to love is'},
+            {image:'/assets/static-images/love-us.jpg',text:'To know us is to love us'},
             {image:'/assets/static-images/disrupters-carousel-desk.jpg',text:'Are you losing out to disrupters?'},
             {image:'/assets/static-images/enterprise-agile-desk.jpg',text:'Enterprise Agile'}
         );
