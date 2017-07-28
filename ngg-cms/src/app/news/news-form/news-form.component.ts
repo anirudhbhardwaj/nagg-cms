@@ -45,13 +45,12 @@ export class NewsFormComponent implements OnInit {
 
         } else {
             this.model.image = this.base64textString.toString();
+            this.newsService.setEditNews(null);
             this.newsService.saveEditNews(this.model).subscribe((res) => {
                 this.newsService.getAllNews();
                 this.router.navigate(['main/news/newsDetail', this.model._id]);
             })
-
         }
-
     }
 
     newNews() {
