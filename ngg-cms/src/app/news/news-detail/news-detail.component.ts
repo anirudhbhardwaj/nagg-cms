@@ -15,7 +15,7 @@ import { AuthService } from "../../auth.service";
   styleUrls: ['./news-detail.component.css']
 })
 export class NewsDetailComponent implements OnInit {
-  isAdmin: boolean = true;
+  isAdmin: boolean = false;
   isLoggedIn: boolean = false;
   constructor(private newsService: NewsService, private route: ActivatedRoute,
     private router: Router, private authService: AuthService) { }
@@ -24,6 +24,9 @@ export class NewsDetailComponent implements OnInit {
 
   ngOnInit() {
     this.isLoggedIn = this.authService.isLoggedIn;
+    this.authService.admin$.subscribe(
+      changedVal => this.isAdmin = changedVal
+    );
     this.route.paramMap.map((params: ParamMap) =>
       this.newsService.getNewsById(params.get('id')))
       .subscribe(
@@ -33,7 +36,7 @@ export class NewsDetailComponent implements OnInit {
       });
   }
 
-  EditNews(){
+  EditNews() {
     this.newsService.setEditNews(this.news);
     this.router.navigate(['/main/news/new-news'])
   }

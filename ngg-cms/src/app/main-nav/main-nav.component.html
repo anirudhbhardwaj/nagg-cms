@@ -32,7 +32,8 @@
         <nav class="navigation">
             <div class="nav-content-wrapper content-middle">
                 <ul>
-                    <li><a class="btn btn-block btn-default" routerLinkActive="active" routerLink="news">News</a></li>
+                    <li><a class="btn btn-block btn-default" routerLinkActive="active" 
+                    [routerLink]="isAdmin ? ['news/admin'] : ['news']">News</a></li>
                     <!--<li><a class="btn btn-block btn-default" routerLinkActive="active" routerLink="projects">Projects</a></li>
                     <li><a class="btn btn-block btn-default" routerLinkActive="active" routerLink="kpis">KPIs</a></li>
                     <li><a class="btn btn-block btn-default" routerLinkActive="active" routerLink="sevenkeys">7-Keys</a></li>-->

@@ -40,7 +40,7 @@ export class NewsFormComponent implements OnInit {
                     if (this.editMode) {
                         this.newsService.setEditNews(null);
                     }
-                    this.router.navigate(['/main/news']);
+                    this.router.navigate(['/main/news/admin']);
                 });
 
         } else {
@@ -81,6 +81,6 @@ export class NewsFormComponent implements OnInit {
 
     cancel() {
         this.newsService.setEditNews(null);
-        this.router.navigate(['/main/news']);
+        this.router.navigate(['/main/news/admin']);
     }
 }

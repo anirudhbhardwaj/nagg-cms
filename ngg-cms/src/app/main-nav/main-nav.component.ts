@@ -12,20 +12,27 @@ import { Subscription } from 'rxjs/Subscription';
 export class MainNavComponent implements OnInit {
   searchText: string = "";
   isLoggedIn: boolean = false;
-  isAdmin: boolean = true; //TODO : Need to be changed, and retireved from AuthService
+  isAdmin: boolean = false;
   subscription: Subscription;
   constructor(private authService: AuthService, private searchService: SearchService, private router: Router) { }
 
   ngOnInit() {
-    this.isLoggedIn = this.authService.isLoggedIn;
-    this.subscription = this.authService.logIn$.subscribe(
-      changedValue => this.isLoggedIn = changedValue);
+    //Wrapped in setTimeout to avoid angular@4.2 error: Expression has changed after it was checked
+    setTimeout(() => {
+      this.isLoggedIn = this.authService.isLoggedIn;
+      this.authService.admin$.subscribe(
+        changedValue => this.isAdmin = changedValue
+      );
+      this.authService.logIn$.subscribe(
+        changeVal => this.isLoggedIn = changeVal
+      );
+    }, 0);
   }
 
   logout() {
     this.authService.logout();
     this.isLoggedIn = this.authService.isLoggedIn;
-    this.router.navigate(['/main/news'])
+    this.router.navigate(['/main/news/admin']);
   }
 
   login() {
@@ -40,6 +47,6 @@ export class MainNavComponent implements OnInit {
   }
 
   gotoHome() {
-    this.router.navigate(['/main/news']);
+    this.router.navigate(['/main/news' + this.isAdmin ? '/admin' : '']);
   }
 }

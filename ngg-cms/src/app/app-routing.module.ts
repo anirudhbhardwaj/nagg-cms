@@ -47,6 +47,12 @@ export const appRoutes: Routes = [
                         component: SearchResultComponent,
                         resolve: { searchData: SearchResolveGuard }
                     },
+                     {
+                        path: 'admin',
+                        component: NewsOverviewComponent,
+                        resolve: {newsList: NewsResolveGuard},
+                        data: { isAdmin: true }
+                    }
                 ]
             },
             {
