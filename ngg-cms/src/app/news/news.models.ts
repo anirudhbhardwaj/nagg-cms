@@ -7,7 +7,8 @@ export class News {
     author: string;
     tags: string[];
     reactions: Reaction[];
-    reactCount: number;
+    // reactCount: number;
+    clickCount: number;
 }
 
 export class Reaction {

@@ -49,12 +49,13 @@ router.get('/popular', function (req, res, next) {
           "image": 1,
           "author": 1,
           "tags": 1,
-          "reactCount": { $size: { "$ifNull": ["$reactions", []] } },
+          "clickCount": 1,
+          // "reactCount": { $size: { "$ifNull": ["$reactions", []] } },
           "reactions": 1
         },
 
       },
-      { $sort: { "reactCount": -1 } },
+      { $sort: { "clickCount": -1 } },
       { $limit: 5 }
     ]).toArray(function (err, data) {
       if (err) {
@@ -94,7 +95,8 @@ router.get('/', function (req, res, next) {
           "image": 1,
           "author": 1,
           "tags": 1,
-          "reactCount": { $size: { "$ifNull": ["$reactions", []] } },
+          "clickCount": 1,
+          // "reactCount": { $size: { "$ifNull": ["$reactions", []] } },
           "reactions": 1
         }
       },
@@ -109,17 +111,20 @@ router.get('/', function (req, res, next) {
 
 // Get single news
 router.get('/:id', function (req, res, next) {
+  console.log('Get single news');
   console.log(req.params.id);
   mongodb.MongoClient.connect(dbUri, function (err, db) {
     if (err) throw err;
 
     var collection = db.collection('news');
 
+    collection.update({"_id": ObjectId(req.params.id)}, {$inc: {clickCount:1}});
+
     collection.findOne({ "_id": ObjectId(req.params.id) }, function (err, data) {
       if (err)
         throw err;
-
       res.send(data)
+
     });
   });
 });

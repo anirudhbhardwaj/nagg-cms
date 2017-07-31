@@ -17,16 +17,16 @@ export class NewsItemThumbComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    if (this.newsItem && this.newsItem.reactions) {
-      this.newsItem.reactions.forEach((reaction) => {
-        if (reaction.comment) {
-          this.commentcount += 1;
-        }
-        if (reaction.isLike) {
-          this.likecount += 1;
-        }
-      })
-    }
+    // if (this.newsItem && this.newsItem.reactions) {
+    //   this.newsItem.reactions.forEach((reaction) => {
+    //     if (reaction.comment) {
+    //       this.commentcount += 1;
+    //     }
+    //     if (reaction.isLike) {
+    //       this.likecount += 1;
+    //     }
+    //   })
+    // }
   }
 
   redirectToNewsDetail() {
