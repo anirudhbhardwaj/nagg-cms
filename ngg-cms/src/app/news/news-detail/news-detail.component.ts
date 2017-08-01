@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NewsService } from '../news-service.service';
 import { News } from '../news.models';
@@ -17,24 +17,32 @@ import { AuthService } from "../../auth.service";
 export class NewsDetailComponent implements OnInit {
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
-  constructor(private newsService: NewsService, private route: ActivatedRoute,
-    private router: Router, private authService: AuthService) { }
 
-  news: News = new News();
+  constructor(private newsService: NewsService, private route: ActivatedRoute,
+    private router: Router, private authService: AuthService) {
+
+  }
+
+  news: News;
+  id: string;
 
   ngOnInit() {
-    this.isLoggedIn = this.authService.isLoggedIn;
-    this.authService.admin$.subscribe(
-      changedVal => this.isAdmin = changedVal
-    );
-    this.route.paramMap.map((params: ParamMap) =>
-      this.newsService.getNewsById(params.get('id')))
-      .subscribe(
-      (news: News) => {
-        //console.log("news = ",news);
-        this.news = news;
-      });
+     this.route.paramMap.subscribe(data => {
+       this.id = data.get('id')
+       this.loadNews()
+     })
   }
+
+
+
+  loadNews() {
+
+    this.newsService.getNewsById(this.id).subscribe(data => {
+      this.news = <News>data
+    });
+
+  }
+
 
   EditNews() {
     this.newsService.setEditNews(this.news);

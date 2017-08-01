@@ -65,15 +65,26 @@ export class NewsService {
   }
 
   // Simulate GET /news/:id
-  public getNewsById(id: string): News {
-    let selectedNews = new News();
-    let retreivedNews = this.news.filter((news) => {
-      return news._id === id;
-    });
-    if (retreivedNews && retreivedNews.length > 0) {
-      selectedNews = retreivedNews[0];
-    }
-    return selectedNews;
+  // public getNewsById(id: string): News {
+  //   let selectedNews = new News();
+  //   let retreivedNews = this.news.filter((news) => {
+  //     return news._id === id;
+  //   });
+  //   if (retreivedNews && retreivedNews.length > 0) {
+  //     selectedNews = retreivedNews[0];
+  //   }
+  //   return selectedNews;
+  // }
+
+  public getNewsById(id)  {
+    return this.httpClient.get("http://localhost:3000/api/news/newsDetail", { id:id })
+      .map(res => {
+        let body = res.json();
+        this.news = body || {};
+        return body || {};
+      });
+
+    // return this.httpClient.get("http://localhost:3000/api/news/newsDetail", { id:id }).map(res => res.json());
   }
 
   public getNewsbydate(dateFrom, dateTo): Observable<News[]> {

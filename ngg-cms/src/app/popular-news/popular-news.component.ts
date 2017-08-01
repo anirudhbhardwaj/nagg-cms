@@ -15,8 +15,7 @@ export class PopularNewsComponent implements OnInit {
 
   news: News[];
 
-  constructor(private newsService: NewsService, private route: ActivatedRoute,
-    private router: Router) {
+  constructor(private newsService: NewsService) {
 
   }
 
