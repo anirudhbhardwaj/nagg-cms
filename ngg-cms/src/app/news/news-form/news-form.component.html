@@ -26,9 +26,13 @@
                     </div>
                 </ng-container>
                 <div class="add-img-wrapper">
-                <label *ngIf="!editMode" for="newsImg">Add Image</label>
-                <label *ngIf="editMode"  for="newsImg">Edit Image</label>
-                <input type="file" id="newsImg" (change)="imageUpload($event)" accept=".jpg, .png" name="newsImg"/>
+                <label *ngIf="!editMode" for="newsImg">Add Image</label>                
+                <label *ngIf="editMode && !useSameImage"  for="newsImg">Edit Image</label>
+                <input *ngIf="!useSameImage"  type="file" id="newsImg" (change)="imageUpload($event)" 
+                    accept=".jpg, .png" name="newsImg"/><br>
+                <label *ngIf="editMode && model.image">
+                <input type="checkbox" name="SameImage" [(ngModel)]="useSameImage">Use Same image
+                </label>
                 </div>
                 <!--<div> <img [attr.src]='file_srcs[0]' alt="" /> </div>-->
             </div>

@@ -27,7 +27,7 @@
 
         <div class="heading-wrapper content-middle">
             <img alt="Nagarro" src="assets\static-images\Nagarro-logo-01.png" (click)="gotoHome()" id="branding-img" class="display-inline-block">
-            <span class="logged-user display-inline-block">Admin User</span>
+            <span class="logged-user display-inline-block" *ngIf="isAdmin && isLoggedIn">Admin User</span>
         </div>
         <nav class="navigation">
             <div class="nav-content-wrapper content-middle">

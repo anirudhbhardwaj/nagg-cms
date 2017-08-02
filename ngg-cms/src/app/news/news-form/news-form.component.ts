@@ -16,6 +16,7 @@ export class NewsFormComponent implements OnInit {
     editModel: News = null;
     image: File;
     base64textString: String = "";
+    useSameImage: boolean = false;
 
     constructor(private newsService: NewsService, private authService: AuthService, private router: Router) {
     }
@@ -44,7 +45,7 @@ export class NewsFormComponent implements OnInit {
                 });
 
         } else {
-            this.model.image = this.base64textString.toString();
+            this.model.image = (this.useSameImage) ? this.model.image : this.base64textString.toString();
             this.newsService.setEditNews(null);
             this.newsService.saveEditNews(this.model).subscribe((res) => {
                 this.newsService.getAllNews();
