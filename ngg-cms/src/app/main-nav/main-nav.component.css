@@ -65,7 +65,7 @@ nav.navigation{
 
 nav.navigation ul{
 	list-style-type: none;
-	width: 65%;
+	width: 80%;
 }
 
 .srch-wrapper{
@@ -84,7 +84,7 @@ nav.navigation ul{
 
 nav.navigation ul li{
 	color: #fff;
-	width: 17%;
+	width: 15%;
 	font-size: 16px;
 	display: inline-block;
 	padding: 5px 10px;
@@ -93,8 +93,13 @@ nav.navigation ul li{
 	font-weight: bold;
 }
 
+nav.navigation ul li:first-child{
+	padding-left: 0
+}
+
 .srch-wrapper input{
 	padding: 5px;
+	width: 100%;
 }
 
 .display-inline-block{
@@ -245,6 +250,11 @@ nav.navigation ul li{
 
 .btn.btn-info.log-in, .btn.btn-info.log-out{
 	margin-top: 5px;
+	width: 75px;
+}
+
+.app-srch-form{
+	width: 12%;
 }
 
 
