@@ -1,7 +1,7 @@
 <div class="search-results-wrapper">
   <div class="search-results-header">
     <h1 class="search-results-title">
-    Search Results for : 
+    {{headingText}}
     <span class="actual-srch-term">{{searchText}}</span>
     </h1>
   </div>
@@ -17,6 +17,6 @@
     </ng-container>
     <li class="no-data-found">
     <span *ngIf="searchData?.length == 0">No data found</span>
-    </li>
+    </li> 
    </ul>
 </div>
