@@ -10,6 +10,7 @@
 .search-results-wrapper{
     display: inline-block;
     width: 75%;
+    position: relative;
 }
 
 .search-results-title{
@@ -21,9 +22,13 @@
 
 .actual-search-results-wrapper{
     margin-left: 20px;
-    list-style: decimal;
     font-weight: bold;
 }
+
+.actual-search-results-wrapper .search-results-list{
+    list-style: decimal;
+}
+
 
 .actual-search-results-wrapper > li{
     padding-left: 10px;
@@ -34,4 +39,9 @@
 .actual-srch-term{
     font-weight: 600;
     color: #323232;
+}
+
+.srch-results-number{
+    position: absolute;
+    left: 40%;
 }
