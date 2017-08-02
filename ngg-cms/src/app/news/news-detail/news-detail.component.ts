@@ -28,10 +28,11 @@ export class NewsDetailComponent implements OnInit {
   ngOnInit() {
     this.isLoggedIn = this.authService.isLoggedIn;
     this.isAdmin = this.authService.getIsAdmin();
-    this.route.paramMap.subscribe(data => {
-      this.id = data.get('id')
-      this.loadNews()
-    })
+
+     this.route.data
+      .subscribe((data) => {
+        this.news = data.news;
+      });
   }
 
   loadNews() {
