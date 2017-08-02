@@ -1,3 +1,37 @@
 .search-results-link{
     cursor: pointer;
+    font-weight: normal;
+}
+
+.search-results-link:hover{
+    text-decoration: underline !important;
+}
+
+.search-results-wrapper{
+    display: inline-block;
+    width: 75%;
+}
+
+.search-results-title{
+    color: #387bb7;
+    font-size: 25px;
+    margin: 7px 0 14px;
+    font-weight: normal;
+}
+
+.actual-search-results-wrapper{
+    margin-left: 20px;
+    list-style: decimal;
+    font-weight: bold;
+}
+
+.actual-search-results-wrapper > li{
+    padding-left: 10px;
+    margin: 15px 0;
+    font-size: 18px;
+}
+
+.actual-srch-term{
+    font-weight: 600;
+    color: #323232;
 }

@@ -28,9 +28,9 @@ router.get('/archive', function (req, res, next) {
       res.send(data);
     }); 
   });
-}); 
+});  
 
-
+ 
 
 router.get('/popular', function (req, res, next) {
   mongodb.MongoClient.connect(dbUri, function (err, db) {
@@ -78,6 +78,26 @@ router.get('/search', function (req, res, next) {
   });
 });
 
+// Get single news
+router.get('/newsDetail', function (req, res, next) {
+  console.log('Get single news');
+  console.log(req.query.id);
+  mongodb.MongoClient.connect(dbUri, function (err, db) {
+    if (err) throw err;
+
+    var collection = db.collection('news');
+
+    collection.update({"_id": ObjectId(req.query.id)}, {$inc: {clickCount:1}});
+
+    collection.findOne({ "_id": ObjectId(req.query.id) }, function (err, data) {
+      if (err)
+        throw err;
+      res.send(data)
+
+    });
+  });
+});
+
 // Get all news
 router.get('/', function (req, res, next) {
   mongodb.MongoClient.connect(dbUri, function (err, db) {
@@ -87,7 +107,7 @@ router.get('/', function (req, res, next) {
 
     var result = collection.aggregate([
       // Project with an array length
-      {
+      { 
         $project: {
           "fingerprint": 1,
           "title": 1,
@@ -104,30 +124,12 @@ router.get('/', function (req, res, next) {
       if (err) {
         console.log(err)
       }
-      res.send(data);
+      res.send(data);  
     });
   });
 });
-
-// Get single news
-router.get('/:id', function (req, res, next) {
-  console.log('Get single news');
-  console.log(req.params.id);
-  mongodb.MongoClient.connect(dbUri, function (err, db) {
-    if (err) throw err;
-
-    var collection = db.collection('news');
-
-    collection.update({"_id": ObjectId(req.params.id)}, {$inc: {clickCount:1}});
-
-    collection.findOne({ "_id": ObjectId(req.params.id) }, function (err, data) {
-      if (err)
-        throw err;
-      res.send(data)
-
-    });
-  });
-});
+  
+ 
 
 // Edit news
 router.put('/', upload.single('image'), function (req, res, next) {
