@@ -10,6 +10,9 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class NewsService {
+  private updatePopularNews = new BehaviorSubject<Boolean>(false);
+  public updatePopularNews$ = this.updatePopularNews.asObservable();
+
   private editModeSource = new BehaviorSubject<boolean>(false);
   public editSource$ = this.editModeSource.asObservable();
   constructor(private httpClient: HttpClient) { }
@@ -90,6 +93,10 @@ export class NewsService {
         let body = res.json();
         return body || {};
       }).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  public updatePopularNewsViews(){
+    this.updatePopularNews.next(true);
   }
 
 

@@ -10,7 +10,6 @@ import { NewsService } from '../../news/news-service.service';
 })
 export class NewsItemThumbComponent implements OnInit {
   @Input() newsItem: News;
-  @Output() newsClicked: EventEmitter<any> = new EventEmitter();
   // commentcount = 0;
   // likecount = 0;
 
@@ -24,7 +23,7 @@ export class NewsItemThumbComponent implements OnInit {
   redirectToNewsDetail() {
     this.router.navigate(['main/news/newsDetail', this.newsItem._id])
       .then(() => {
-        this.newsClicked.emit();
+        () => this.newsService.updatePopularNewsViews();
       });
 
   }

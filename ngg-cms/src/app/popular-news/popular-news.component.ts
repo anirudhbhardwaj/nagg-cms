@@ -16,7 +16,8 @@ export class PopularNewsComponent implements OnInit {
   news: News[];
 
   constructor(private newsService: NewsService) {
-
+    this.newsService.updatePopularNews$.subscribe(
+      () => this.updateComponent());
   }
 
   ngOnInit() {
@@ -25,11 +26,7 @@ export class PopularNewsComponent implements OnInit {
 
   updateComponent() {
     this.newsService.getPopularNews().subscribe(news => {
-      // news.sort(function (a, b) {
-      //   return b.reactCount - a.reactCount;
-      // });
       this.news = news;
-      // this.news.splice(5);
     });
   }
 }
