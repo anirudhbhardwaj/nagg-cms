@@ -10,12 +10,11 @@ import { SearchService } from "./search.service";
   styleUrls: ['./search-result.component.css']
 })
 export class SearchResultComponent implements OnInit {
-  searchText : string = "";
+  searchText: string = "";
   searchData: News[];
 
   constructor(private searchService: SearchService, private route: ActivatedRoute,
     private router: Router) {
-
   }
 
   ngOnInit() {
@@ -28,14 +27,12 @@ export class SearchResultComponent implements OnInit {
           .subscribe(
           data => this.searchData = data
           )
-      } else if(queryParams.startDate && queryParams.endDate) {
+      } else if (queryParams.startDate && queryParams.endDate) {
         this.searchService.getArchivedNews(queryParams.startDate, queryParams.endDate).subscribe(news => {
           this.searchData = news;
           console.log(this.searchData);
         });
       }
-
-
     });
     this.route.data
       .subscribe((data) => {

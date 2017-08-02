@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../auth.service";
 import { SearchService } from "../search/search.service";
-import { RouterStateSnapshot, Router } from "@angular/router";
+import { RouterStateSnapshot, Router, NavigationStart } from "@angular/router";
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -14,7 +14,13 @@ export class MainNavComponent implements OnInit {
   isLoggedIn: boolean = false;
   isAdmin: boolean = false;
   subscription: Subscription;
-  constructor(private authService: AuthService, private searchService: SearchService, private router: Router) { }
+  constructor(private authService: AuthService, private searchService: SearchService, private router: Router) {
+    router.events.subscribe((val) => {
+      if (val instanceof NavigationStart && val.url.indexOf('/search') < 0) {
+        this.searchText = "";
+      }
+    });
+  }
 
   ngOnInit() {
     //Wrapped in setTimeout to avoid angular@4.2 error: Expression has changed after it was checked
@@ -41,9 +47,7 @@ export class MainNavComponent implements OnInit {
   }
 
   search() {
-    let searchText = this.searchText;
-    this.searchText = "";
-    this.router.navigate(['/main/news/search'], { queryParams: { "tag": searchText } });
+    this.router.navigate(['/main/news/search'], { queryParams: { "tag": this.searchText } });
   }
 
   gotoHome() {
