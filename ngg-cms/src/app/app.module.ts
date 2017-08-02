@@ -32,6 +32,7 @@ import { SearchService } from './search/search.service';
 import { NewsTileComponent } from './news/news-tile/news-tile.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { ArchivedNewsThumbComponent } from './archived-news/archived-news-thumb/archived-news-thumb.component';
+import { EditGuard } from "app/news/news-form/edit-guard.guard";
 
 @NgModule({
     declarations: [
@@ -64,7 +65,7 @@ import { ArchivedNewsThumbComponent } from './archived-news/archived-news-thumb/
         ChipsModule
 
     ],
-    providers: [AuthGuard, AuthService, HttpClient, NewsResolveGuard, NewsService, SearchService, SearchResolveGuard],
+    providers: [AuthGuard, AuthService, HttpClient, NewsResolveGuard, NewsService, SearchService, SearchResolveGuard, EditGuard ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

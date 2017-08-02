@@ -26,9 +26,7 @@ export class MainNavComponent implements OnInit {
     //Wrapped in setTimeout to avoid angular@4.2 error: Expression has changed after it was checked
     setTimeout(() => {
       this.isLoggedIn = this.authService.isLoggedIn;
-      this.authService.admin$.subscribe(
-        changedValue => this.isAdmin = changedValue
-      );
+      this.isAdmin = this.authService.getIsAdmin();
       this.authService.logIn$.subscribe(
         changeVal => this.isLoggedIn = changeVal
       );
@@ -51,6 +49,6 @@ export class MainNavComponent implements OnInit {
   }
 
   gotoHome() {
-    this.router.navigate(['/main/news' + this.isAdmin ? '/admin' : '']);
+    this.router.navigate(['/main/news' + (this.isAdmin ? '/admin' : '')]);
   }
 }

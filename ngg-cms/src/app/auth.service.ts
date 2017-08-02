@@ -8,10 +8,8 @@ import 'rxjs/add/operator/delay';
 @Injectable()
 export class AuthService {
     private isLoggedInSource = new BehaviorSubject<boolean>(false);
-    private isAdminSource = new BehaviorSubject<boolean>(false);
     isLoggedIn: boolean = false;
     public logIn$ = this.isLoggedInSource.asObservable();
-    public admin$ = this.isAdminSource.asObservable();
     isAdmin: boolean = false;
 
     // store the URL so we can redirect after logging in
@@ -30,6 +28,9 @@ export class AuthService {
 
     setAdmin(isAdmin: boolean): void {
         this.isAdmin = isAdmin;
-        this.isAdminSource.next(this.isAdmin);
+    }
+
+    getIsAdmin(){
+        return this.isAdmin;
     }
 }

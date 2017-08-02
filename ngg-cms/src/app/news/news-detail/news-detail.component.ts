@@ -27,13 +27,11 @@ export class NewsDetailComponent implements OnInit {
 
   ngOnInit() {
     this.isLoggedIn = this.authService.isLoggedIn;
-    this.authService.admin$.subscribe(
-      changedVal => this.isAdmin = changedVal
-      );
-     this.route.paramMap.subscribe(data => {
-       this.id = data.get('id')
-       this.loadNews()
-     })
+    this.isAdmin = this.authService.getIsAdmin();
+    this.route.paramMap.subscribe(data => {
+      this.id = data.get('id')
+      this.loadNews()
+    })
   }
 
   loadNews() {

@@ -14,6 +14,7 @@ import { LoginComponent } from "./login/login.component";
 import { MainComponent } from "./main/main.component";
 import { SearchResultComponent } from './search/search-result.component';
 import { NewsDetailComponent } from './news/news-detail/news-detail.component';
+import { EditGuard } from "./news/news-form/edit-guard.guard";
 
 export const appRoutes: Routes = [
     {
@@ -40,7 +41,8 @@ export const appRoutes: Routes = [
                     {
                         path: 'new-news',
                         component: NewsFormComponent,
-                        canActivate: [AuthGuard]
+                        canActivate: [AuthGuard],
+                        canDeactivate: [EditGuard]
                     },
                     {
                         path: 'search',

@@ -29,9 +29,7 @@ export class NewsComponent implements OnInit {
     this.newsService.editSource$.subscribe(
       changedValue => this.editMode = changedValue
     );
-    this.authService.admin$.subscribe(
-      changedVal => this.isAdmin = changedVal
-    );
+    this.isAdmin = this.authService.getIsAdmin();
   }
 
   createNewNews() {
