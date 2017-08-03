@@ -10,13 +10,13 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['news-form.component.css']
 })
 export class NewsFormComponent implements OnInit {
+    imageRemoved: boolean = false;
     editMode = false;
     submitted = false;
     model: News = new News();
     editModel: News = null;
     image: File;
     base64textString: String = "";
-    useSameImage: boolean = false;
 
     constructor(private newsService: NewsService, private authService: AuthService, private router: Router) {
     }
@@ -50,7 +50,8 @@ export class NewsFormComponent implements OnInit {
                 });
 
         } else {
-            this.model.image = (this.useSameImage) ? this.model.image : this.base64textString.toString();
+            var imgB64Str: string = this.base64textString.toString();
+            this.model.image = imgB64Str.length > 0 ? imgB64Str : this.editModel.image;
             this.newsService.setEditNews(null);
             this.newsService.saveEditNews(this.model).subscribe((res) => {
                 this.newsService.getAllNews();
@@ -90,5 +91,11 @@ export class NewsFormComponent implements OnInit {
     cancel() {
         this.newsService.setEditNews(null);
         this.router.navigate(['/main/news/admin']);
+    }
+
+    removeImage() {
+        alert('Image will be deleted on save.')
+        this.editModel.image = "";
+        this.imageRemoved = true;
     }
 }
