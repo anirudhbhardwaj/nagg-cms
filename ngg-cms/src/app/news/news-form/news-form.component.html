@@ -23,8 +23,8 @@
                     <div class="currently-save-img-wrapper">
                         <span>Currently saved image :</span>
                         <img style="width:100px;height:100px;" src="data:image/png;base64,{{model.image}}">
-                        <div class="cross-btn">
-                            <i class="fa fa-times" aria-hidden="true" (click)="removeImage()"></i>
+                        <div class="cross-btn" (click)="removeImage()">
+                            <i class="fa fa-times-circle" title="Delete this image" aria-hidden="true"></i>
                         </div>
                     </div>
                 </ng-container>

@@ -94,7 +94,6 @@ export class NewsFormComponent implements OnInit {
     }
 
     removeImage() {
-        alert('Image will be deleted on save.')
         this.editModel.image = "";
         this.imageRemoved = true;
     }
