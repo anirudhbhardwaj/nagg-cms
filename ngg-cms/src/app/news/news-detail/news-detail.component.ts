@@ -26,7 +26,15 @@ export class NewsDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    var isLoginFromCache = sessionStorage.getItem("isUserLogin_KEY");
+    if (isLoginFromCache == 'true') {
+      this.authService.setLogin(true);
+    }
     this.isLoggedIn = this.authService.isLoggedIn;
+    var isAdminCached = sessionStorage.getItem("isAdmin_KEY");
+    if (isAdminCached == 'true') {
+      this.authService.setAdmin(true);
+    }
     this.isAdmin = this.authService.getIsAdmin();
 
      this.route.data

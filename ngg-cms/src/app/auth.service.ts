@@ -15,22 +15,31 @@ export class AuthService {
     // store the URL so we can redirect after logging in
     redirectUrl: string;
 
-    login(): boolean {
-        this.isLoggedInSource.next(true);
-        this.isLoggedIn = true;
+    login(): boolean {        
+        this.setLogin(true);
+        sessionStorage.setItem("isUserLogin_KEY", JSON.stringify(true));
         return this.isLoggedIn;
     }
 
     logout(): void {
         this.isLoggedInSource.next(false);
-        this.isLoggedIn = false;
+        this.setLogin(false);        
+    }
+
+    setLogin(isLoggedIn: boolean): void {
+        this.isLoggedInSource.next(isLoggedIn);
+        this.isLoggedIn = isLoggedIn;
+    }
+
+    getLogin() {
+        return this.isLoggedIn;
     }
 
     setAdmin(isAdmin: boolean): void {
-        this.isAdmin = isAdmin;
+        this.isAdmin = isAdmin;       
     }
 
-    getIsAdmin(){
+    getIsAdmin() {
         return this.isAdmin;
     }
 }

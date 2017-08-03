@@ -11,6 +11,7 @@ export class EditGuard implements CanDeactivate<NewsFormComponent> {
     if(component.editMode){
       var navigate = window.confirm('Do you want to discard changes ?');
       if(navigate){
+        sessionStorage.removeItem("editMode_KEY");
         this.newsService.setEditNews(null);
       }
       return navigate;
