@@ -22,6 +22,11 @@ export class NewsOverviewComponent implements OnInit {
         this.route.data.subscribe((data) => {
           var isAdmin = (data.isAdmin != null && data.isAdmin != undefined) ? data.isAdmin : false;
           this.authService.setAdmin(isAdmin);
+          if (isAdmin) {
+            sessionStorage.setItem("isAdmin_KEY", JSON.stringify(isAdmin));
+          } else {
+            sessionStorage.clear();
+          }
         });
       });
   }

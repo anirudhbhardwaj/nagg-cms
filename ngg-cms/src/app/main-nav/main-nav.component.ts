@@ -25,7 +25,15 @@ export class MainNavComponent implements OnInit {
   ngOnInit() {
     //Wrapped in setTimeout to avoid angular@4.2 error: Expression has changed after it was checked
     setTimeout(() => {
-      this.isLoggedIn = this.authService.isLoggedIn;
+      var isLoginFromCache = sessionStorage.getItem("isUserLogin_KEY");
+      if (isLoginFromCache == 'true') {
+        this.authService.setLogin(true);
+      }
+      var isAdminCached = sessionStorage.getItem("isAdmin_KEY");
+      if (isAdminCached == 'true') {
+        this.authService.setAdmin(true);
+      }
+      this.isLoggedIn = this.authService.getLogin();
       this.isAdmin = this.authService.getIsAdmin();
       this.authService.logIn$.subscribe(
         changeVal => this.isLoggedIn = changeVal
@@ -36,6 +44,7 @@ export class MainNavComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.isLoggedIn = this.authService.isLoggedIn;
+    sessionStorage.clear();
     this.router.navigate(['/main/news/admin']);
   }
 

@@ -22,14 +22,16 @@ export class NewsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isLoggedIn = this.authService.isLoggedIn;
-    this.authService.logIn$.subscribe(
-      changedValue => this.isLoggedIn = changedValue
-    );
-    this.newsService.editSource$.subscribe(
-      changedValue => this.editMode = changedValue
-    );
-    this.isAdmin = this.authService.getIsAdmin();
+    setTimeout(() => {
+      this.isLoggedIn = this.authService.isLoggedIn;
+      this.authService.logIn$.subscribe(
+        changedValue => this.isLoggedIn = changedValue
+      );
+      this.newsService.editSource$.subscribe(
+        changedValue => this.editMode = changedValue
+      );
+      this.isAdmin = this.authService.getIsAdmin();
+    }, 0);
   }
 
   createNewNews() {

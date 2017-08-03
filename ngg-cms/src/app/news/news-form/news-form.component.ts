@@ -26,6 +26,11 @@ export class NewsFormComponent implements OnInit {
         // preserve the original edited news
         this.editModel = JSON.parse(JSON.stringify(this.model));
         this.editMode = (this.model !== null);
+        if (sessionStorage.getItem("editMode_KEY") == 'true' && !this.editMode) {
+            sessionStorage.removeItem("editMode_KEY");
+            this.router.navigate(['/main/news/admin']);
+        }
+        sessionStorage.setItem("editMode_KEY", JSON.stringify(this.editMode));
         this.model = this.model || new News();
     }
 
@@ -50,6 +55,7 @@ export class NewsFormComponent implements OnInit {
             this.newsService.saveEditNews(this.model).subscribe((res) => {
                 this.newsService.getAllNews();
                 this.editMode = false;
+                sessionStorage.removeItem("editMode_KEY");
                 this.router.navigate(['main/news/newsDetail', this.model._id]);
             })
         }
