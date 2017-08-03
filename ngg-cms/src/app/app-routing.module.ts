@@ -1,4 +1,5 @@
-﻿import { SearchResolveGuard } from './search/search-result-resolve.service';
+﻿import { NewsDetailResolveGuard } from './news/news-detail.resolve';
+import { SearchResolveGuard } from './search/search-result-resolve.service';
 import { NewsOverviewComponent } from './news/news-overview/news-overview.component';
 import { NewsFormComponent } from './news/news-form/news-form.component';
 import { NewsResolveGuard } from './news/news-resolve.service';
@@ -36,7 +37,8 @@ export const appRoutes: Routes = [
                     },
                     {
                         path: 'newsDetail/:id',
-                        component: NewsDetailComponent
+                        component: NewsDetailComponent,
+                        resolve: { news: NewsDetailResolveGuard }
                     },
                     {
                         path: 'new-news',

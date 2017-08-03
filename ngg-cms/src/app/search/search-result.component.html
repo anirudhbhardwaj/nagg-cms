@@ -1,17 +1,22 @@
 <div class="search-results-wrapper">
   <div class="search-results-header">
     <h1 class="search-results-title">
-    Search Results for : 
+    {{headingText}}
     <span class="actual-srch-term">{{searchText}}</span>
     </h1>
   </div>
   <hr>
   <ul class="actual-search-results-wrapper">
     <ng-container *ngIf="searchData?.length > 0">
-      <li *ngFor="let item of searchData; let i = index">
+      <li *ngFor="let item of searchData; let i = index" class="search-results-list">
         <a class="search-results-link" (click)="redirectToNewsDetail(item)">{{item.title}}</a>
       </li>
+      <li class="srch-results-number">
+        <span>Found {{searchData.length}} result(s)</span>
+      </li>
     </ng-container>
-  </ul>
+    <li class="no-data-found">
     <span *ngIf="searchData?.length == 0">No data found</span>
+    </li> 
+   </ul>
 </div>

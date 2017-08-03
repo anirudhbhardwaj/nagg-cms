@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { News } from '../../news/news.models';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NewsService } from '../../news/news-service.service';
@@ -15,13 +15,16 @@ export class NewsItemThumbComponent implements OnInit {
 
   constructor(private newsService: NewsService,
     private router: Router,
-  private route: ActivatedRoute) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
   }
 
   redirectToNewsDetail() {
-    this.router.navigate(['main/news/newsDetail', this.newsItem._id]);
+    this.router.navigate(['main/news/newsDetail', this.newsItem._id])
+      .then(() => {
+        () => this.newsService.updatePopularNewsViews();
+      });
 
   }
 }

@@ -10,7 +10,8 @@ import { SearchService } from "./search.service";
   styleUrls: ['./search-result.component.css']
 })
 export class SearchResultComponent implements OnInit {
-  searchText: string = "";
+  
+  headingText: string = "";
   searchData: News[];
 
   constructor(private searchService: SearchService, private route: ActivatedRoute,
@@ -22,13 +23,15 @@ export class SearchResultComponent implements OnInit {
     this.route.queryParams.subscribe(queryParams => {
       console.log(queryParams);
       if (queryParams.tag) {
-        this.searchText = queryParams.tag;
-        this.searchService.getSearchNews(this.searchText)
+        this.headingText = 'Search Results for : ' + queryParams.tag;
+        this.searchService.getSearchNews(queryParams.tag)
           .subscribe(
           data => this.searchData = data
           )
       } else if (queryParams.startDate && queryParams.endDate) {
         this.searchService.getArchivedNews(queryParams.startDate, queryParams.endDate).subscribe(news => {
+          let date = new Date(queryParams.startDate)
+          this.headingText = 'Archived News for the month of ' + date.toLocaleString("en-us" , { month: "long" });;
           this.searchData = news;
           console.log(this.searchData);
         });

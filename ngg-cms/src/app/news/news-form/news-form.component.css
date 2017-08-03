@@ -52,3 +52,9 @@
   vertical-align: bottom;
 }
 
+.cross-btn{
+  display: inline-block;
+  vertical-align: top;
+  margin-top: -5px;
+}
+

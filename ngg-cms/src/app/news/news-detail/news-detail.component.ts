@@ -36,10 +36,11 @@ export class NewsDetailComponent implements OnInit {
       this.authService.setAdmin(true);
     }
     this.isAdmin = this.authService.getIsAdmin();
-    this.route.paramMap.subscribe(data => {
-      this.id = data.get('id')
-      this.loadNews()
-    })
+
+     this.route.data
+      .subscribe((data) => {
+        this.news = data.news;
+      });
   }
 
   loadNews() {

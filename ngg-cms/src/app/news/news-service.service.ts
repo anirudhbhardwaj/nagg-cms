@@ -10,6 +10,9 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class NewsService {
+  private updatePopularNews = new BehaviorSubject<Boolean>(false);
+  public updatePopularNews$ = this.updatePopularNews.asObservable();
+
   private editModeSource = new BehaviorSubject<boolean>(false);
   public editSource$ = this.editModeSource.asObservable();
   constructor(private httpClient: HttpClient) { }
@@ -17,17 +20,6 @@ export class NewsService {
   private url = "http://localhost:3000/api/news";
   private news: News[] = [];
   private editedNews: News = null;
-  private obj = {
-    fingerprint: {
-      userID: 'A811242',
-    },
-    title: 'Nagarro News Sample 2',
-    description: `British Prime Minister.`,
-    imageUrl: null,
-    author_name: "Anirudh Bhardwaj",
-    tags: ['Britain', 'Brexit'],
-    reactions: [{ userId: 'Xyz', like: true, comment: 'Hello World' }, { userId: 'Abc', like: true, comment: 'Hello World 2' }]
-  };
 
   setEditNews(news) {
     this.editedNews = news;
@@ -99,9 +91,12 @@ export class NewsService {
     return this.httpClient.get("http://localhost:3000/api/news/popular")
       .map(res => {
         let body = res.json();
-        this.news = body || {};
         return body || {};
       }).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  public updatePopularNewsViews(){
+    this.updatePopularNews.next(true);
   }
 
 
