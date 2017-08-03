@@ -55,6 +55,7 @@
 .cross-btn{
   display: inline-block;
   vertical-align: top;
-  margin-top: -5px;
+  margin-top: -4px;
+  cursor: pointer;
 }
 
