@@ -10,3 +10,9 @@
 .archives-ul li {
     padding: 3% 0;
 }
+
+@media screen and (max-width: 1024px){
+.h1-archives{
+    font-size: x-large;
+}
+}

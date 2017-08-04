@@ -250,8 +250,10 @@ nav.navigation ul li:first-child{
 }
 
 .btn.btn-info.log-in, .btn.btn-info.log-out{
-	margin-top: 5px;
+	/*margin-top: 5px;*/
 	width: 75px;
+	float: none !important;
+    margin-left: 5%;
 }
 
 .app-srch-form{
@@ -263,5 +265,21 @@ nav.navigation ul li:first-child{
 	.content-middle{
 	width: 100%;
 	margin: 0 auto;
+	}
+
+	.nav-content-wrapper.content-middle,#branding-img{
+		padding-left: 1%;
+	}
+
+	.news-btn{
+		padding: .5rem .25rem;
+	}
+
+	nav.navigation ul{
+		width: 62.2%;
+	}
+
+	.app-srch-form{
+		width: 15.5%;
 	}
 }

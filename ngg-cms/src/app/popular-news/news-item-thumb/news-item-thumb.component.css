@@ -11,3 +11,9 @@
 .author{
     margin-bottom: 5px;
 }
+
+@media screen and (max-width: 1024px){
+    .author-date-reactions{
+        font-size: 14px;
+    }
+}

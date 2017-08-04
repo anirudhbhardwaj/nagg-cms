@@ -6,3 +6,13 @@
 .popular-news-ul-wrapper{
     padding: 4% 0% 2% 5%;
 }
+
+@media screen and (max-width: 1024px){
+    .h1-popular-news{
+        font-size: x-large;
+    }
+
+    .news-heading{
+        font-size: 16px;
+    }
+}    
