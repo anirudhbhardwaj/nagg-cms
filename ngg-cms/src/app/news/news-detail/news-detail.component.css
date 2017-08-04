@@ -1,6 +1,6 @@
 .news-detail-wrapper{
     display: inline-block;
-    width: 60%;
+    width: 70%;
     /*margin-top: 10px;*/
     margin-bottom: 10px;
 }
@@ -51,7 +51,8 @@
     position: relative;
 }
 
-.news-detail-image{
-    /*width: 80%;*/
+.news-detail-image > img{
+    width: 100%;
+    max-height: 500px;
 }
 
