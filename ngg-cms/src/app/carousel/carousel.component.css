@@ -46,3 +46,19 @@
 .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
     margin-right: 35px;
 }
+
+@media screen and (max-width: 1024px){
+    .carousel-content > p{
+        font-size: 38px;
+        line-height: 42px;
+        max-width: 315px;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .carousel-content > p{
+        font-size: 32px;
+        line-height: 36px;
+        max-width: 250px;
+    }
+}
