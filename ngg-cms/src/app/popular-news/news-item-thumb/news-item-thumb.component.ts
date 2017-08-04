@@ -15,16 +15,15 @@ export class NewsItemThumbComponent implements OnInit {
 
   constructor(private newsService: NewsService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) {
+     }
 
   ngOnInit() {
   }
 
   redirectToNewsDetail() {
     this.router.navigate(['main/news/newsDetail', this.newsItem._id])
-      .then(() => {
-        () => this.newsService.updatePopularNewsViews();
-      });
+      .then(() => this.newsService.updatePopularNewsViews());
 
   }
 }

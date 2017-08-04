@@ -19,8 +19,7 @@ export class NewsTileComponent implements OnInit {
   @Input() news: News
 
   redirectToNewsDetail(news: News) {
-    this.router.navigate(['main/news/newsDetail', news._id]).then(
-      () => this.newsService.updatePopularNewsViews());
+    this.router.navigate(['main/news/newsDetail', news._id])
+    .then(() => this.newsService.updatePopularNewsViews());
   }
-
 }

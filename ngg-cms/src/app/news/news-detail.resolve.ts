@@ -11,7 +11,6 @@ export class NewsDetailResolveGuard implements Resolve<Observable<News>> {
     }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<News> {
-        console.log(route.params);
         return this.newsService.getNewsById(route.params['id']);
     }
 }
