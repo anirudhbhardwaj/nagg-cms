@@ -39,7 +39,8 @@
 
             <div class="form-group">
                 <label for="power">Author</label>
-                <input type="text" class="form-control" id="authorName" [(ngModel)]="model.authorName" name="authorName" #authorName="ngModel">
+                <input type="text" class="form-control" required id="authorName" 
+                [(ngModel)]="model.authorName" name="authorName" #authorName="ngModel" defaultValue="BFSI Nagarro">
                 <div [hidden]="authorName.valid || authorName.pristine" class="alert alert-danger">
                     Author Name is required
                 </div>
@@ -47,7 +48,7 @@
 
             <div class="form-group" class="no-animate">
                 <label for="tags">Tags</label>
-                <p-chips [(ngModel)]="model.tags" name="tags"></p-chips>
+                <p-chips [(ngModel)]="model.tags" name="tags" required></p-chips>
             </div>
 
             <div class="form-buttons">
