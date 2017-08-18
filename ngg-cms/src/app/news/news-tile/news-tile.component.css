@@ -134,7 +134,7 @@ nav.navigation ul li{
 
 .tiles-wrapper{
 	height: calc(100% - 265px);
-	margin-top: 7px;
+	margin-top: 0px;
 }
 
 .tiles-wrapper .tiles{
@@ -146,7 +146,7 @@ nav.navigation ul li{
 	padding: 1%;
 	color: #fff;
 	height: 49%;
-    min-height: 25vh;
+    min-height: 22vh;
 	padding: 2% 3%;
 	cursor: pointer;
 	vertical-align: top;
@@ -194,7 +194,7 @@ nav.navigation ul li{
 }
 
 .news-tile-wrapper{
-	margin-top: 15px;
+	margin-top: 5px;
 }
 
 .date-comments-likes > span{

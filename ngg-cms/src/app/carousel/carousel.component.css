@@ -1,5 +1,11 @@
 .carousel{
     width: 97.5%;
+    margin-bottom: 5px;
+}
+
+.carousel-inner .item > img{
+    width: 100%;
+    max-height: 275px;
 }
 
 .carousel:hover .carousel-control.left, .carousel:hover .carousel-control.right{

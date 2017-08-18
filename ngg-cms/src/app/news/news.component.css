@@ -140,7 +140,7 @@ nav.navigation ul li{
 
 .tiles-wrapper{
 	height: calc(100% - 265px);
-	margin-top: 7px;
+	margin-top: 0px;
 }
 
 .tiles-wrapper .tiles{
