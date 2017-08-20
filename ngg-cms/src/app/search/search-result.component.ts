@@ -31,7 +31,7 @@ export class SearchResultComponent implements OnInit {
       } else if (queryParams.startDate && queryParams.endDate) {
         this.searchService.getArchivedNews(queryParams.startDate, queryParams.endDate).subscribe(news => {
           let date = new Date(queryParams.startDate)
-          this.headingText = 'Archived News for the month of ' + date.toLocaleString("en-us" , { month: "long" });;
+          this.headingText = 'Archived news for the month of ' + date.toLocaleString("en-us" , { month: "long" });;
           this.searchData = news;
           console.log(this.searchData);
         });
