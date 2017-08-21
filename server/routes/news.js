@@ -118,7 +118,7 @@ router.get('/', function (req, res, next) {
           "reactions": 1
         }
       },
-    ]).sort({"fingerprint.creationTime": -1}).limit(6).toArray(function (err, data) {
+    ]).sort({"fingerprint.lastModificationTime": -1}).limit(6).toArray(function (err, data) {
       if (err) {
         console.log(err)
       }
@@ -135,7 +135,6 @@ router.put('/', upload.single('image'), function (req, res, next) {
   if (req.file) {
     news.image = req.file.buffer.toString('base64');
   }
-  news.fingerprint = {};
   news.fingerprint.lastModificationTime = new Date();
   mongodb.MongoClient.connect(dbUri, function (err, db) {
     if (err) throw err;
