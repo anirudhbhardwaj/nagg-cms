@@ -118,7 +118,7 @@ router.get('/', function (req, res, next) {
           "reactions": 1
         }
       },
-    ]).toArray(function (err, data) {
+    ]).sort({"fingerprint.creationTime": -1}).limit(6).toArray(function (err, data) {
       if (err) {
         console.log(err)
       }
