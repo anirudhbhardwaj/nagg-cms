@@ -58,4 +58,7 @@
 
 .line-breaker {
   white-space: pre-line;
+  margin: 20px 0;
+    display: inline-block;
+
 }
