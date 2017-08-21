@@ -15,7 +15,7 @@
 
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" id="description" [(ngModel)]="model.description" name="description"></textarea>
+                <textarea class="form-control" id="description" cols='60' rows='8' [(ngModel)]="model.description" name="description"></textarea>
             </div>
 
             <div class="form-group" [ngClass]="editMode ? 'edit-news' : 'create-news'">
@@ -29,18 +29,17 @@
                     </div>
                 </ng-container>
                 <div class="add-img-wrapper">
-                <label *ngIf="!editMode" for="newsImg">Add Image</label>                
-                <label *ngIf="editMode"  for="newsImg">Edit Image</label>
-                <input type="file" id="newsImg" (change)="imageUpload($event)" 
-                    accept=".jpg, .png" name="newsImg"/>                
+                    <label *ngIf="!editMode" for="newsImg">Add Image</label>
+                    <label *ngIf="editMode" for="newsImg">Edit Image</label>
+                    <input type="file" id="newsImg" (change)="imageUpload($event)" accept=".jpg, .png" name="newsImg" />
                 </div>
                 <!--<div> <img [attr.src]='file_srcs[0]' alt="" /> </div>-->
             </div>
 
             <div class="form-group">
                 <label for="power">Author</label>
-                <input type="text" class="form-control" required id="authorName" 
-                [(ngModel)]="model.authorName" name="authorName" #authorName="ngModel" defaultValue="BFSI Nagarro">
+                <input type="text" class="form-control" required id="authorName" [(ngModel)]="model.authorName" name="authorName" #authorName="ngModel"
+                    defaultValue="BFSI Nagarro">
                 <div [hidden]="authorName.valid || authorName.pristine" class="alert alert-danger">
                     Author Name is required
                 </div>

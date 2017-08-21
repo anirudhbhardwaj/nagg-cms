@@ -37,7 +37,7 @@ export class NewsFormComponent implements OnInit {
 
     onSubmit() {
         if (!this.editMode) {
-            // this.submitted = true;
+            this.model.description = this.model.description.replace(/\r?\n/g, '<br />');
             let formData: FormData = new FormData();
             formData.append('image', this.image);
             formData.append('model', JSON.stringify(this.model));
