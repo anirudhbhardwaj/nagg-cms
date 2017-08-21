@@ -72,7 +72,9 @@ router.get('/search', function (req, res, next) {
     if (err) throw err;
     var collection = db.collection('news');
     var regex = new RegExp(["^", req.query.tag, "$"].join(""), "i");
-    var regexTitle = new RegExp([".*", req.query.tag, ".*"].join(""), "i"););
+    var regexTitle = new RegExp([".*", req.query.tag, ".*"].join(""), "i");
+    //db.collection.ensureIndex({"field1":"text","field2":"text"})
+    //var result = collection.find({ collected: { $regex: regex } }).toArray(function (err, data) {
     var result = collection.find({ $or: [{ "tags": regex }, { "title": regexTitle }] }).toArray(function (err, data) {
       console.log(data);
       res.send(data);
