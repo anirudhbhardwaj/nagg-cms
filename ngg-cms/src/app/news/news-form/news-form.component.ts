@@ -37,7 +37,7 @@ export class NewsFormComponent implements OnInit {
 
     onSubmit() {
         if (!this.editMode) {
-            // this.submitted = true;
+            this.model.description = this.model.description.replace(/\r?\n/g, '<br />');
             let formData: FormData = new FormData();
             formData.append('image', this.image);
             formData.append('model', JSON.stringify(this.model));
@@ -58,6 +58,7 @@ export class NewsFormComponent implements OnInit {
                 this.newsService.getAllNews();
                 this.editMode = false;
                 sessionStorage.removeItem("editMode_KEY");
+                this.newsService.updatePopularNewsViews();
                 this.router.navigate(['main/news/newsDetail', this.model._id]);
             })
         }

@@ -56,3 +56,6 @@
     max-height: 450px;
 }
 
+.line-breaker {
+  white-space: pre-line;
+}
