@@ -19,8 +19,6 @@ var upload = multer({ storage: storage });
 var dbUri = constants.MONGO_DB_PATH + constants.URL_DELIMITER + constants.DB_NAME;
 
 router.get('/archive', function (req, res, next) {
-  console.log(req.query.startDate);
-  console.log(req.query.endDate);
   mongodb.MongoClient.connect(dbUri, function (err, db) {
     if (err) throw err;
     var collection = db.collection('news');
@@ -67,7 +65,6 @@ router.get('/popular', function (req, res, next) {
 });
 
 router.get('/search', function (req, res, next) {
-  console.log(req.query.tag);
   mongodb.MongoClient.connect(dbUri, function (err, db) {
     if (err) throw err;
     var collection = db.collection('news');
@@ -76,7 +73,6 @@ router.get('/search', function (req, res, next) {
     //db.collection.ensureIndex({"field1":"text","field2":"text"})
     //var result = collection.find({ collected: { $regex: regex } }).toArray(function (err, data) {
     var result = collection.find({ $or: [{ "tags": regex }, { "title": regexTitle }] }).toArray(function (err, data) {
-      console.log(data);
       res.send(data);
     });
   });
@@ -84,8 +80,6 @@ router.get('/search', function (req, res, next) {
 
 // Get single news
 router.get('/newsDetail', function (req, res, next) {
-  console.log('Get single news');
-  console.log(req.query.id);
   mongodb.MongoClient.connect(dbUri, function (err, db) {
     if (err) throw err;
 
@@ -143,12 +137,8 @@ router.put('/', upload.single('image'), function (req, res, next) {
   }
   news.fingerprint = {};
   news.fingerprint.lastModificationTime = new Date();
-
-  console.log(news);
-
   mongodb.MongoClient.connect(dbUri, function (err, db) {
     if (err) throw err;
-
     var collection = db.collection('news');
     var id = news._id.toString();
     news._id = ObjectId(id);
@@ -166,7 +156,6 @@ router.put('/', upload.single('image'), function (req, res, next) {
 
 // post new news
 router.post('/', upload.single('image'), function (req, res, next) {
-  console.log(req.body.model);
   var news = JSON.parse(req.body.model);
   if (req.file) {
     news.image = req.file.buffer.toString('base64');
