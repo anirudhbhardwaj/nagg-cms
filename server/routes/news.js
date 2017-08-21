@@ -21,16 +21,16 @@ var dbUri = constants.MONGO_DB_PATH + constants.URL_DELIMITER + constants.DB_NAM
 router.get('/archive', function (req, res, next) {
   console.log(req.query.startDate);
   console.log(req.query.endDate);
-    mongodb.MongoClient.connect(dbUri, function (err, db) {
+  mongodb.MongoClient.connect(dbUri, function (err, db) {
     if (err) throw err;
     var collection = db.collection('news');
     var result = collection.find({ "fingerprint.creationTime": { $gte: isodate(req.query.startDate), $lte: isodate(req.query.endDate) } }).toArray(function (err, data) {
       res.send(data);
-    }); 
+    });
   });
-});  
+});
 
- 
+
 
 router.get('/popular', function (req, res, next) {
   mongodb.MongoClient.connect(dbUri, function (err, db) {
@@ -71,7 +71,9 @@ router.get('/search', function (req, res, next) {
   mongodb.MongoClient.connect(dbUri, function (err, db) {
     if (err) throw err;
     var collection = db.collection('news');
-    var result = collection.find({ "tags": req.query.tag }).toArray(function (err, data) {
+    var regex = new RegExp(["^", req.query.tag, "$"].join(""), "i");
+    var regexTitle = new RegExp([".*", req.query.tag, ".*"].join(""), "i"););
+    var result = collection.find({ $or: [{ "tags": regex }, { "title": regexTitle }] }).toArray(function (err, data) {
       console.log(data);
       res.send(data);
     });
@@ -87,7 +89,7 @@ router.get('/newsDetail', function (req, res, next) {
 
     var collection = db.collection('news');
 
-    collection.update({"_id": ObjectId(req.query.id)}, {$inc: {clickCount:1}});
+    collection.update({ "_id": ObjectId(req.query.id) }, { $inc: { clickCount: 1 } });
 
     collection.findOne({ "_id": ObjectId(req.query.id) }, function (err, data) {
       if (err)
@@ -107,7 +109,7 @@ router.get('/', function (req, res, next) {
 
     var result = collection.aggregate([
       // Project with an array length
-      { 
+      {
         $project: {
           "fingerprint": 1,
           "title": 1,
@@ -124,12 +126,12 @@ router.get('/', function (req, res, next) {
       if (err) {
         console.log(err)
       }
-      res.send(data);  
+      res.send(data);
     });
   });
 });
-  
- 
+
+
 
 // Edit news
 router.put('/', upload.single('image'), function (req, res, next) {

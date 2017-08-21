@@ -41,7 +41,7 @@
                 </ul>
                 <form (ngSubmit)="search()" class="app-srch-form">
                   <span class="srch-wrapper">
-				    <input name="searchText" type="text" [(ngModel)]="searchText" placeholder="Search tag..">
+				    <input name="searchText" type="text" [(ngModel)]="searchText" placeholder="Search..">
                     <button type="submit" name="searchBtn" class=" pull-right srch-btn" 
                     [disabled]="searchText.length==0"><i class="fa fa-search" aria-hidden="true"></i></button>
 				  </span>
