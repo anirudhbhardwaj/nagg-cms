@@ -58,6 +58,7 @@ export class NewsFormComponent implements OnInit {
                 this.newsService.getAllNews();
                 this.editMode = false;
                 sessionStorage.removeItem("editMode_KEY");
+                this.newsService.updatePopularNewsViews();
                 this.router.navigate(['main/news/newsDetail', this.model._id]);
             })
         }
