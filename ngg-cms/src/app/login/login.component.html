@@ -7,18 +7,22 @@
     <h2 class='login_title text-center'>Login</h2>
     <hr>
 
-    <form class="form-signin">
+    <form class="form-signin" name="form" (ngSubmit)="loginForm.form.valid && login()" #loginForm="ngForm">
       <span id="reauth-email" class="reauth-email"></span>
-      <p class="input_title">Email</p>
-      <input type="text" id="inputEmail" class="login_box" placeholder="user01@test.com" required autofocus>
-      <p class="input_title">Password</p>
-      <input type="password" id="inputPassword" class="login_box" placeholder="******" required>
-      <div id="remember" class="checkbox">
-        <label>
-
-        </label>
+      <div class="form-group" [ngClass]="{ 'has-error': loginForm.submitted && !username.valid }">
+        <p class="input_title">Email</p>
+        <input type="text" id="inputEmail" class="login_box" name="username" [(ngModel)]="model.username"
+          #username="ngModel" required autofocus>
+        <div *ngIf="!username.valid&& loginForm.submitted" class="help-block">Username is required</div>
       </div>
-      <button class="btn btn-lg btn-primary" type="button" (click)="login()">Login</button>
+      <div class="form-group" [ngClass]="{ 'has-error': loginForm.submitted && !password.valid }">
+        <p class="input_title">Password</p>
+        <input type="password" id="inputPassword" class="login_box" name="password" [(ngModel)]="model.password" #password="ngModel" 
+                   required>
+            <div *ngIf="loginForm.submitted && !password.valid" class="help-block">Password is required</div>
+      </div>
+      <span class="error"> {{errorMessage}}</span>
+      <button class="btn btn-lg btn-primary" type="button" (click)="login()" [disabled]="!loginForm.form.valid">Login</button>
     </form><!-- /form -->
   </div><!-- /card-container -->
 </div><!-- /container -->

@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var fs = require('fs');
-
+var login = require('./routes/login');
 var news = require('./routes/news');
 // Put this statement near the top of your module
 var bodyParser = require('body-parser');
@@ -34,6 +34,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/api/news', news);
+app.use('/api/login', login);
 app.disable('etag');
 
 // catch 404 and forward to error handler

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from "../auth.service";
-import { SearchService } from "../search/search.service";
-import { RouterStateSnapshot, Router, NavigationStart } from "@angular/router";
+import { AuthService } from '../auth.service';
+import { SearchService } from '../search/search.service';
+import { RouterStateSnapshot, Router, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import { User } from '../shared/shared.models';
 
 @Component({
   selector: 'app-main-nav',
@@ -10,26 +11,28 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./main-nav.component.css']
 })
 export class MainNavComponent implements OnInit {
-  searchText: string = "";
+  searchText = '';
   isLoggedIn: boolean = false;
-  isAdmin: boolean = false;
+  currentUser: User;
+  isAdmin = false;
   subscription: Subscription;
   constructor(private authService: AuthService, private searchService: SearchService, private router: Router) {
     router.events.subscribe((val) => {
       if (val instanceof NavigationStart && val.url.indexOf('/search') < 0) {
-        this.searchText = "";
+        this.searchText = '';
       }
     });
   }
 
   ngOnInit() {
-    //Wrapped in setTimeout to avoid angular@4.2 error: Expression has changed after it was checked
+    // Wrapped in setTimeout to avoid angular@4.2 error: Expression has changed after it was checked
     setTimeout(() => {
-      var isLoginFromCache = sessionStorage.getItem("isUserLogin_KEY");
+      let isLoginFromCache = sessionStorage.getItem('isUserLogin_KEY');
       if (isLoginFromCache == 'true') {
         this.authService.setLogin(true);
       }
-      var isAdminCached = sessionStorage.getItem("isAdmin_KEY");
+      this.currentUser = this.authService.getUser();
+      let isAdminCached = sessionStorage.getItem('isAdmin_KEY');
       if (isAdminCached == 'true') {
         this.authService.setAdmin(true);
       }
@@ -54,9 +57,9 @@ export class MainNavComponent implements OnInit {
   }
 
   search() {
-    let searchTag = this.searchText
-    this.searchText = '' 
-    this.router.navigate(['/main/news/search'], { queryParams: { "tag": searchTag } });
+    const searchTag = this.searchText
+    this.searchText = ''
+    this.router.navigate(['/main/news/search'], { queryParams: { 'tag': searchTag } });
   }
 
   gotoHome() {

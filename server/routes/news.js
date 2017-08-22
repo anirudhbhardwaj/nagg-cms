@@ -183,5 +183,4 @@ router.post('/', upload.single('image'), function (req, res, next) {
   });
 });
 
-
 module.exports = router;
