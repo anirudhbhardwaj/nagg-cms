@@ -134,7 +134,7 @@ nav.navigation ul li{
 
 .tiles-wrapper{
 	height: calc(100% - 265px);
-	margin-top: 7px;
+	margin-top: 0px;
 }
 
 .tiles-wrapper .tiles{
@@ -146,10 +146,15 @@ nav.navigation ul li{
 	padding: 1%;
 	color: #fff;
 	height: 49%;
-    min-height: 25vh;
+    min-height: 22vh;
 	padding: 2% 3%;
 	cursor: pointer;
 	vertical-align: top;
+}
+
+.tiles-wrapper .tiles:hover h1 > span{
+	background: rgba(0,0,0,.5);
+	border: 1px solid rgba(0,0,0,.5);
 }
 
 
@@ -172,11 +177,18 @@ nav.navigation ul li{
 }*/
 
 .tiles-wrapper .tiles h1{
-	font-size: x-large;
+	font-size: 20px;
+	margin-top: 3px;
 }
 
 .tiles-wrapper .tiles h1 > span{
 	cursor: pointer;
+	background: rgba(0,0,0,.25);
+    padding: 3px 5px;
+	border: 1px solid rgba(0,0,0,.40);
+	border-radius: 2px;
+	border: 1px solid rgba(0,0,0,.15);
+    border-radius: 5px;
 }
 
 .tiles-wrapper .tiles:nth-child(3n){
@@ -194,12 +206,19 @@ nav.navigation ul li{
 }
 
 .news-tile-wrapper{
-	margin-top: 15px;
+	margin-top: 5px;
 }
 
 .date-comments-likes > span{
-	width: 49%;
+	width: 60%;
 	padding-right: 2%;
+	background: rgba(0,0,0,.25);
+    padding: 3px 5px;
+	border: 1px solid rgba(0,0,0,.40);
+	border-radius: 2px;
+	border: 1px solid rgba(0,0,0,.15);
+    border-radius: 5px;
+	font-size: 15px;
 }
 
 .right-content .wrapper{

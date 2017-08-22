@@ -4,11 +4,16 @@
 }
 
 .archived-news-ul-wrapper{
-    padding: 4% 0% 2% 5%;
+    padding: 4% 0% 2% 8%;
 }
 
 .archives-ul li {
     padding: 3% 0;
+}
+
+.list-unstyled.archives-ul{
+    overflow-y: auto;
+    max-height: 146px;
 }
 
 @media screen and (max-width: 1024px){

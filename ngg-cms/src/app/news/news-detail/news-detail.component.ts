@@ -40,12 +40,14 @@ export class NewsDetailComponent implements OnInit {
      this.route.data
       .subscribe((data) => {
         this.news = data.news;
+         this.news.description = this.news.description.replace('<br />','\r\n');
       });
   }
 
   loadNews() {
     this.newsService.getNewsById(this.id).subscribe(data => {
-      this.news = <News>data
+      this.news = <News>data;
+      this.news.description = this.news.description.replace('<br />','\r?\n');
     });
   }
 

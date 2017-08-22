@@ -19,18 +19,16 @@ var upload = multer({ storage: storage });
 var dbUri = constants.MONGO_DB_PATH + constants.URL_DELIMITER + constants.DB_NAME;
 
 router.get('/archive', function (req, res, next) {
-  console.log(req.query.startDate);
-  console.log(req.query.endDate);
-    mongodb.MongoClient.connect(dbUri, function (err, db) {
+  mongodb.MongoClient.connect(dbUri, function (err, db) {
     if (err) throw err;
     var collection = db.collection('news');
     var result = collection.find({ "fingerprint.creationTime": { $gte: isodate(req.query.startDate), $lte: isodate(req.query.endDate) } }).toArray(function (err, data) {
       res.send(data);
-    }); 
+    });
   });
-});  
+});
 
- 
+
 
 router.get('/popular', function (req, res, next) {
   mongodb.MongoClient.connect(dbUri, function (err, db) {
@@ -47,7 +45,7 @@ router.get('/popular', function (req, res, next) {
           "title": 1,
           "description": 1,
           "image": 1,
-          "author": 1,
+          "authorName": 1,
           "tags": 1,
           "clickCount": 1,
           // "reactCount": { $size: { "$ifNull": ["$reactions", []] } },
@@ -67,12 +65,14 @@ router.get('/popular', function (req, res, next) {
 });
 
 router.get('/search', function (req, res, next) {
-  console.log(req.query.tag);
   mongodb.MongoClient.connect(dbUri, function (err, db) {
     if (err) throw err;
     var collection = db.collection('news');
-    var result = collection.find({ "tags": req.query.tag }).toArray(function (err, data) {
-      console.log(data);
+    var regex = new RegExp(["^", req.query.tag, "$"].join(""), "i");
+    var regexTitle = new RegExp([".*", req.query.tag, ".*"].join(""), "i");
+    //db.collection.ensureIndex({"field1":"text","field2":"text"})
+    //var result = collection.find({ collected: { $regex: regex } }).toArray(function (err, data) {
+    var result = collection.find({ $or: [{ "tags": regex }, { "title": regexTitle }] }).toArray(function (err, data) {
       res.send(data);
     });
   });
@@ -80,14 +80,12 @@ router.get('/search', function (req, res, next) {
 
 // Get single news
 router.get('/newsDetail', function (req, res, next) {
-  console.log('Get single news');
-  console.log(req.query.id);
   mongodb.MongoClient.connect(dbUri, function (err, db) {
     if (err) throw err;
 
     var collection = db.collection('news');
 
-    collection.update({"_id": ObjectId(req.query.id)}, {$inc: {clickCount:1}});
+    collection.update({ "_id": ObjectId(req.query.id) }, { $inc: { clickCount: 1 } });
 
     collection.findOne({ "_id": ObjectId(req.query.id) }, function (err, data) {
       if (err)
@@ -107,29 +105,29 @@ router.get('/', function (req, res, next) {
 
     var result = collection.aggregate([
       // Project with an array length
-      { 
+      {
         $project: {
           "fingerprint": 1,
           "title": 1,
           "description": 1,
           "image": 1,
-          "author": 1,
+          "authorName": 1,
           "tags": 1,
           "clickCount": 1,
           // "reactCount": { $size: { "$ifNull": ["$reactions", []] } },
           "reactions": 1
         }
       },
-    ]).toArray(function (err, data) {
+    ]).sort({"fingerprint.lastModificationTime": -1}).limit(6).toArray(function (err, data) {
       if (err) {
         console.log(err)
       }
-      res.send(data);  
+      res.send(data);
     });
   });
 });
-  
- 
+
+
 
 // Edit news
 router.put('/', upload.single('image'), function (req, res, next) {
@@ -137,14 +135,9 @@ router.put('/', upload.single('image'), function (req, res, next) {
   if (req.file) {
     news.image = req.file.buffer.toString('base64');
   }
-  news.fingerprint = {};
   news.fingerprint.lastModificationTime = new Date();
-
-  console.log(news);
-
   mongodb.MongoClient.connect(dbUri, function (err, db) {
     if (err) throw err;
-
     var collection = db.collection('news');
     var id = news._id.toString();
     news._id = ObjectId(id);
@@ -162,7 +155,6 @@ router.put('/', upload.single('image'), function (req, res, next) {
 
 // post new news
 router.post('/', upload.single('image'), function (req, res, next) {
-  console.log(req.body.model);
   var news = JSON.parse(req.body.model);
   if (req.file) {
     news.image = req.file.buffer.toString('base64');

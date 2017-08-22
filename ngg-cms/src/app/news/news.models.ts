@@ -1,10 +1,14 @@
 export class News {
+    constructor(authorName?: string) {
+        this.authorName = authorName;
+    }
+
     _id: string;
     fingerprint: Fingerprint
     title: string;
     description: string;
     image: string;
-    author: string;
+    authorName: string;
     tags: string[];
     reactions: Reaction[];
     // reactCount: number;

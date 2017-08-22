@@ -1,3 +1,4 @@
+import { Constants } from './../../shared/constants';
 import { Router } from '@angular/router';
 import { NewsService } from './../news-service.service';
 import { AuthService } from "../../auth.service";
@@ -13,7 +14,7 @@ export class NewsFormComponent implements OnInit {
     imageRemoved: boolean = false;
     editMode = false;
     submitted = false;
-    model: News = new News();
+    model: News = new News(Constants.DEFAULT_AUTHOR);
     editModel: News = null;
     image: File;
     base64textString: String = "";
@@ -31,12 +32,12 @@ export class NewsFormComponent implements OnInit {
             this.router.navigate(['/main/news/admin']);
         }
         sessionStorage.setItem("editMode_KEY", JSON.stringify(this.editMode));
-        this.model = this.model || new News();
+        this.model = this.model || new News(Constants.DEFAULT_AUTHOR);
     }
 
     onSubmit() {
         if (!this.editMode) {
-            // this.submitted = true;
+            this.model.description = this.model.description.replace(/\r?\n/g, '<br />');
             let formData: FormData = new FormData();
             formData.append('image', this.image);
             formData.append('model', JSON.stringify(this.model));
@@ -57,13 +58,14 @@ export class NewsFormComponent implements OnInit {
                 this.newsService.getAllNews();
                 this.editMode = false;
                 sessionStorage.removeItem("editMode_KEY");
+                this.newsService.updatePopularNewsViews();
                 this.router.navigate(['main/news/newsDetail', this.model._id]);
             })
         }
     }
 
     newNews() {
-        this.model = new News();
+        this.model = new News(Constants.DEFAULT_AUTHOR);
     }
 
     showFormControls(form: any) {
