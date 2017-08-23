@@ -260,6 +260,12 @@ nav.navigation ul li:first-child{
 	width: 12%;
 }
 
+.btn.create-news{
+    padding: .5rem .75rem;
+    line-height: 1;
+	font-family: "Verdana";
+	margin-bottom: 10px;
+}
 
 @media screen and (max-width: 1024px){
 	.content-middle{
