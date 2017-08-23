@@ -10,7 +10,7 @@
 			<ul class="text-align-left tiles-ul">
 				<!--[ngStyle]="hover ? {'background-image': 'url(data:image/png;base64,'+ news.image +')', 
 						'background-size':'100% 100%', 'background-repeat':'no-repeat'} : {}" -->
-				<li (mouseover)="hover=true" (mouseleave)="hover=false" [ngStyle]="{'background-image':'url(data:image/png;base64,'+ news.image +')', 
+				<li (mouseover)="hover=true" (mouseleave)="hover=false" [ngStyle]="{'background-image':'linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url(data:image/png;base64,'+ news.image +')', 
 						'background-size':'100% 100%', 'background-repeat':'no-repeat'}" [ngClass]="{'hoverClass' : hover, 'tiles display-inline-block position-relative' : true}">
 					<h1><span>{{news.title}}</span></h1>
 					<div class="date-comments-likes position-absolute">
