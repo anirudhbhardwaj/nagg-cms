@@ -1,3 +1,4 @@
+import { Constants } from './shared/constants';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -24,7 +25,7 @@ export class AuthService {
 
     login(username: string, password: string) {
         console.log('username ' + username + ' pwd ' + password);
-        return this.httpClient.get('http://localhost:3000/api/login', { username: username, password: password })
+        return this.httpClient.get(Constants.SERVER_URL_PREFIX + "api/login", { username: username, password: password })
             .map((response: Response) => {
                 this.loggedInUser = null;
                 // login successful if there's a jwt token in the response
