@@ -24,7 +24,6 @@ export class AuthService {
     constructor(private httpClient: HttpClient) { }
 
     login(username: string, password: string) {
-        console.log('username ' + username + ' pwd ' + password);
         return this.httpClient.get(Constants.SERVER_URL_PREFIX + 'api/login', { username: username, password: window.btoa(password) })
             .map((response: Response) => {
                 this.loggedInUser = null;
@@ -69,6 +68,5 @@ export class AuthService {
 
      getUser() {
          return sessionStorage.getItem('currentUser');
-        //return this.loggedInUser;
     }
 }
