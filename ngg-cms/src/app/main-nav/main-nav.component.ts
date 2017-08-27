@@ -4,6 +4,7 @@ import { SearchService } from '../search/search.service';
 import { RouterStateSnapshot, Router, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { User } from '../shared/shared.models';
+import { NewsService } from '../news/news-service.service';
 
 @Component({
   selector: 'app-main-nav',
@@ -14,9 +15,11 @@ export class MainNavComponent implements OnInit {
   searchText = '';
   isLoggedIn: boolean = false;
   currentUser: User;
-  isAdmin = false;
+  isAdmin: boolean = false;
+  editMode: boolean = false;
   subscription: Subscription;
-  constructor(private authService: AuthService, private searchService: SearchService, private router: Router) {
+  constructor(private newsService: NewsService, private authService: AuthService,
+    private searchService: SearchService, private router: Router) {
     router.events.subscribe((val) => {
       if (val instanceof NavigationStart && val.url.indexOf('/search') < 0) {
         this.searchText = '';
@@ -36,6 +39,9 @@ export class MainNavComponent implements OnInit {
       if (isAdminCached === 'true') {
         this.authService.setAdmin(true);
       }
+      this.newsService.editSource$.subscribe(
+        changedValue => this.editMode = changedValue
+      );
       this.isLoggedIn = this.authService.getLogin();
       this.isAdmin = this.authService.getIsAdmin();
       this.authService.logIn$.subscribe(
@@ -64,5 +70,10 @@ export class MainNavComponent implements OnInit {
 
   gotoHome() {
     this.router.navigate(['/main/news' + (this.isAdmin ? '/admin' : '')]);
+  }
+  
+  createNewNews() {
+    this.newsService.setEditNews(null);
+    this.router.navigate(['/main/news/new-news']);
   }
 }

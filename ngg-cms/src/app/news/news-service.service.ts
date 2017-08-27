@@ -1,3 +1,4 @@
+import { Constants } from './../shared/constants';
 import { News } from './news.models';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -17,7 +18,6 @@ export class NewsService {
   public editSource$ = this.editModeSource.asObservable();
   constructor(private httpClient: HttpClient) { }
 
-  private url = "http://localhost:3000/api/news";
   private news: News[] = [];
   private editedNews: News = null;
 
@@ -32,16 +32,16 @@ export class NewsService {
 
   saveEditNews(editNews) {
     console.log("editnews : ", editNews);
-    return this.httpClient.put("http://localhost:3000/api/news", editNews).map(res => res.json())
+    return this.httpClient.put(Constants.SERVER_URL_PREFIX + "api/news", editNews).map(res => res.json())
   }
 
   public postNews(news: any) {
-    return this.httpClient.post("http://localhost:3000/api/news", news)
+    return this.httpClient.post(Constants.SERVER_URL_PREFIX + "api/news", news)
       .map(res => res.json());
   }
 
   public getAllNews(): Observable<News[]> {
-    return this.httpClient.get("http://localhost:3000/api/news")
+    return this.httpClient.get(Constants.SERVER_URL_PREFIX + "api/news")
       .map(res => {
         let body = res.json();
         this.news = body || {};
@@ -50,7 +50,7 @@ export class NewsService {
   }
 
   public getImage(fileName: string) {
-    return this.httpClient.get("http://localhost:3000/uploads/" + fileName)
+    return this.httpClient.get(Constants.SERVER_URL_PREFIX + "uploads/" + fileName)
       .map(res => {
         return res || {};
       });
@@ -69,18 +69,16 @@ export class NewsService {
   // }
 
   public getNewsById(id)  {
-    return this.httpClient.get("http://localhost:3000/api/news/newsDetail", { id:id })
+    return this.httpClient.get(Constants.SERVER_URL_PREFIX + "api/news/newsDetail", { id:id })
       .map(res => {
         let body = res.json();
         this.news = body || {};
         return body || {};
       });
-
-    // return this.httpClient.get("http://localhost:3000/api/news/newsDetail", { id:id }).map(res => res.json());
   }
 
   public getNewsbydate(dateFrom, dateTo): Observable<News[]> {
-    return this.httpClient.get("http://localhost:3000/api/news/archive", { datefrom: dateFrom, dateto: dateTo })
+    return this.httpClient.get(Constants.SERVER_URL_PREFIX + "api/news/archive", { datefrom: dateFrom, dateto: dateTo })
       .map(res => {
         let body = res.json();
         return body || {};
@@ -88,7 +86,7 @@ export class NewsService {
   }
 
   public getPopularNews(): Observable<News[]> {
-    return this.httpClient.get("http://localhost:3000/api/news/popular")
+    return this.httpClient.get(Constants.SERVER_URL_PREFIX + "api/news/popular")
       .map(res => {
         let body = res.json();
         return body || {};

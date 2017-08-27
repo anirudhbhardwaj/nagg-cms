@@ -37,22 +37,23 @@ export class NewsDetailComponent implements OnInit {
     }
     this.isAdmin = this.authService.getIsAdmin();
 
-     this.route.data
+    this.route.data
       .subscribe((data) => {
         this.news = data.news;
-         this.news.description = this.news.description.replace('<br />','\r\n');
+        this.news.description = this.news.description.replace(/<br\s*[\/]?>/gi, '\r\n');
       });
   }
 
   loadNews() {
     this.newsService.getNewsById(this.id).subscribe(data => {
       this.news = <News>data;
-      this.news.description = this.news.description.replace('<br />','\r?\n');
+      this.news.description = this.news.description.replace(/<br\s*[\/]?>/gi, '\r\n');
     });
   }
 
   EditNews() {
+    this.news.description = this.news.description.replace(/<br\s*[\/]?>/gi, '\r\n');
     this.newsService.setEditNews(this.news);
-    this.router.navigate(['/main/news/new-news'])
+    this.router.navigate(['/main/news/new-news']);
   }
 }

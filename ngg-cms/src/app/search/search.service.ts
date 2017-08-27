@@ -1,3 +1,4 @@
+import { Constants } from './../shared/constants';
 import { News } from './../news/news.models';
 import { Injectable } from '@angular/core';
 import { HttpClient } from "../shared/httpClient.service";
@@ -23,14 +24,14 @@ export class SearchService {
     }
 
     getSearchNews(searchTag): Observable<News[]> {
-        return this.httpClient.get("http://localhost:3000/api/news/search", { tag: searchTag })
+        return this.httpClient.get(Constants.SERVER_URL_PREFIX + "api/news/search", { tag: searchTag })
             .map(res => {
                 let body = res.json();
                 return body || {};
             });
     }
     public getArchivedNews(startDate, endDate): Observable<News[]> {
-        return this.httpClient.get("http://localhost:3000/api/news/archive", { startDate: startDate, endDate: endDate })
+        return this.httpClient.get(Constants.SERVER_URL_PREFIX + "api/news/archive", { startDate: startDate, endDate: endDate })
             .map(res => {
                 let body = res.json();
                 return body || {};
