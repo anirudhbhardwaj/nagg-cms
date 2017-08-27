@@ -27,13 +27,13 @@ export class MainNavComponent implements OnInit {
   ngOnInit() {
     // Wrapped in setTimeout to avoid angular@4.2 error: Expression has changed after it was checked
     setTimeout(() => {
-      let isLoginFromCache = sessionStorage.getItem('isUserLogin_KEY');
-      if (isLoginFromCache == 'true') {
+      const isLoginFromCache = sessionStorage.getItem('isUserLogin_KEY');
+      if (isLoginFromCache === 'true') {
         this.authService.setLogin(true);
       }
-      this.currentUser = this.authService.getUser();
-      let isAdminCached = sessionStorage.getItem('isAdmin_KEY');
-      if (isAdminCached == 'true') {
+      this.currentUser = <User>JSON.parse(this.authService.getUser());
+      const isAdminCached = sessionStorage.getItem('isAdmin_KEY');
+      if (isAdminCached === 'true') {
         this.authService.setAdmin(true);
       }
       this.isLoggedIn = this.authService.getLogin();

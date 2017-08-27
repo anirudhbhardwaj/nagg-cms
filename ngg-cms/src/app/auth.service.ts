@@ -24,28 +24,27 @@ export class AuthService {
 
     login(username: string, password: string) {
         console.log('username ' + username + ' pwd ' + password);
-        return this.httpClient.get('http://localhost:3000/api/login', { username: username, password: password })
+        return this.httpClient.get('http://localhost:3000/api/login', { username: username, password: window.btoa(password) })
             .map((response: Response) => {
                 this.loggedInUser = null;
-                // login successful if there's a jwt token in the response
+                sessionStorage.setItem('currentUser', null);
                 const user = response.json();
                 if (user && user.username) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    sessionStorage.setItem('currentUser', user);
+                    sessionStorage.setItem('currentUser', JSON.stringify(user));
                     this.loggedInUser = user;
                     this.setLogin(true);
                     sessionStorage.setItem('isUserLogin_KEY', JSON.stringify(true));
                     return true;
                 }
                 return false;
-                //return this.isLoggedIn;
             }).catch((error: any) => error.json().error || 'Server error');
     }
 
     logout() {
         this.isLoggedInSource.next(false);
         this.setLogin(false);
-                this.loggedInUser = null;
+        this.loggedInUser = null;
         // remove user from local storage to log user out
         sessionStorage.removeItem('currentUser');
     }
@@ -67,7 +66,8 @@ export class AuthService {
         return this.isAdmin;
     }
 
-     getUser(): User {
-        return this.loggedInUser;
+     getUser() {
+         return sessionStorage.getItem('currentUser');
+        //return this.loggedInUser;
     }
 }
