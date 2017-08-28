@@ -8,9 +8,14 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
 
+class dateRange {
+  datefrom
+} 
+
 @Injectable()
 export class SearchService {
     searchData: News[];
+
     constructor(private httpClient: HttpClient, private router: Router) { }
 
     searchNews(searchTag) {
@@ -32,6 +37,13 @@ export class SearchService {
     }
     public getArchivedNews(startDate, endDate): Observable<News[]> {
         return this.httpClient.get(Constants.SERVER_URL_PREFIX + "api/news/archive", { startDate: startDate, endDate: endDate })
+            .map(res => {
+                let body = res.json();
+                return body || {};
+            }).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
+    public getNewsDates(): Observable<dateRange[]> {
+        return this.httpClient.get(Constants.SERVER_URL_PREFIX + "api/news/ardate")
             .map(res => {
                 let body = res.json();
                 return body || {};
