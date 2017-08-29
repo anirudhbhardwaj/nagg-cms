@@ -1,3 +1,8 @@
 .archived-news-thumb-wrapper{
     font-family: Arial, Helvetica, sans-serif;
 }
+.link-span {
+     cursor:pointer;
+     color:#0275d8;
+     text-decoration:underline;
+}
