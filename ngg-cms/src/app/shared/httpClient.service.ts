@@ -14,6 +14,10 @@ export class HttpClient {
 
     get(url, data?) {
         let headers = new Headers();
+        if(!data) {
+            data = {};
+        }
+        data.time = new Date().getTime();
         this.createAuthorizationHeader(headers);
         return this.http.get(url, {
             headers: headers,
