@@ -18,6 +18,12 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.link-span {
+     cursor:pointer;
+     color:#0275d8;
+     text-decoration:underline;
+}
+
 @media screen and (max-width: 1024px){
     .author-date-reactions{
         font-size: 14px;
