@@ -4,25 +4,25 @@
 <div class="container">
   <h1 class="welcome text-center">Welcome to <br> Ice Code</h1>
   <div class="card card-container">
-    <h2 class='login_title text-center'>Login</h2>
+    <h2 class='login_title text-center'>Login to your account</h2>
     <hr>
 
     <form class="form-signin" name="form" (ngSubmit)="loginForm.form.valid && login()" #loginForm="ngForm">
       <span id="reauth-email" class="reauth-email"></span>
       <div class="form-group" [ngClass]="{ 'has-error': loginForm.submitted && !username.valid }">
-        <p class="input_title">Email</p>
+        <!--<p class="input_title">Email</p>-->
         <input type="text" id="inputEmail" class="login_box" name="username" [(ngModel)]="model.username"
-          #username="ngModel" required autofocus>
+          #username="ngModel" required autofocus placeholder="Email">
         <div *ngIf="!username.valid&& loginForm.submitted" class="help-block">Username is required</div>
       </div>
       <div class="form-group" [ngClass]="{ 'has-error': loginForm.submitted && !password.valid }">
-        <p class="input_title">Password</p>
+        <!--<p class="input_title">Password</p>-->
         <input type="password" id="inputPassword" class="login_box" name="password" [(ngModel)]="model.password" #password="ngModel" 
-                   required>
+                   required placeholder="Password">
             <div *ngIf="loginForm.submitted && !password.valid" class="help-block">Password is required</div>
       </div>
       <span class="error"> {{errorMessage}}</span>
-      <button class="btn btn-lg btn-primary" type="button" (click)="login()" [disabled]="!loginForm.form.valid">Login</button>
+      <button class="btn btn-lg btn-primary login-btn" type="button" (click)="login()" [disabled]="!loginForm.form.valid">Login</button>
     </form><!-- /form -->
   </div><!-- /card-container -->
 </div><!-- /container -->

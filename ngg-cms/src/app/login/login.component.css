@@ -18,8 +18,9 @@ body, html {
 }
 .input_title{
     color:rgba(164, 164, 164, 0.9);
+    color: rgba(0,0,0,.75);
     padding-left:3px;
-    margin-bottom: 2px;
+    margin-bottom: 7px;
 }
 
 hr{
@@ -40,7 +41,8 @@ hr{
     font-family: "myriad-pro",sans-serif;
     font-style: normal;
     font-weight: 100;
-    color:rgba(164, 164, 164, 0.44);
+    color:rgba(164, 164, 164, 1);
+    font-size: 20px;
 }
 
 .card-container.card {
@@ -67,7 +69,7 @@ hr{
 .card {
     background-color: #FFFFFF;
     /* just in case there no content*/
-    padding: 1px 25px 30px;
+    padding: 15px 25px 30px;
     margin: 0 auto 25px;
     margin-top: 15%x;
     /* shadows and rounded borders */
@@ -118,9 +120,28 @@ hr{
 .form-signin #inputEmail,
 .form-signin #inputPassword {
     direction: ltr;
-    height: 44px;
+    height: 40px;
     font-size: 16px;
+    margin-bottom: 20px;
+    border-radius: 3px;
 }
+
+.form-signin #inputEmail::-webkit-input-placeholder,
+.form-signin #inputPassword::-webkit-input-placeholder{
+    color: rgba(0,0,0,.4);
+}
+
+.form-signin #inputEmail::-moz-placeholder,
+.form-signin #inputPassword::-moz-placeholder{
+    color: rgba(0,0,0,.4);
+}
+
+.form-signin #inputEmail:-ms-input-placeholder,
+.form-signin #inputPassword:-ms-input-placeholder{
+    color: rgba(0,0,0,.4);
+}
+
+
 
 .form-signin input[type=email],
 .form-signin input[type=password],
@@ -175,4 +196,10 @@ hr{
 .forgot-password:active,
 .forgot-password:focus{
     color: rgb(12, 97, 33);
+}
+
+.login-btn{
+    height:40px;
+    border-radius: 3px;
+    padding: 0rem 1.5rem;
 }

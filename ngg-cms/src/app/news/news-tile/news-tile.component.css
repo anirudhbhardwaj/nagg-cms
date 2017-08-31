@@ -189,6 +189,11 @@ nav.navigation ul li{
 	border-radius: 2px;
 	border: 1px solid rgba(0,0,0,.15);
     border-radius: 5px;*/
+	display: block;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .tiles-wrapper .tiles:nth-child(3n){
