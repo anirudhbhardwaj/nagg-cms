@@ -117,7 +117,7 @@ hr{
     box-sizing: border-box;
 }
 
-.form-signin #inputEmail,
+.form-signin #username,
 .form-signin #inputPassword {
     direction: ltr;
     height: 40px;
