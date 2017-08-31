@@ -21,7 +21,6 @@ export class SearchResultComponent implements OnInit {
   ngOnInit() {
     // This is required as angular doesn't refresh the route in case just the query params change
     this.route.queryParams.subscribe(queryParams => {
-      console.log(queryParams);
       if (queryParams.tag) {
         this.headingText = 'Search Results for : ' + queryParams.tag;
         this.searchService.getSearchNews(queryParams.tag)
@@ -33,7 +32,6 @@ export class SearchResultComponent implements OnInit {
           let date = new Date(queryParams.startDate)
           this.headingText = 'Archived news for the month of ' + date.toLocaleString("en-us" , { month: "long" });;
           this.searchData = news;
-          console.log(this.searchData);
         });
       }
     });

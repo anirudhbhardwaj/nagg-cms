@@ -40,19 +40,19 @@ export class NewsDetailComponent implements OnInit {
     this.route.data
       .subscribe((data) => {
         this.news = data.news;
-        this.news.description = this.news.description.replace(/<br\s*[\/]?>/gi, '\r\n');
+        this.news.description = (this.news.description) ? this.news.description.replace(/<br\s*[\/]?>/gi, '\r\n') : this.news.description;
       });
   }
 
   loadNews() {
     this.newsService.getNewsById(this.id).subscribe(data => {
       this.news = <News>data;
-      this.news.description = this.news.description.replace(/<br\s*[\/]?>/gi, '\r\n');
+      this.news.description = (this.news.description) ? this.news.description.replace(/<br\s*[\/]?>/gi, '\r\n') : this.news.description;
     });
   }
 
   EditNews() {
-    this.news.description = this.news.description.replace(/<br\s*[\/]?>/gi, '\r\n');
+    this.news.description = (this.news.description) ? this.news.description.replace(/<br\s*[\/]?>/gi, '\r\n') : this.news.description;
     this.newsService.setEditNews(this.news);
     this.router.navigate(['/main/news/new-news']);
   }

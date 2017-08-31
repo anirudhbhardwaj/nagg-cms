@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-// import {Router} from "@angular/router";
+import { Constants } from './../shared/constants';
 import { RouterStateSnapshot, Router } from '@angular/router';
 
 @Component({
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                   if (data) {
-                    this.router.navigate([this.authService.redirectUrl]);
+                     this.router.navigate([Constants.SUCCESSFULL_LOGIN_REDIRECTION_URL]);
                   }else {
                     this.errorMessage = 'Invalid username and password';
                    this.model = {};

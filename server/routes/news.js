@@ -28,6 +28,30 @@ router.get('/archive', function (req, res, next) {
   });
 });
 
+router.get('/ardate', function (req, res, next) {
+  mongodb.MongoClient.connect(dbUri, function (err, db) {
+    if (err) throw err;
+
+    var collection = db.collection('news');
+
+    var result = collection.aggregate([
+      // Project with an array length
+      {
+        $group: {
+          "_id": 1,
+          "datefrom": { $min: "$fingerprint.creationTime" },
+          "dateto": { $max: "$fingerprint.creationTime" }
+        },
+      }
+    ]).toArray(function (err, data) {
+      if (err) {
+        console.log(err)
+      }
+      res.send(data);
+    });
+  });
+});
+
 
 
 router.get('/popular', function (req, res, next) {
@@ -95,7 +119,7 @@ router.get('/newsDetail', function (req, res, next) {
     });
   });
 });
-
+ 
 // Get all news
 router.get('/', function (req, res, next) {
   mongodb.MongoClient.connect(dbUri, function (err, db) {
@@ -118,7 +142,7 @@ router.get('/', function (req, res, next) {
           "reactions": 1
         }
       },
-    ]).sort({"fingerprint.lastModificationTime": -1}).limit(6).toArray(function (err, data) {
+    ]).sort({ "fingerprint.lastModificationTime": -1 }).limit(6).toArray(function (err, data) {
       if (err) {
         console.log(err)
       }
