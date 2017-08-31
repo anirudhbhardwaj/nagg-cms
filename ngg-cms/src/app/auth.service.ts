@@ -24,7 +24,9 @@ export class AuthService {
     constructor(private httpClient: HttpClient) { }
 
     login(username: string, password: string) {
-        return this.httpClient.get(Constants.SERVER_URL_PREFIX + 'api/login', { username: username, password: window.btoa(password) })
+        let pwd = btoa(btoa(btoa(password)).split("").reverse().join("").substring(2)).substring(0, 10);
+        return this.httpClient.get(Constants.SERVER_URL_PREFIX + 'api/login',
+            { username: username, password: pwd })
             .map((response: Response) => {
                 this.loggedInUser = null;
                 sessionStorage.setItem('currentUser', null);
@@ -66,7 +68,7 @@ export class AuthService {
         return this.isAdmin;
     }
 
-     getUser() {
-         return sessionStorage.getItem('currentUser');
+    getUser() {
+        return sessionStorage.getItem('currentUser');
     }
 }
