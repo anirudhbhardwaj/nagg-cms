@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var $;
 
 @Component({
   selector: 'app-carousel',
@@ -23,6 +24,18 @@ export class CarouselComponent implements OnInit {
     }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    $(document).ready(function () {
+      $("#myCarousel").carousel();
+      var mCarouselTO = setTimeout(function () {
+        $('#myCarousel').carousel({
+          interval: 2000,
+          cycle: true,
+        }).trigger('slide');
+      }, 2000);
+    });
   }
 
 }

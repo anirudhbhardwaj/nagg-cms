@@ -14,20 +14,6 @@
   <script src="/assets/jquery/jquery.min.js"></script>
   <script src="/assets/bootstrap/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      var mCarouselTO = setTimeout(function () {
-        $('#myCarousel').carousel({
-          interval: 3000,
-          cycle: true,
-        }).trigger('slide');
-      }, 2000);
-      var q = mCarouselTO;
-    });
-    window.unload = function () {
-      sessionStorage.clear();
-    }
-  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
