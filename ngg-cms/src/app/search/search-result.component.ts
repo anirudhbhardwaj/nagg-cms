@@ -35,10 +35,10 @@ export class SearchResultComponent implements OnInit {
         });
       }
     });
-    this.route.data
-      .subscribe((data) => {
-        this.searchData = data.searchData;
-      });
+    // this.route.data
+    //   .subscribe((data) => {
+    //     this.searchData = data.searchData;
+    //   });
   }
 
   redirectToNewsDetail(news: News) {
