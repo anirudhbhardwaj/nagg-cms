@@ -18,6 +18,8 @@ export class NewsFormComponent implements OnInit {
     editModel: News = null;
     image: File;
     base64textString: String = "";
+    // property for IE11 (made type:any due to RFC#299 typescript)
+    tempReader: any;
 
     constructor(private newsService: NewsService, private authService: AuthService, private router: Router) {
     }
@@ -80,13 +82,36 @@ export class NewsFormComponent implements OnInit {
             this.image = file;
             if (this.image) {
                 var reader = new FileReader();
+                if (FileReader.prototype.readAsBinaryString === undefined) {
+                    FileReader.prototype.readAsBinaryString = function (fileData) {
+                        var binary = "";
+                        var pt = this;
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            var bytes = new Uint8Array(reader.result);
+                            var length = bytes.byteLength;
+                            for (var i = 0; i < length; i++) {
+                                binary += String.fromCharCode(bytes[i]);
+                            }
+                            pt.content = binary;
+                            pt.onload();
+                        }
+
+                        reader.readAsArrayBuffer(fileData);
+                    }
+                }
+                this.tempReader = reader;
                 reader.onload = this._handleReaderLoaded.bind(this);
                 reader.readAsBinaryString(this.image);
             }
         }
     }
     _handleReaderLoaded(readerEvt) {
-        var binaryString = readerEvt.target.result;
+        if (readerEvt == undefined) {
+            var binaryString = this.tempReader.content;
+        } else {
+            var binaryString = readerEvt.target.result;
+        }
         this.base64textString = btoa(binaryString);
     }
 
