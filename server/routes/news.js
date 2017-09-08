@@ -23,6 +23,9 @@ router.get('/archive', function (req, res, next) {
     if (err) throw err;
     var collection = db.collection('news');
     var result = collection.find({ "fingerprint.creationTime": { $gte: isodate(req.query.startDate), $lte: isodate(req.query.endDate) } }).toArray(function (err, data) {
+      data.sort(function(a,b){
+        return b.fingerprint.creationTime - a.fingerprint.creationTime
+       })
       res.send(data);
     });
   });
