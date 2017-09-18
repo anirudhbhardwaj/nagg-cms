@@ -1,3 +1,4 @@
+import { WindowRefService } from './../../shared/window-ref.service';
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NewsService } from '../news-service.service';
@@ -21,7 +22,7 @@ export class NewsDetailComponent implements OnInit {
   id: string;
 
   constructor(private newsService: NewsService, private route: ActivatedRoute,
-    private router: Router, private authService: AuthService) {
+    private router: Router, private authService: AuthService, private windowRefService: WindowRefService) {
 
   }
 
@@ -56,4 +57,16 @@ export class NewsDetailComponent implements OnInit {
     this.newsService.setEditNews(this.news);
     this.router.navigate(['/main/news/new-news']);
   }
+
+  
+    deleteNews() {
+       var check = this.windowRefService.getNativeWindow().confirm("Are you sure you want to delete the news?");
+       if(check) {
+           this.newsService.deleteNews(this.news)
+           .subscribe(() => {
+             this.newsService.updatePopularNewsViews();
+             this.router.navigate(["\main\news"]);
+           });
+       }
+    }
 }

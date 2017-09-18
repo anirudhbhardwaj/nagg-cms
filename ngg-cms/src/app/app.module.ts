@@ -1,3 +1,4 @@
+import { WindowRefService } from './shared/window-ref.service';
 import { NewsDetailResolveGuard } from './news/news-detail.resolve';
 import { SearchResolveGuard } from './search/search-result-resolve.service';
 import { NewsFormComponent } from './news/news-form/news-form.component';
@@ -67,7 +68,7 @@ import { EditGuard } from "./news/news-form/edit-guard.guard";
 
     ],
     providers: [AuthGuard, AuthService, HttpClient, NewsResolveGuard, NewsService, SearchService, 
-        SearchResolveGuard, EditGuard, NewsDetailResolveGuard ],
+        SearchResolveGuard, EditGuard, NewsDetailResolveGuard, WindowRefService ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

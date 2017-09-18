@@ -47,6 +47,15 @@
     right: 0;
 }
 
+.btn.delete-news{
+    padding: .5rem .75rem;
+    line-height: 1;
+	font-family: "Verdana";
+    position: absolute;
+    bottom: -10px;
+    float: right;
+}
+
 .news-detail-body{
     position: relative;
 }

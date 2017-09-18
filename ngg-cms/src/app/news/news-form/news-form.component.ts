@@ -1,3 +1,4 @@
+import { WindowRefService } from './../../shared/window-ref.service';
 import { Constants } from './../../shared/constants';
 import { Router } from '@angular/router';
 import { NewsService } from './../news-service.service';

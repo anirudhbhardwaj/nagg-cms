@@ -15,12 +15,15 @@
     </div>
     <span class="news-detail-description">
     <span class="line-breaker" [innerHTML]="news?.description"></span>
-   </span>
+    </span>
     <span class="news-detail-tags">
       <p><span class="tags-text">Tags: </span>
     <span class="tag-links">{{news?.tags}}</span>
     </p>
     </span>
-    <button class="btn btn-primary edit-news" *ngIf="isAdmin && isLoggedIn" (click)="EditNews()">Edit</button>
+    <div style="float: right">
+      <button type="button" *ngIf="isAdmin && isLoggedIn" class="btn btn-danger delete-news" (click)="deleteNews()">Delete</button>
+      <button class="btn btn-primary edit-news" *ngIf="isAdmin && isLoggedIn" (click)="EditNews()">Edit</button>
+    </div>
   </div>
 </div>

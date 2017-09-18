@@ -23,9 +23,9 @@ router.get('/archive', function (req, res, next) {
     if (err) throw err;
     var collection = db.collection('news');
     var result = collection.find({ "fingerprint.creationTime": { $gte: isodate(req.query.startDate), $lte: isodate(req.query.endDate) } }).toArray(function (err, data) {
-      data.sort(function(a,b){
+      data.sort(function (a, b) {
         return b.fingerprint.creationTime - a.fingerprint.creationTime
-       })
+      })
       res.send(data);
     });
   });
@@ -122,7 +122,7 @@ router.get('/newsDetail', function (req, res, next) {
     });
   });
 });
- 
+
 // Get all news
 router.get('/', function (req, res, next) {
   mongodb.MongoClient.connect(dbUri, function (err, db) {
@@ -192,7 +192,8 @@ router.post('/', upload.single('image'), function (req, res, next) {
   news.fingerprint.creationTime = new Date();
 
   mongodb.MongoClient.connect(dbUri, function (err, db) {
-    if (err) throw err;
+    if (err)
+      throw err;
 
     var collection = db.collection('news');
     collection.insert(news, function (err, docs) {
@@ -201,5 +202,21 @@ router.post('/', upload.single('image'), function (req, res, next) {
     });
   });
 });
+
+router.delete('/', function (req, res, next) {
+  mongodb.MongoClient.connect(dbUri, function (err, db) {
+    if (err)
+      throw err;
+    
+    var collection = db.collection('news');
+    collection.remove({ "_id": ObjectId(req.query.id) }, function(err, docs) {
+      if(err) {
+        return false;
+      }
+      res.send(true);
+      db.close();
+    });
+  });
+})
 
 module.exports = router;

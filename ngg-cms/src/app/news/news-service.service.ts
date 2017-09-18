@@ -68,8 +68,8 @@ export class NewsService {
   //   return selectedNews;
   // }
 
-  public getNewsById(id)  {
-    return this.httpClient.get(Constants.SERVER_URL_PREFIX + "api/news/newsDetail", { id:id })
+  public getNewsById(id) {
+    return this.httpClient.get(Constants.SERVER_URL_PREFIX + "api/news/newsDetail", { id: id })
       .map(res => {
         let body = res.json();
         this.news = body || {};
@@ -93,10 +93,15 @@ export class NewsService {
       }).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  public updatePopularNewsViews(){
-    this.updatePopularNews.next(true);
+  public deleteNews(news: News): Observable<Boolean> {
+    return this.httpClient.delete(Constants.SERVER_URL_PREFIX + "api/news/", {id: news._id})
+      .map(res => {
+        let body = res.json();
+        return body || false
+      }).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-
-
+  public updatePopularNewsViews() {
+    this.updatePopularNews.next(true);
+  }
 }

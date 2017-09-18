@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
                 error => {
                    // show error
                     this.errorMessage = 'Invalid username and password';
-                   this.model = {};
                    console.log('Error');
                 });
     }
