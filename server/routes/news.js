@@ -19,6 +19,10 @@ var upload = multer({ storage: storage });
 var dbUri = constants.MONGO_DB_PATH + constants.URL_DELIMITER + constants.DB_NAME;
 
 router.get('/archive', function (req, res, next) {
+  var teststartdate = Date(req.query.startDate)
+  console.log(teststartdate);
+  var testenddate = Date(req.query.endDate)
+  console.log(testenddate);
   mongodb.MongoClient.connect(dbUri, function (err, db) {
     if (err) throw err;
     var collection = db.collection('news');
@@ -163,6 +167,7 @@ router.put('/', upload.single('image'), function (req, res, next) {
     news.image = req.file.buffer.toString('base64');
   }
   news.fingerprint.lastModificationTime = new Date();
+  news.fingerprint.creationTime = new Date(news.fingerprint.creationTime);
   mongodb.MongoClient.connect(dbUri, function (err, db) {
     if (err) throw err;
     var collection = db.collection('news');
