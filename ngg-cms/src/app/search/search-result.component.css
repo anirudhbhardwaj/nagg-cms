@@ -1,10 +1,11 @@
 .search-results-link{
     cursor: pointer;
     font-weight: normal;
+    color: #0275d8 !important;
 }
 
 .search-results-link:hover{
-    text-decoration: underline !important;
+    /*text-decoration: underline !important;*/
 }
 
 .search-results-wrapper{
@@ -44,4 +45,8 @@
 .srch-results-number{
     position: absolute;
     left: 40%;
+}
+
+.srch-results-creation-timestamp{
+    font-size: 12px;
 }

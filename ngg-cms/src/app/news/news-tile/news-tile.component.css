@@ -107,7 +107,7 @@ nav.navigation ul li{
 }
 
 .main-content{
-	width: 95%;
+	width: 98%;
 	height: 100%;
 }
 
@@ -194,6 +194,7 @@ nav.navigation ul li{
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+	padding: 1px 0;
 }
 
 .tiles-wrapper .tiles:nth-child(3n){

@@ -3,6 +3,7 @@
     width: 78%;
     /*margin-top: 10px;*/
     margin-bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .news-detail-title{
@@ -41,19 +42,19 @@
 .btn.edit-news{
     padding: .5rem .75rem;
     line-height: 1;
-	font-family: "Verdana";
+	/*font-family: "Verdana";*/
     position: absolute;
     bottom: -10px;
-    right: 0;
+    right: 85px;
 }
 
 .btn.delete-news{
     padding: .5rem .75rem;
     line-height: 1;
-	font-family: "Verdana";
+	/*font-family: "Verdana";*/
     position: absolute;
     bottom: -10px;
-    float: right;
+    right: 0;
 }
 
 .news-detail-body{

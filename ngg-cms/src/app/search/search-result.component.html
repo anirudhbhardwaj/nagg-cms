@@ -10,7 +10,7 @@
     <ng-container *ngIf="searchData?.length > 0">
       <li *ngFor="let item of searchData; let i = index" class="search-results-list">
         <a class="search-results-link" (click)="redirectToNewsDetail(item)">{{item.title}}</a>
-        <span>(Created : {{item.fingerprint.creationTime | date: 'dd/MM/yyyy'}})</span>
+        <span class="srch-results-creation-timestamp">(Created : {{item.fingerprint.creationTime | date: 'dd/MM/yyyy'}})</span>
       </li>
       <li class="srch-results-number">
         <span>Found {{searchData.length}} result(s)</span>

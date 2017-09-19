@@ -21,7 +21,7 @@
     <span class="tag-links">{{news?.tags}}</span>
     </p>
     </span>
-    <div style="float: right">
+    <div>
       <button type="button" *ngIf="isAdmin && isLoggedIn" class="btn btn-danger delete-news" (click)="deleteNews()">Delete</button>
       <button class="btn btn-primary edit-news" *ngIf="isAdmin && isLoggedIn" (click)="EditNews()">Edit</button>
     </div>
