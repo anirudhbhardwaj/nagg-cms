@@ -65,7 +65,7 @@ export class NewsDetailComponent implements OnInit {
            this.newsService.deleteNews(this.news)
            .subscribe(() => {
              this.newsService.updatePopularNewsViews();
-             this.router.navigate(["\main\news"]);
+             this.router.navigate(["/main/news/admin"]);
            });
        }
     }
